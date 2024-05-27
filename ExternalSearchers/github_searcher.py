@@ -12,7 +12,13 @@ from RefPageParsers.github_parser import commit_parse
 from RefPageParsers.github_parser import advisory_parse
 from Utils.util import github_url_transfer
 
-
+headers = {
+    'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
+    'Accept': 'application/json, application/vnd.github+json',
+    'Authorization': 'Bearer '
+                     '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',
+    'Connection': 'keep-alive'
+}
 def get_github_blob(url):
     blob_response = requests.request("GET", url, headers={'User-Agent': 'baidu'})
     if blob_response and blob_response.json()['content']:
@@ -130,28 +136,37 @@ def advisories_search_by_id(cve_id):
 
 
 def advisories_search():
-    client = GraphQLClient('https://api.example.com/graphql')  # 替换为实际的GraphQL API端点
-
+    url = 'https://api.github.com/graphql'
     # 构建GraphQL查询
     query = '''
-      query {
-        securityAdvisories {
-          id
-          package
-          severity
-          summary
-          description
-          publishedDate
-          # 其他您想要获取的字段
+    query {
+        securityAdvisories{
+            nodes {
+                id
+                package {
+                    name
+                }
+                severity
+                advisory {
+                    summary
+                    description
+                    publishedAt
+                }
+            }
         }
-      }
+    }
     '''
 
-    # 发送GraphQL查询请求
-    result = client.execute(query)
+    data = {
+        'query': query
+    }
 
-    # 处理查询结果
-    print(result)  # 输出查询结果
+    # 发送GraphQL请求
+    response = requests.post(url, json=data,headers=headers)
+
+    # 处理响应数据
+    result = response.json()
+    print(result)  # 输出响应结果
 
 
 if __name__ == "__main__":
