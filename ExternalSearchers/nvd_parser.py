@@ -2,6 +2,8 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from RefPageParsers.github_parser import github_parse
+from Utils.TimeUtils import get_current_time
+
 # from RefPageParsers.windows_parser import win_parser
 
 headers = {
@@ -55,9 +57,9 @@ def search_nvd(cve_id):
             temp_list = software_text.split('\n')
             for temp in temp_list:
                 temp = temp.lstrip()
-                if temp.startswith("*cpe:2.3:a:"): #cpe2.3
+                if temp.startswith("*cpe:2.3:a:"):  # cpe2.3
                     start_idx = 11
-                elif temp.startswith("*cpe:/a:"):  #cpe2.2
+                elif temp.startswith("*cpe:/a:"):  # cpe2.2
                     start_idx = 8
                 else:
                     print("unsupported cpe version!")
@@ -116,7 +118,8 @@ def search_nvd(cve_id):
             nvd_detail['patch_list'].append({
                 'patch_url': patch_detail,
                 'service_name': patch_detail['service_name'],
-                'patch_detail': patch_detail['detail']
+                'patch_detail': patch_detail['detail'],
+                'time': get_current_time()
             })
     # 如果找不到的话就返回vendor advisory和third party advisory
     # exploit也是个重要的格式，代表在哪里发现了漏洞
