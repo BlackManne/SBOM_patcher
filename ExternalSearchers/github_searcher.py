@@ -139,17 +139,22 @@ def advisories_search():
     url = 'https://api.github.com/graphql'
     # 构建GraphQL查询
     query = '''
-      query {
-        securityAdvisories {
-          id
-          package
-          severity
-          summary
-          description
-          publishedDate
-          # 其他您想要获取的字段
+    query {
+        securityAdvisories{
+            nodes {
+                id
+                package {
+                    name
+                }
+                severity
+                advisory {
+                    summary
+                    description
+                    publishedAt
+                }
+            }
         }
-      }
+    }
     '''
 
     data = {
