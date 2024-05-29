@@ -16,7 +16,7 @@ headers = {
     'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
     'Accept': 'application/json, application/vnd.github+json',
     'Authorization': 'Bearer '
-                     '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',
+                     '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',
     'Connection': 'keep-alive'
 }
 def get_github_blob(url):
@@ -140,16 +140,22 @@ def advisories_search():
     # 构建GraphQL查询
     query = '''
     query {
-        securityAdvisories{
-            nodes {
-                id
-                package {
-                    name
-                }
-                severity
-                advisory {
-                    summary
-                    description
+        securityAdvisories(first:20){
+            edges{
+                node{
+                    classification
+                    cvss{
+                        score
+                        vectorString
+                    }
+                    ghsaId
+                    id 
+                    identifiers{
+                        type
+                        value
+                    }
+                    origin
+                    permalink
                     publishedAt
                 }
             }
@@ -162,7 +168,7 @@ def advisories_search():
     }
 
     # 发送GraphQL请求
-    response = requests.post(url, json=data,headers=headers)
+    response = requests.post(url, json=data, headers=headers)
 
     # 处理响应数据
     result = response.json()
