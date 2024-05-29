@@ -26,7 +26,7 @@ def commits_parse(url):
     if match_str[1] != '':
         url += ('?sha=' + match_str[1])
     github_url = github_url_transfer(url)
-    response = requests.request("GET", github_url , headers=headers, data=payload)
+    response = requests.request("GET", github_url, headers=headers, data=payload)
     if response.status_code == 200:
         return response.json()
     else:
@@ -149,11 +149,12 @@ def advisory_parse(url):
                 p_detail_list = []
                 # 如果是一个ul元素，把里面所有的li都取出来
                 father = p
-                while p.find_next('li') is not None and p.find_next('li').find_parent() == father:
+                while p and p.find_next('li') and p.find_next('li').find_parent() == father:
                     p = p.find_next('li').find('a')
                     href = p.get('href') if p is not None else None
                     # print(p.text + ' : ' + href)
-                    p_detail_list.append(p.text + ' : ' + href)
+                    if p:
+                        p_detail_list.append(p.text + ' : ' + href)
 
                 if p in other_descriptions:
                     break
@@ -162,7 +163,7 @@ def advisory_parse(url):
                 if len(p_detail_list) == 0:
                     p_detail_list.append(p.text.strip())
                 for p_detail in p_detail_list:
-                    if p_detail == '':   # 忽略空字符串（包括所有换行符等等）
+                    if p_detail == '':  # 忽略空字符串（包括所有换行符等等）
                         continue
                     if e.text == 'Impact':
                         impact += p_detail
@@ -197,14 +198,14 @@ def issue_parse(url):
     headers_for_issue['Accept'] = 'application/vnd.github.VERSION.raw+json'
     response = requests.request("GET", detail_url, headers=headers_for_issue, data=payload)
     content = response.json()
-    title = content['title']
-    created_time = content['created_at']
-    updated_time = content['updated_at']
-    closed_time = content['closed_at'] if content['closed_at'] else 'not_closed'
+    title = content.get('title')
+    created_time = content.get('created_at')
+    updated_time = content.get('updated_at')
+    closed_time = content.get('closed_at', 'not_closed')
     labels = []
-    for label in content['labels']:
-        labels.append({'name': label['name'], 'description': label['description']})
-    body = str(content['body']).rstrip()
+    for label in content.get('labels', []):
+        labels.append({'name': label.get('name'), 'description': label.get('description')})
+    body = str(content.get('body')).rstrip()
     md_title_format = re.compile(r'###.*\n+')
     res = re.findall(md_title_format, body)
     for s in res:
@@ -290,7 +291,8 @@ def file_parse(url):
 def github_parse(url):
     github_detail = {
         "detail": None,
-        "source": "github"
+        "source": "github",
+        "service_name": ""
     }
     # 根据其中的链接判断是哪一种github页面
     # 格式是https://github.com/{users}/{repos}/xxxx
@@ -327,13 +329,13 @@ def github_parse(url):
 
 if __name__ == "__main__":
     url_list = [
-                "https://github.com/advisories/GHSA-6qjm-h442-97p9",
-                "https://github.com/advisories/GHSA-fxg5-wq6x-vr4w",
-                "https://github.com/kyverno/kyverno/security/advisories/GHSA-9g37-h7p2-2c6r",
-                "https://github.com/actions/toolkit/security/advisories/GHSA-7r3h-m5j6-3q42", # todo 第五个的reference解析还是有问题
-                "https://github.com/fastify/github-action-merge-dependabot/security/advisories/GHSA-v5vr-h3xq-8v6w",
-                "https://github.com/git/git/security/advisories/GHSA-j342-m5hw-rr3v",
-                "https://github.com/github/gh-ost/security/advisories/GHSA-rrp4-2xx3-mv29",
-                "https://github.com/cloudflare/cfrpki/security/advisories/GHSA-3pqh-p72c-fj85"]
+        "https://github.com/advisories/GHSA-6qjm-h442-97p9",
+        "https://github.com/advisories/GHSA-fxg5-wq6x-vr4w",
+        "https://github.com/kyverno/kyverno/security/advisories/GHSA-9g37-h7p2-2c6r",
+        "https://github.com/actions/toolkit/security/advisories/GHSA-7r3h-m5j6-3q42",  # todo 第五个的reference解析还是有问题
+        "https://github.com/fastify/github-action-merge-dependabot/security/advisories/GHSA-v5vr-h3xq-8v6w",
+        "https://github.com/git/git/security/advisories/GHSA-j342-m5hw-rr3v",
+        "https://github.com/github/gh-ost/security/advisories/GHSA-rrp4-2xx3-mv29",
+        "https://github.com/cloudflare/cfrpki/security/advisories/GHSA-3pqh-p72c-fj85"]
     for url in url_list:
         advisory_parse(url)
