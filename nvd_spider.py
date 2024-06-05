@@ -1,6 +1,6 @@
 import pymongo
 from datetime import datetime
-from ExternalSearchers.nvd_parser import search_nvd
+from ExternalSearchers.nvd_searcher import search_nvd
 
 mongodb_client = pymongo.MongoClient("mongodb://localhost:27017")
 # 选择local数据库和CVE集合
