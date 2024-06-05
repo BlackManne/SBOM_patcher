@@ -14,9 +14,11 @@ headers = {
     'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
     'Accept': 'application/json, application/vnd.github+json',
     'Authorization': 'Bearer '
-                     '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',
+                     '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',
     'Connection': 'keep-alive'
 }
+
+
 def get_github_blob(url):
     blob_response = requests.request("GET", url, headers={'User-Agent': 'baidu'})
     if blob_response and blob_response.json()['content']:
@@ -170,7 +172,14 @@ def advisories_search():
 
     # 处理响应数据
     result = response.json()
-    return result # 输出响应结果
+    if result is not None:
+        ret_advisories_list = []
+        advisories_list_raw = result['data']['securityAdvisories']['edges']
+        for advisory in advisories_list_raw:
+            ret_advisories_list.append(advisory['node'])
+            print(advisory['node'])
+        return ret_advisories_list  # 输出响应结果
+    return None
 
 
 if __name__ == "__main__":
@@ -181,7 +190,6 @@ if __name__ == "__main__":
     # for url in url_list:
     #     fix_commits_search(url)
     # advisories_search('CVE-2023-1495')
-    print(advisories_search())
-    advisories_list = advisories_search()['data']['securityAdvisories']['edges']
+    advisories_list = advisories_search()
     for advisory in advisories_list:
         print(advisory)

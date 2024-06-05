@@ -5,7 +5,11 @@ from RefPageParsers import github_parser
 class TestGithubParser(unittest.TestCase):
 
     def test_commit_parse(self):
-        pass
+        url_list = [
+            "https://github.com/PX4/PX4-Autopilot/commit/d1fcd39a44e6312582c6ab02b0d5ee2599fb55aa",
+        ]
+        for url in url_list:
+            github_parser.commit_parse(url)
 
     def test_advisory_parse(self):
         url_list = [
@@ -21,15 +25,29 @@ class TestGithubParser(unittest.TestCase):
             github_parser.advisory_parse(url)
 
     def test_issue_parse(self):
-        pass
+        url_list = [
+            "https://github.com/Lissy93/dashy/issues/1336",
+            "https://github.com/jbt/markdown-editor/issues/106",
+            "https://github.com/go-sonic/sonic/issues/56"
+        ]
+        for url in url_list:
+            github_parser.issue_parse(url)
 
     def test_pull_parse(self):
-        pass
+        url_list = [
+            "https://github.com/openshift/kubernetes/pull/1736",
+            "https://github.com/PX4/PX4-Autopilot/pull/17264/commits/555f900cf52c0057e4c429ff3699c91911a21cab",
+        ]
+        for url in url_list:
+            github_parser.pull_parse(url)
 
     def test_github_parser(self):
         url_list = [
+            "https://github.com/PX4/PX4-Autopilot/commit/d1fcd39a44e6312582c6ab02b0d5ee2599fb55aa",
             "https://github.com/advisories/GHSA-6qjm-h442-97p9",
             "https://github.com/kyverno/kyverno/security/advisories/GHSA-9g37-h7p2-2c6r",
+            "https://github.com/Lissy93/dashy/issues/1336",
+            "https://github.com/openshift/kubernetes/pull/1736"
             ]
         for url in url_list:
             github_parser.github_parse(url)

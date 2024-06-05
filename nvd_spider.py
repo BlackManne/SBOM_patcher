@@ -18,7 +18,7 @@ for document in collection.find({}, {'No': 1, '_id': 0}):
 # # res = search_nvd('CVE-2023-23946')
 # # nvd_collection.insert_one({'No': 'CVE-2023-23946', 'info': res})
 
-# todo 获取系统时间的例子，别的方法也可
+
 # 获取当前系统时间
 now = datetime.now()
 # 格式化为字符串

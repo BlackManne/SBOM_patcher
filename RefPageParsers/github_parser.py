@@ -8,7 +8,8 @@ from Utils.util import github_url_transfer
 headers = {
     'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
     'Accept': 'application/json, application/vnd.github+json',
-    'Authorization': 'Bearer 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',
+    'Authorization': 'Bearer '
+                     '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',
     'Host': 'api.github.com',
     'Connection': 'keep-alive'
 }
