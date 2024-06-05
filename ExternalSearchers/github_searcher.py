@@ -1,8 +1,6 @@
 import requests
 import re
 import base64
-import json
-from graphqlclient import GraphQLClient
 
 from bs4 import BeautifulSoup
 

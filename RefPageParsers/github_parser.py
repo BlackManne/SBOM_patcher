@@ -3,8 +3,6 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from Utils.util import github_url_transfer
-from lxml import etree
-import time
 
 # 给headers赋值，默认是application/json格式
 headers = {
@@ -160,7 +158,7 @@ def advisory_parse(url):
                     break
 
                 # 如果不是一个ui列表元素，默认添加自己
-                if len(p_detail_list) == 0:
+                if len(p_detail_list) == 0 and p is not None and p.text is not None:
                     p_detail_list.append(p.text.strip())
                 for p_detail in p_detail_list:
                     if p_detail == '':  # 忽略空字符串（包括所有换行符等等）
@@ -298,6 +296,7 @@ def github_parse(url):
     # 格式是https://github.com/{users}/{repos}/xxxx
     commit_format = re.compile('https://github.com/[^/]+/[^/]+/commit/.*')
     advisory_format = re.compile('https://github.com/[^/]+/[^/]+/security/advisories/.+')
+    advisories_format = re.compile('https://github.com/advisories/.+')
     issue_format = re.compile('https://github.com/[^/]+/[^/]+/issues/[0-9]+')
     pull_format = re.compile('https://github.com/[^/]+/[^/]+/pull/[0-9]+.*')
     # 文件格式，目前只支持md和pdf格式
@@ -306,7 +305,7 @@ def github_parse(url):
     if re.match(commit_format, url) is not None:
         github_detail["detail"] = commit_parse(url)
         github_detail["service_name"] += "_commit"
-    elif re.match(advisory_format, url) is not None:
+    elif re.match(advisory_format, url) is not None or re.match(advisories_format, url) is not None:
         github_detail["detail"] = advisory_parse(url)
         github_detail["service_name"] += "_advisory"
         # github_commit, github_advisory
@@ -322,7 +321,8 @@ def github_parse(url):
     elif re.match(commits_format, url) is not None:
         github_detail["detail"] = commits_parse(url)
         github_detail["source"] += "_commits"
-
+    else:
+        print("NOT SUPPORTED FORMAT!")
     # print(github_detail)
     return github_detail
 
