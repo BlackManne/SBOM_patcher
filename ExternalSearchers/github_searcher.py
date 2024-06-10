@@ -14,7 +14,7 @@ headers = {
     'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
     'Accept': 'application/json, application/vnd.github+json',
     'Authorization': 'Bearer '
-                     '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',
+                     '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',
     'Connection': 'keep-alive'
 }
 
@@ -113,10 +113,19 @@ def fix_commits_search(url):
     return fix_commits_list
 
 
-# 在github advisories里面搜索
 def advisories_search_by_id(cve_id):
     advisories_base = 'https://github.com/advisories?query='
     advisory_url = advisories_base + cve_id
+    return advisories_search_by_url(advisory_url)
+
+
+# 在github advisories里面搜索
+def advisories_search_by_url(advisory_url):
+    query_idx = advisory_url.find('query=')
+    if query_idx == -1:
+        print("invalid url pattern!!")
+        return None
+    cve_id = advisory_url[query_idx + 6:]
     response = requests.request("GET", advisory_url, headers={'User-Agent': 'baidu'})
     soup = BeautifulSoup(response.text, "html.parser")
     cve_id_list = soup.find_all('div', class_='mt-1 text-small color-fg-muted')
@@ -128,11 +137,12 @@ def advisories_search_by_id(cve_id):
             cve_url = cve.find_parent().find('a', class_='Link--primary v-align-middle no-underline h4 '
                                                          'js-navigation-open').get('href')
             cve_url = 'https://github.com' + cve_url
-            print(advisory_parse(cve_url))
-            break
+            res = advisory_parse(cve_url)
+            return res
     # 这个里面没有对应的cve
     if not cve_find_or_not:
         print('Cannot find github advisory of cve:' + cve_id + '!')
+        return None
 
 
 def advisories_search():
@@ -182,14 +192,8 @@ def advisories_search():
     return None
 
 
-if __name__ == "__main__":
-    # url_list = ["https://github.com/pyscript/pyscript/commits/main",
-    #             # "https://github.com/pyscript/pyscript/commits",
-    #             # "https://github.com/pyscript/pyscript/commits/fpliger/example-panel-worker"
-    #             ]
-    # for url in url_list:
-    #     fix_commits_search(url)
+# if __name__ == "__main__":
     # advisories_search('CVE-2023-1495')
-    advisories_list = advisories_search()
-    for advisory in advisories_list:
-        print(advisory)
+    # advisories_list = advisories_search()
+    # for advisory in advisories_list:
+    #     print(advisory)

@@ -12,14 +12,43 @@ headers = {
     'Connection': 'keep-alive'
 }
 
+cve_pattern = re.compile("(cve|CVE)-[0-9]{4}-[0-9]{4,}$")
 
-def search_nvd(cve_id):
+
+def modify_software_version(version):
+    version = version.replace("versions", "")
+    version = version.replace(" ", "")
+    # 代表是否存在区间
+    range_num = 0
+    if version.find("from") != -1:
+        range_num = range_num + 1
+        version = version.replace("from", ">")
+    if version.find("upto") != -1:
+        range_num = range_num + 1
+        version = version.replace("upto", "<")
+    version = version.replace("(including)", "=")
+    version = version.replace("(excluding)", "")
+    # 有两个区间，此时需要用逗号隔开，在<号之前插入一个逗号
+    if range_num == 2:
+        idx_to_insert = version.find("<")
+        version = version[0:idx_to_insert] + "," + version[idx_to_insert:]
+    return version
+
+
+def search_nvd_using_cve_id(cve_id):
     # 先按照正则表达式判断一下cve_id是否是合法的
-    cve_pattern = re.compile("(cve|CVE)-[0-9]{4}-[0-9]{4,}$")
     if not re.match(cve_pattern, cve_id):
         print('invalid cve-id!')
         return None
     url = 'https://nvd.nist.gov/vuln/detail/' + cve_id
+    return search_nvd_using_url(url)
+
+
+def search_nvd_using_url(url):
+    cve_id_idx = re.search(cve_pattern, url)
+    if cve_id_idx is None:
+        return None
+    cve_id = url[cve_id_idx.span()[0]:cve_id_idx.span()[1]]
     response = requests.request("GET", url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
     title = soup.find('title').text.strip()
@@ -81,6 +110,8 @@ def search_nvd(cve_id):
                     }
                 # 整合软件版本信息
                 if curr_version is not None:
+                    # 将版本信息修改为>=号和<=号的修改
+                    curr_version = modify_software_version(curr_version)
                     software_list_dict[software_name]["versions"].append(curr_version)
                     software_list_dict[software_name]["versions_raw"].append(software_with_version)
 
@@ -155,13 +186,12 @@ def parse_nvd(url):
 #             'CVE-2023-36569'  # 微软的patch
 #             ]
 
-# 可以使用的nvd_list
 # nvd_list = ['CVE-2023-37582',
 #             'CVE-2020-19952',
 #             'CVE-2023-43746',
 #             'CVE-2023-36568'
 #             ]
 # for cve_id in nvd_list:
-#     search_nvd(cve_id)
+#     search_nvd_using_cve_id(cve_id)
 
-search_nvd('CVE-2023-37582')
+# search_nvd_using_url('https://nvd.nist.gov/vuln/detail/CVE-2023-37582')

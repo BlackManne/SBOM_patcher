@@ -1,27 +1,21 @@
 import unittest
 from ExternalSearchers import nvd_searcher
+from Tests.Utils.test_utils import generate_testcases
 
 
 class TestNVDSearcher(unittest.TestCase):
 
-    def test_different_page_search(self):
-        nvd_list = ['CVE-2022-1',  # 无效的
-                    'CVE-2022-28066',  # 被拒绝的
-                    'CVE-2020-19952',  # github的patch
-                    'CVE-2023-43746',  # 没有patch
-                    'CVE-2023-36569'  # 微软的patch
+    def test_nvd_search(self):
+        nvd_list = ['https://nvd.nist.gov/vuln/detail/CVE-2022-1',  # 无效的
+                    'https://nvd.nist.gov/vuln/detail/CVE-2022-28066',  # 被拒绝的
+                    'https://nvd.nist.gov/vuln/detail/CVE-2023-43746',  # 没有patch
+                    'https://nvd.nist.gov/vuln/detail/CVE-2023-36569',  # 微软的patch
+                    'https://nvd.nist.gov/vuln/detail/CVE-2023-37582',  # github的patch
+                    'https://nvd.nist.gov/vuln/detail/CVE-2020-19952',
+                    'https://nvd.nist.gov/vuln/detail/CVE-2023-36568'
                     ]
-        for nvd_url in nvd_list:
-            nvd_searcher.parse_nvd(nvd_url)
-
-    def test_software_version_parse(self):
-        nvd_list = ['CVE-2023-37582',
-                    'CVE-2020-19952',
-                    'CVE-2023-43746',
-                    'CVE-2023-36568'
-                    ]
-        for cve_id in nvd_list:
-            nvd_searcher.search_nvd(cve_id)
+        nvd_testcases = []
+        generate_testcases(nvd_list, nvd_testcases, nvd_searcher.search_nvd_using_url)
 
     if __name__ == '__main__':
         unittest.main()
