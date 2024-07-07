@@ -25,6 +25,7 @@
     <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/global-526475a50099.css" />
     <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/github-0c7b5281bcc9.css" />
   <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/repository-7247b57543b3.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/advisories-9fdab9678ee3.css" />
 
   
 
@@ -66,9 +67,8 @@
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/behaviors-ac844bd01e4d.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_delegated-events_dist_index_js-node_modules_github_catalyst_lib_index_js-06ff531-2ea61fcc9a71.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/notifications-global-ce1721184096.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_mini-throttle_dist_index_js-node_modules_github_remote-form_dist_-d18e64-c77ef75ef0de.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/issues-109f7523471f.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/structured-issues-3b28b01b7563.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_remote-form_dist_index_js-node_modules_delegated-events_dist_inde-86f690-6e0dd1852d63.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/advisories-441fc4f6ea55.js"></script>
   
     <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/react-lib-a89cbd87a1e0.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_mini-throttle_dist_index_js-node_modules_primer_octicons-react_di-b40d97-9b98c5140e22.js"></script>
@@ -86,35 +86,35 @@
 <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/notifications-subscriptions-menu.572fff1cb5c3caef1ac9.module.css" />
 
 
-  <title>XSS vulnerability on &lt;abbr&gt; and &lt;sup&gt;&lt;EMBED&gt; label · Issue #106 · jbt/markdown-editor · GitHub</title>
+  <title>Denial of service from malicious image manifest · Advisory · kyverno/kyverno · GitHub</title>
 
 
 
-  <meta name="route-pattern" content="/_view_fragments/issues/show/:user_id/:repository/:id/issue_layout(.:format)" data-turbo-transient>
-  <meta name="route-controller" content="voltron_issues_fragments" data-turbo-transient>
-  <meta name="route-action" content="issue_layout" data-turbo-transient>
+  <meta name="route-pattern" content="/:user_id/:repository/security/advisories/:id(.:format)" data-turbo-transient>
+  <meta name="route-controller" content="repos_advisories" data-turbo-transient>
+  <meta name="route-action" content="show" data-turbo-transient>
 
     
-  <meta name="current-catalog-service-hash" content="81bb79d38c15960b92d99bca9288a9108c7a47b18f2423d0f6438c5b7bcd2114">
+  <meta name="current-catalog-service-hash" content="8025d6f2cc71a72e813fbf424d385277e1fd1993701fcc4bad786191fb829e54">
 
 
-  <meta name="request-id" content="B714:209555:C167B9:E59B8D:668A965E" data-pjax-transient="true"/><meta name="html-safe-nonce" content="3890a53515d093781215bbe153c563aa1a61560868bfb7bade0f8b2c685973ed" data-pjax-transient="true"/><meta name="visitor-payload" content="eyJyZWZlcnJlciI6IiIsInJlcXVlc3RfaWQiOiJCNzE0OjIwOTU1NTpDMTY3Qjk6RTU5QjhEOjY2OEE5NjVFIiwidmlzaXRvcl9pZCI6Ijg2MTQxMzgzNzk0MDU3OTI4NjIiLCJyZWdpb25fZWRnZSI6ImphcGFuZWFzdCIsInJlZ2lvbl9yZW5kZXIiOiJqYXBhbmVhc3QifQ==" data-pjax-transient="true"/><meta name="visitor-hmac" content="29be5010034f713db507232664042f08d8087d1b7f4c4162e2ced30b4dd96b62" data-pjax-transient="true"/>
+  <meta name="request-id" content="DD2C:DC191:C261BF:E69BB1:668A96E8" data-pjax-transient="true"/><meta name="html-safe-nonce" content="d9f75f96e2e3a750ce4e6f86376c48d6f00586c9ebcecf31f237882978d0bd09" data-pjax-transient="true"/><meta name="visitor-payload" content="eyJyZWZlcnJlciI6IiIsInJlcXVlc3RfaWQiOiJERDJDOkRDMTkxOkMyNjFCRjpFNjlCQjE6NjY4QTk2RTgiLCJ2aXNpdG9yX2lkIjoiNzgyODgwMTAzMjM1MTgxNTQwMCIsInJlZ2lvbl9lZGdlIjoiamFwYW5lYXN0IiwicmVnaW9uX3JlbmRlciI6ImphcGFuZWFzdCJ9" data-pjax-transient="true"/><meta name="visitor-hmac" content="26592352120fad62bce130fdd14b19153666761af80f321f18271095fcf3cc84" data-pjax-transient="true"/>
 
 
-    <meta name="hovercard-subject-tag" content="issue:476758286" data-turbo-transient>
+    <meta name="hovercard-subject-tag" content="repository:169108858" data-turbo-transient>
 
 
-  <meta name="github-keyboard-shortcuts" content="repository,issues,copilot" data-turbo-transient="true" />
+  <meta name="github-keyboard-shortcuts" content="repository,copilot" data-turbo-transient="true" />
   
 
-  <meta name="selected-link" value="repo_issues" data-turbo-transient>
+  <meta name="selected-link" value="security" data-turbo-transient>
   <link rel="assets" href="https://github.githubassets.com/">
 
     <meta name="google-site-verification" content="Apib7-x98H0j5cPqHWwSMm6dNU4GmODRoqxLiDzdx9I">
 
 <meta name="octolytics-url" content="https://collector.github.com/github/collect" />
 
-  <meta name="analytics-location" content="/&lt;user-name&gt;/&lt;repo-name&gt;/voltron/issues_fragments/issue_layout" data-turbo-transient="true" />
+  <meta name="analytics-location" content="/&lt;user-name&gt;/&lt;repo-name&gt;/repos/advisories/show" data-turbo-transient="true" />
 
   
 
@@ -129,16 +129,16 @@
 
     
 
-      <meta name="description" content="This label and attack vector will cause XSS. payload: &lt;EMBED SRC=&quot;data:image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZ...">
+      <meta name="description" content="GitHub is where people build software. More than 100 million people use GitHub to discover, fork, and contribute to over 420 million projects.">
 
       <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
 
     <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
     <meta property="fb:app_id" content="1401488693436528">
-    <meta name="apple-itunes-app" content="app-id=1477376905, app-argument=https://github.com/_view_fragments/issues/show/jbt/markdown-editor/106/issue_layout" />
+    <meta name="apple-itunes-app" content="app-id=1477376905, app-argument=https://github.com/kyverno/kyverno/security/advisories/GHSA-9g37-h7p2-2c6r" />
 
-      <meta name="twitter:image:src" content="https://opengraph.githubassets.com/4e2403b0966da690a1d4d90b804ee11f21bcd69f28a1bd863edb4a3e8e9254cc/jbt/markdown-editor/issues/106" /><meta name="twitter:site" content="@github" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="XSS vulnerability on &lt;abbr&gt; and &lt;sup&gt;&lt;EMBED&gt; label · Issue #106 · jbt/markdown-editor" /><meta name="twitter:description" content="This label and attack vector will cause XSS. payload: &amp;lt;EMBED SRC=&amp;quot;data:image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwM..." />
-  <meta property="og:image" content="https://opengraph.githubassets.com/4e2403b0966da690a1d4d90b804ee11f21bcd69f28a1bd863edb4a3e8e9254cc/jbt/markdown-editor/issues/106" /><meta property="og:image:alt" content="This label and attack vector will cause XSS. payload: &lt;EMBED SRC=&quot;data:image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciI..." /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="600" /><meta property="og:site_name" content="GitHub" /><meta property="og:type" content="object" /><meta property="og:title" content="XSS vulnerability on &lt;abbr&gt; and &lt;sup&gt;&lt;EMBED&gt; label · Issue #106 · jbt/markdown-editor" /><meta property="og:url" content="https://github.com/jbt/markdown-editor/issues/106" /><meta property="og:description" content="This label and attack vector will cause XSS. payload: &lt;EMBED SRC=&quot;data:image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciI..." /><meta property="og:author:username" content="j1nse" />
+      <meta name="twitter:image:src" content="https://opengraph.githubassets.com/c1f54371404573c2dbed14b5e46d106d9b09242f226eed536ef69e3e2fad713a/kyverno/kyverno/security/advisories/GHSA-9g37-h7p2-2c6r" /><meta name="twitter:site" content="@github" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Denial of service from malicious image manifest" /><meta name="twitter:description" content="A security vulnerability was found in Kyverno where an attacker could cause denial of service of Kyverno. The vulnerable component in Kyvernos Notary verifier. An attacker would need control over t..." />
+  <meta property="og:image" content="https://opengraph.githubassets.com/c1f54371404573c2dbed14b5e46d106d9b09242f226eed536ef69e3e2fad713a/kyverno/kyverno/security/advisories/GHSA-9g37-h7p2-2c6r" /><meta property="og:image:alt" content="A security vulnerability was found in Kyverno where an attacker could cause denial of service of Kyverno. The vulnerable component in Kyvernos Notary verifier. An attacker would need control over t..." /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="600" /><meta property="og:site_name" content="GitHub" /><meta property="og:type" content="object" /><meta property="og:title" content="Denial of service from malicious image manifest" /><meta property="og:description" content="A security vulnerability was found in Kyverno where an attacker could cause denial of service of Kyverno. The vulnerable component in Kyvernos Notary verifier. An attacker would need control over t..." />
   
 
 
@@ -157,11 +157,6 @@
   <meta http-equiv="x-pjax-js-version" content="917a3faab0a2dbe29b817ac86a66cebbdced06421b579fd5bec2e62df3ecf68a" data-turbo-track="reload">
 
   <meta name="turbo-cache-control" content="no-preview" data-turbo-transient="">
-
-        <meta name="voltron-timing" value="184">
-  <meta name="go-import" content="github.com/jbt/markdown-editor git https://github.com/jbt/markdown-editor.git">
-
-  <meta name="octolytics-dimension-user_id" content="120506" /><meta name="octolytics-dimension-user_login" content="jbt" /><meta name="octolytics-dimension-repository_id" content="6034984" /><meta name="octolytics-dimension-repository_nwo" content="jbt/markdown-editor" /><meta name="octolytics-dimension-repository_public" content="true" /><meta name="octolytics-dimension-repository_is_fork" content="false" /><meta name="octolytics-dimension-repository_network_root_id" content="6034984" /><meta name="octolytics-dimension-repository_network_root_nwo" content="jbt/markdown-editor" />
 
 
 
@@ -244,9 +239,9 @@
       </a>
 
       <div class="flex-1">
-        <a href="/login?return_to=https%3A%2F%2Fgithub.com%2Fjbt%2Fmarkdown-editor%2Fissues%2F106"
+        <a href="/login?return_to=https%3A%2F%2Fgithub.com%2Fkyverno%2Fkyverno%2Fsecurity%2Fadvisories%2FGHSA-9g37-h7p2-2c6r"
           class="d-inline-block d-lg-none flex-order-1 f5 no-underline border color-border-default rounded-2 px-2 py-1 color-fg-inherit"
-          data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/jbt/markdown-editor/issues/106&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="8ae5038b439be0375b6729ac3ab367a1cccfd9f0b9e0e907b547d24b6467b7d8"
+          data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/kyverno/kyverno/security/advisories/GHSA-9g37-h7p2-2c6r&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="0b2191324ec2ea734d5ea39f8fc321d79865249f2caa67bd02162204ed1bc1dd"
           data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">
           Sign in
         </a>
@@ -719,7 +714,7 @@
                 
 
 
-<qbsearch-input class="search-input" data-scope="repo:jbt/markdown-editor" data-custom-scopes-path="/search/custom_scopes" data-delete-custom-scopes-csrf="reHrBOmA69AIE1oc_3OxN2a0B1Sqmjr1XtjzZwD75cVkeECIJbn3_Jv-AxshGaTwvRdsDZJdzy1SIfKUKPbESQ" data-max-custom-scopes="10" data-header-redesign-enabled="false" data-initial-value="" data-blackbird-suggestions-path="/search/suggestions" data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations" data-current-repository="jbt/markdown-editor" data-current-org="" data-current-owner="jbt" data-logged-in="false" data-copilot-chat-enabled="false" data-blackbird-indexed-repo-csrf="<esi:include src=&quot;/_esi/rails_csrf_token_form_hidden?r=25yjQh%2FZ2T5tNPYu8zGQaVvydKq8TdZgn7x9I8WPJirWA3nLPO4iihoQyQGR5SyfKyQwNDRF6FcuqC36%2FQ6M3L2WQj59aM2V7wAcw9KXkFTfjeAJgSpW3di3G09Mn%2Bn2Jd83%2FA4Pz%2Bav2W58M2qoO5yvz1wvBFga1V9aOsmyFVMhxDN%2FDh0zdnlCxbQ2vxpii7Ms8OMVCEWR6ZdGT6Yvb%2Fa0SuwFXhArHpeon%2FKV1s%2BRM9TI5ZkDhtoFQynjI0GJ5CwGL48Oq4iOF%2FHrvpeRPvKuoOYk0KVK796LL%2BLWMQHaryj%2BfH31QhLQafbctfG0K8q%2BWTx%2BruKCX9OITyTI1mcYnKvxj3zc%2BFjuApsgUg%2BegwViPhxAnOvdO3GfEs1CgsQ%2Bz70K5jeqF8mjXofCJtq00QYBHiO7%2FWuV3JkC6prMaOR2xMwqL0qygXxCTYiUuZsKXou%2Bl4nxViDDDZT5XXqoepAMfXMfu1VSeAkM%2Fl06UK%2FTB4tiIBThs5uSrywBkdYWQQyuHbdHR%2F4Ry9p6ncFguwaAy%2FC0JB%2BAp6z4--E%2FnqGShcwRPFtsTD--RFB23hCI70n5LTHyO4251A%3D%3D&quot; />">
+<qbsearch-input class="search-input" data-scope="repo:kyverno/kyverno" data-custom-scopes-path="/search/custom_scopes" data-delete-custom-scopes-csrf="HqwYYMuzqjC5coulBAnuCeQbGqH474sC1LTOFfkSQ0WRlREOPAN3QMuazIAMy_Se1s2PLNq-zw-8X18rIAQAOg" data-max-custom-scopes="10" data-header-redesign-enabled="false" data-initial-value="" data-blackbird-suggestions-path="/search/suggestions" data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations" data-current-repository="kyverno/kyverno" data-current-org="kyverno" data-current-owner="" data-logged-in="false" data-copilot-chat-enabled="false" data-blackbird-indexed-repo-csrf="<esi:include src=&quot;/_esi/rails_csrf_token_form_hidden?r=c5%2FabV4ShQ3iBiup99rKkx6Qn90n0DF4aS5q%2BvXk45z7ZYRtjmp0PmLZzRBYVruG7g5EPG3ILLML9lW3NtqoI%2BppihfKn6lYd9H2q09uCp4Pz%2Fu8W4jnb8G6sb7qnnTTeVTTCpEYZ2myDKVAq8ZnqPNU1YOTwXZBjDDnV%2BpgewG6DoKOOVckaK047DYrKCD5p8WRNPvYSJ%2BY0BIfvZz9zAXzY7GcFDRW9%2BnhGPJdSUxtG3%2FsyS9%2FQkiAtKTxs22eHEPoSzhEK8Fcj3bGQGaepj9pssgY9%2FJ3RCeiu29dzRrpwmYNehKCTuA7t15tVtkRRde5SEYmC8kJKPhByDat1zn8NnsutPuktNDmeLfR0xi3%2BFXstR1BKJ2CklpyDhzIsaea1Iyp9ypn57rhvdvvYjVXV%2FPzJa67dS%2BsmXcEfJkqAeEifirnibPbpj5Ghbt8GnwCc390dCHnXFZp6GCPE3q9ztXKcqEDFAviowuYpZSWdFG2bro3qxC0wTNFikACA8ndTI7vZnfwdfDwKEzeWTbYvEU9XMSDVinYiyinSw0iNxnlUrcFQpylRCtNqwft8Qd9qgrCpjxo2dL3Hq%2BWDFCd--zb60lTLTB4Mil5ff--dtN8k8Nw%2BQJP3GEKl0FLLg%3D%3D&quot; />">
   <div
     class="search-input-container search-with-dialog position-relative d-flex flex-row flex-items-center mr-4 rounded"
     data-action="click:qbsearch-input#searchInputContainerClicked"
@@ -781,7 +776,7 @@
           ></div>
           <div class="QueryBuilder-InputWrapper">
             <div aria-hidden="true" class="QueryBuilder-Sizer" data-target="query-builder.sizer"></div>
-            <input id="query-builder-test" name="query-builder-test" value="" autocomplete="off" type="text" role="combobox" spellcheck="false" aria-expanded="false" aria-describedby="validation-7f820b63-0d7b-41c6-a563-355e11ae57dd" data-target="query-builder.input" data-action="
+            <input id="query-builder-test" name="query-builder-test" value="" autocomplete="off" type="text" role="combobox" spellcheck="false" aria-expanded="false" aria-describedby="validation-30574300-0dd9-4781-996a-4498fa1a5d5c" data-target="query-builder.input" data-action="
           input:query-builder#inputChange
           blur:query-builder#inputBlur
           keydown:query-builder#inputKeydown
@@ -1012,7 +1007,7 @@
                   id="query-builder-test-results"
                 ></ul>
         </div>
-      <div class="FormControl-inlineValidation" id="validation-7f820b63-0d7b-41c6-a563-355e11ae57dd" hidden="hidden">
+      <div class="FormControl-inlineValidation" id="validation-30574300-0dd9-4781-996a-4498fa1a5d5c" hidden="hidden">
         <span class="FormControl-inlineValidation--visual">
           <svg aria-hidden="true" height="12" viewBox="0 0 12 12" version="1.1" width="12" data-view-component="true" class="octicon octicon-alert-fill">
     <path d="M4.855.708c.5-.896 1.79-.896 2.29 0l4.675 8.351a1.312 1.312 0 0 1-1.146 1.954H1.33A1.313 1.313 0 0 1 .183 9.058ZM7 7V3H5v4Zm-1 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"></path>
@@ -1055,7 +1050,7 @@
   
 </div>
       <scrollable-region data-labelled-by="feedback-dialog-title">
-        <div data-view-component="true" class="Overlay-body">        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="code-search-feedback-form" data-turbo="false" action="/search/feedback" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="aEvoAuvmXD71i5jkJFcY0BaO7RXuMnr4x69E+0tmqRG094bg6nlWZBV4uaJedcftmY8RcPb1ObstUA+56hdrTg==" />
+        <div data-view-component="true" class="Overlay-body">        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="code-search-feedback-form" data-turbo="false" action="/search/feedback" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="qu715wgaEtvpXTJ3wp6bZpVblAm+ZPzbbJ6h9iQYh0jmwTcO4vncak0NvjOscWh290obsdlswoANccWvHcBK1g==" />
           <p>We read every piece of feedback, and take your input very seriously.</p>
           <textarea name="feedback" class="form-control width-full mb-2" style="height: 120px" id="feedback"></textarea>
           <input name="include_email" id="include_email" aria-label="Include my email address so I can be contacted" class="form-control mr-2" type="checkbox">
@@ -1093,7 +1088,7 @@
         <div data-view-component="true" class="Overlay-body">        <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
 
         <div hidden class="create-custom-scope-form" data-target="custom-scopes.createCustomScopeForm">
-        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="custom-scopes-dialog-form" data-turbo="false" action="/search/custom_scopes" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="pB2vGKL1PPnfvQCLRl2x4DIT80cN2jiXv+qOhMPnMpv4ZqfeBEFQNfGgnv5rrXOlDJZX2vaPGbHQh1oDjLLh0A==" />
+        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="custom-scopes-dialog-form" data-turbo="false" action="/search/custom_scopes" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="+ovfK6VnauLr7HAy+IdyfCUIYvn9xYdPJzU+5MgbBrJy4xpgO+IbZPUDu5bXOxRqchuFRN746qe06uZ5i70IEA==" />
           <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
 
           <input type="hidden" id="custom_scope_id" name="custom_scope_id" data-target="custom-scopes.customScopesIdField">
@@ -1111,7 +1106,7 @@
                 placeholder="github-ruby"
                 required
                 maxlength="50">
-              <input type="hidden" data-csrf="true" value="3o0Rn39UljDxI9qZ/d1ItsPAutQnLNXtrS0ccXtSDh98R52FiKet19OjK/JOVtg840xDbkDEWD0d02zv1/2fJA==" />
+              <input type="hidden" data-csrf="true" value="M5ctqGgudZzhkhLvHZgfrwMhzj193mdBsTjgSrQnYwDdaU5OPbIuu7mxb0h8N8LnYuIiphuy/V2GGN+/3FrdQQ==" />
             </auto-check>
           </div>
 
@@ -1148,22 +1143,22 @@
 </dialog></dialog-helper>
     </custom-scopes>
   </div>
-</qbsearch-input><input type="hidden" data-csrf="true" class="js-data-jump-to-suggestions-path-csrf" value="XUXryAHTKNVo27Arqa3Nyhi0U6SZkHlRkz/Q/55MzSOhqwjktRBxEUh08ESAbQYup77AzU9Kc2bTCcCfbSZ5Rg==" />
+</qbsearch-input><input type="hidden" data-csrf="true" class="js-data-jump-to-suggestions-path-csrf" value="HczUqSE965/xp9E026ogu9Q3GGSuTKHI9tLkZmik2GXLD7BnsBlEIyMCmBU4ChZpN2siHhG24BzBM2dHLb7yUw==" />
 
 
           <div class="position-relative mr-lg-3 d-lg-inline-block">
-            <a href="/login?return_to=https%3A%2F%2Fgithub.com%2Fjbt%2Fmarkdown-editor%2Fissues%2F106"
+            <a href="/login?return_to=https%3A%2F%2Fgithub.com%2Fkyverno%2Fkyverno%2Fsecurity%2Fadvisories%2FGHSA-9g37-h7p2-2c6r"
               class="HeaderMenu-link HeaderMenu-link--sign-in flex-shrink-0 no-underline d-block d-lg-inline-block border border-lg-0 rounded rounded-lg-0 p-2 p-lg-0"
-              data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/jbt/markdown-editor/issues/106&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="8ae5038b439be0375b6729ac3ab367a1cccfd9f0b9e0e907b547d24b6467b7d8"
+              data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/kyverno/kyverno/security/advisories/GHSA-9g37-h7p2-2c6r&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="0b2191324ec2ea734d5ea39f8fc321d79865249f2caa67bd02162204ed1bc1dd"
               data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">
               Sign in
             </a>
           </div>
 
-            <a href="/signup?ref_cta=Sign+up&amp;ref_loc=header+logged+out&amp;ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Fvoltron%2Fissues_fragments%2Fissue_layout&amp;source=header-repo&amp;source_repo=jbt%2Fmarkdown-editor"
+            <a href="/signup?ref_cta=Sign+up&amp;ref_loc=header+logged+out&amp;ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Frepos%2Fadvisories%2Fshow&amp;source=header-repo&amp;source_repo=kyverno%2Fkyverno"
               class="HeaderMenu-link HeaderMenu-link--sign-up flex-shrink-0 d-none d-lg-inline-block no-underline border color-border-default rounded px-2 py-1"
-              data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/jbt/markdown-editor/issues/106&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="8ae5038b439be0375b6729ac3ab367a1cccfd9f0b9e0e907b547d24b6467b7d8"
-              data-analytics-event="{&quot;category&quot;:&quot;Sign up&quot;,&quot;action&quot;:&quot;click to sign up for account&quot;,&quot;label&quot;:&quot;ref_page:/&lt;user-name&gt;/&lt;repo-name&gt;/voltron/issues_fragments/issue_layout;ref_cta:Sign up;ref_loc:header logged out&quot;}"
+              data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/kyverno/kyverno/security/advisories/GHSA-9g37-h7p2-2c6r&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="0b2191324ec2ea734d5ea39f8fc321d79865249f2caa67bd02162204ed1bc1dd"
+              data-analytics-event="{&quot;category&quot;:&quot;Sign up&quot;,&quot;action&quot;:&quot;click to sign up for account&quot;,&quot;label&quot;:&quot;ref_page:/&lt;user-name&gt;/&lt;repo-name&gt;/repos/advisories/show;ref_cta:Sign up;ref_loc:header logged out&quot;}"
             >
               Sign up
             </a>
@@ -1182,10 +1177,10 @@
         <span class="js-stale-session-flash-signed-out" hidden>You signed out in another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
         <span class="js-stale-session-flash-switched" hidden>You switched accounts on another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
 
-    <button id="icon-button-dce1be64-0b55-4e34-b34c-3085ea85f587" aria-labelledby="tooltip-84009384-df51-4bf7-a062-96b93ed8ff50" type="button" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium flash-close js-flash-close">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x Button-visual">
+    <button id="icon-button-000b02ce-e440-48ae-a3ea-bf9cb6e07ae2" aria-labelledby="tooltip-513c3780-a87b-41ff-9ed3-a78606b2e90a" type="button" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium flash-close js-flash-close">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x Button-visual">
     <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
 </svg>
-</button><tool-tip id="tooltip-84009384-df51-4bf7-a062-96b93ed8ff50" for="icon-button-dce1be64-0b55-4e34-b34c-3085ea85f587" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Dismiss alert</tool-tip>
+</button><tool-tip id="tooltip-513c3780-a87b-41ff-9ed3-a78606b2e90a" for="icon-button-000b02ce-e440-48ae-a3ea-bf9cb6e07ae2" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Dismiss alert</tool-tip>
 
 
   
@@ -1239,14 +1234,12 @@
     data-discussion-hovercards-enabled
     data-issue-and-pr-hovercards-enabled
   >
-        <div itemscope itemtype="http://schema.org/SoftwareSourceCode" class="">
-    <main id="js-repo-pjax-container" >
-      
-  
+      <main>
+        
+    
+    
 
-
-  
-      
+    
 
 
 
@@ -1266,12 +1259,12 @@
 </svg>
     
     <span class="author flex-self-stretch" itemprop="author">
-      <a class="url fn" rel="author" data-hovercard-type="user" data-hovercard-url="/users/jbt/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/jbt">
-        jbt
+      <a class="url fn" rel="author" data-hovercard-type="organization" data-hovercard-url="/orgs/kyverno/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/kyverno">
+        kyverno
 </a>    </span>
     <span class="mx-1 flex-self-stretch color-fg-muted">/</span>
     <strong itemprop="name" class="mr-2 flex-self-stretch">
-      <a data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" href="/jbt/markdown-editor">markdown-editor</a>
+      <a data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" href="/kyverno/kyverno">kyverno</a>
     </strong>
 
     <span></span><span class="Label Label--secondary v-align-middle mr-1">Public</span>
@@ -1286,28 +1279,28 @@
       
 
   <li>
-            <a href="/login?return_to=%2Fjbt%2Fmarkdown-editor" rel="nofollow" id="repository-details-watch-button" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;notification subscription menu watch&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/jbt/markdown-editor/issues/106&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="1a91e1329b3c453344dbabeb959747bb7c016b10103031ef929093c4bc9740bc" aria-label="You must be signed in to change notification settings" data-view-component="true" class="btn-sm btn">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-bell mr-2">
+            <a href="/login?return_to=%2Fkyverno%2Fkyverno" rel="nofollow" id="repository-details-watch-button" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;notification subscription menu watch&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/kyverno/kyverno/security/advisories/GHSA-9g37-h7p2-2c6r&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="78b647ac4c88c88b1be86803dff0bc634f26cf12b2808f7c79f5486f5e10dad7" aria-label="You must be signed in to change notification settings" data-view-component="true" class="btn-sm btn">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-bell mr-2">
     <path d="M8 16a2 2 0 0 0 1.985-1.75c.017-.137-.097-.25-.235-.25h-3.5c-.138 0-.252.113-.235.25A2 2 0 0 0 8 16ZM3 5a5 5 0 0 1 10 0v2.947c0 .05.015.098.042.139l1.703 2.555A1.519 1.519 0 0 1 13.482 13H2.518a1.516 1.516 0 0 1-1.263-2.36l1.703-2.554A.255.255 0 0 0 3 7.947Zm5-3.5A3.5 3.5 0 0 0 4.5 5v2.947c0 .346-.102.683-.294.97l-1.703 2.556a.017.017 0 0 0-.003.01l.001.006c0 .002.002.004.004.006l.006.004.007.001h10.964l.007-.001.006-.004.004-.006.001-.007a.017.017 0 0 0-.003-.01l-1.703-2.554a1.745 1.745 0 0 1-.294-.97V5A3.5 3.5 0 0 0 8 1.5Z"></path>
 </svg>Notifications
-</a>    <tool-tip id="tooltip-2e416d5a-fc5f-442d-a816-4e5c81fbc2b5" for="repository-details-watch-button" popover="manual" data-direction="s" data-type="description" data-view-component="true" class="sr-only position-absolute">You must be signed in to change notification settings</tool-tip>
+</a>    <tool-tip id="tooltip-67654a6b-b739-4270-bd25-9df3caf4a83d" for="repository-details-watch-button" popover="manual" data-direction="s" data-type="description" data-view-component="true" class="sr-only position-absolute">You must be signed in to change notification settings</tool-tip>
 
     </li>
 
   <li>
-          <a icon="repo-forked" id="fork-button" href="/login?return_to=%2Fjbt%2Fmarkdown-editor" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;repo details fork button&quot;,&quot;repository_id&quot;:6034984,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/jbt/markdown-editor/issues/106&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="a9cb8dcbd657fc8dac03e34c6a2662f1e46738230d47849adce448b9db8b623c" data-view-component="true" class="btn-sm btn">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked mr-2">
+          <a icon="repo-forked" id="fork-button" href="/login?return_to=%2Fkyverno%2Fkyverno" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;repo details fork button&quot;,&quot;repository_id&quot;:169108858,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/kyverno/kyverno/security/advisories/GHSA-9g37-h7p2-2c6r&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="4c80bc09bfb2c9c022d60380a396ba3dbcc1bf1063b3c3a246af195c71f66241" data-view-component="true" class="btn-sm btn">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked mr-2">
     <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
 </svg>Fork
-    <span id="repo-network-counter" data-pjax-replace="true" data-turbo-replace="true" title="643" data-view-component="true" class="Counter">643</span>
+    <span id="repo-network-counter" data-pjax-replace="true" data-turbo-replace="true" title="799" data-view-component="true" class="Counter">799</span>
 </a>
   </li>
 
   <li>
         <div data-view-component="true" class="BtnGroup d-flex">
-        <a href="/login?return_to=%2Fjbt%2Fmarkdown-editor" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;star button&quot;,&quot;repository_id&quot;:6034984,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/jbt/markdown-editor/issues/106&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="fa8caf6bd291867f86ba0cc5cb98d902e2a5bdc58eb9dc0a9fddec8153387e84" aria-label="You must be signed in to star a repository" data-view-component="true" class="tooltipped tooltipped-s btn-sm btn BtnGroup-item">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star v-align-text-bottom d-inline-block mr-2">
+        <a href="/login?return_to=%2Fkyverno%2Fkyverno" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;star button&quot;,&quot;repository_id&quot;:169108858,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/kyverno/kyverno/security/advisories/GHSA-9g37-h7p2-2c6r&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="98f8b90da7fff186c96894d23f15f9036d1788424a1123653358e7e61846f7d2" aria-label="You must be signed in to star a repository" data-view-component="true" class="tooltipped tooltipped-s btn-sm btn BtnGroup-item">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star v-align-text-bottom d-inline-block mr-2">
     <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
 </svg><span data-view-component="true" class="d-inline">
           Star
-</span>          <span id="repo-stars-counter-star" aria-label="2817 users starred this repository" data-singular-suffix="user starred this repository" data-plural-suffix="users starred this repository" data-turbo-replace="true" title="2,817" data-view-component="true" class="Counter js-social-count">2.8k</span>
+</span>          <span id="repo-stars-counter-star" aria-label="5322 users starred this repository" data-singular-suffix="user starred this repository" data-plural-suffix="users starred this repository" data-turbo-replace="true" title="5,322" data-view-component="true" class="Counter js-social-count">5.3k</span>
 </a>        <button aria-label="You must be signed in to add this repository to a list" type="button" disabled="disabled" data-view-component="true" class="btn-sm btn BtnGroup-item px-2">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-triangle-down">
     <path d="m4.427 7.427 3.396 3.396a.25.25 0 0 0 .354 0l3.396-3.396A.25.25 0 0 0 11.396 7H4.604a.25.25 0 0 0-.177.427Z"></path>
 </svg>
@@ -1327,7 +1320,7 @@
 
   <ul data-view-component="true" class="UnderlineNav-body list-style-none">
       <li data-view-component="true" class="d-inline-flex">
-  <a id="code-tab" href="/jbt/markdown-editor" data-tab-item="i0code-tab" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches repo_packages repo_deployments repo_attestations /jbt/markdown-editor" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g c" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Code&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
+  <a id="code-tab" href="/kyverno/kyverno" data-tab-item="i0code-tab" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches repo_packages repo_deployments repo_attestations /kyverno/kyverno" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g c" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Code&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
     
               <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-code UnderlineNav-octicon d-none d-sm-inline">
     <path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"></path>
@@ -1339,31 +1332,43 @@
     
 </a></li>
       <li data-view-component="true" class="d-inline-flex">
-  <a id="issues-tab" href="/jbt/markdown-editor/issues" data-tab-item="i1issues-tab" data-selected-links="repo_issues repo_labels repo_milestones /jbt/markdown-editor/issues /_view_fragments/issues/index/jbt/markdown-editor/layout" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g i" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Issues&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" aria-current="page" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item selected">
+  <a id="issues-tab" href="/kyverno/kyverno/issues" data-tab-item="i1issues-tab" data-selected-links="repo_issues repo_labels repo_milestones /kyverno/kyverno/issues /_view_fragments/issues/index/kyverno/kyverno/layout" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g i" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Issues&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
     
               <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-issue-opened UnderlineNav-octicon d-none d-sm-inline">
     <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path>
 </svg>
         <span data-content="Issues">Issues</span>
-          <span id="issues-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="55" data-view-component="true" class="Counter">55</span>
+          <span id="issues-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="341" data-view-component="true" class="Counter">341</span>
 
 
     
 </a></li>
       <li data-view-component="true" class="d-inline-flex">
-  <a id="pull-requests-tab" href="/jbt/markdown-editor/pulls" data-tab-item="i2pull-requests-tab" data-selected-links="repo_pulls checks /jbt/markdown-editor/pulls" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g p" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Pull requests&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
+  <a id="pull-requests-tab" href="/kyverno/kyverno/pulls" data-tab-item="i2pull-requests-tab" data-selected-links="repo_pulls checks /kyverno/kyverno/pulls" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g p" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Pull requests&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
     
               <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-git-pull-request UnderlineNav-octicon d-none d-sm-inline">
     <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z"></path>
 </svg>
         <span data-content="Pull requests">Pull requests</span>
-          <span id="pull-requests-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="5" data-view-component="true" class="Counter">5</span>
+          <span id="pull-requests-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="55" data-view-component="true" class="Counter">55</span>
 
 
     
 </a></li>
       <li data-view-component="true" class="d-inline-flex">
-  <a id="actions-tab" href="/jbt/markdown-editor/actions" data-tab-item="i3actions-tab" data-selected-links="repo_actions /jbt/markdown-editor/actions" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g a" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Actions&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
+  <a id="discussions-tab" href="/kyverno/kyverno/discussions" data-tab-item="i3discussions-tab" data-selected-links="repo_discussions /kyverno/kyverno/discussions" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g g" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Discussions&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
+    
+              <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-comment-discussion UnderlineNav-octicon d-none d-sm-inline">
+    <path d="M1.75 1h8.5c.966 0 1.75.784 1.75 1.75v5.5A1.75 1.75 0 0 1 10.25 10H7.061l-2.574 2.573A1.458 1.458 0 0 1 2 11.543V10h-.25A1.75 1.75 0 0 1 0 8.25v-5.5C0 1.784.784 1 1.75 1ZM1.5 2.75v5.5c0 .138.112.25.25.25h1a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h3.5a.25.25 0 0 0 .25-.25v-5.5a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm13 2a.25.25 0 0 0-.25-.25h-.5a.75.75 0 0 1 0-1.5h.5c.966 0 1.75.784 1.75 1.75v5.5A1.75 1.75 0 0 1 14.25 12H14v1.543a1.458 1.458 0 0 1-2.487 1.03L9.22 12.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.22 2.22v-2.19a.75.75 0 0 1 .75-.75h1a.25.25 0 0 0 .25-.25Z"></path>
+</svg>
+        <span data-content="Discussions">Discussions</span>
+          <span id="discussions-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="Not available" data-view-component="true" class="Counter"></span>
+
+
+    
+</a></li>
+      <li data-view-component="true" class="d-inline-flex">
+  <a id="actions-tab" href="/kyverno/kyverno/actions" data-tab-item="i4actions-tab" data-selected-links="repo_actions /kyverno/kyverno/actions" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g a" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Actions&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
     
               <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-play UnderlineNav-octicon d-none d-sm-inline">
     <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm4.879-2.773 4.264 2.559a.25.25 0 0 1 0 .428l-4.264 2.559A.25.25 0 0 1 6 10.559V5.442a.25.25 0 0 1 .379-.215Z"></path>
@@ -1375,19 +1380,19 @@
     
 </a></li>
       <li data-view-component="true" class="d-inline-flex">
-  <a id="projects-tab" href="/jbt/markdown-editor/projects" data-tab-item="i4projects-tab" data-selected-links="repo_projects new_repo_project repo_project /jbt/markdown-editor/projects" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g b" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Projects&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
+  <a id="projects-tab" href="/kyverno/kyverno/projects" data-tab-item="i5projects-tab" data-selected-links="repo_projects new_repo_project repo_project /kyverno/kyverno/projects" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g b" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Projects&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
     
               <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-table UnderlineNav-octicon d-none d-sm-inline">
     <path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25ZM6.5 6.5v8h7.75a.25.25 0 0 0 .25-.25V6.5Zm8-1.5V1.75a.25.25 0 0 0-.25-.25H6.5V5Zm-13 1.5v7.75c0 .138.112.25.25.25H5v-8ZM5 5V1.5H1.75a.25.25 0 0 0-.25.25V5Z"></path>
 </svg>
         <span data-content="Projects">Projects</span>
-          <span id="projects-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="0" hidden="hidden" data-view-component="true" class="Counter">0</span>
+          <span id="projects-repo-tab-count" data-pjax-replace="" data-turbo-replace="" title="2" data-view-component="true" class="Counter">2</span>
 
 
     
 </a></li>
       <li data-view-component="true" class="d-inline-flex">
-  <a id="wiki-tab" href="/jbt/markdown-editor/wiki" data-tab-item="i5wiki-tab" data-selected-links="repo_wiki /jbt/markdown-editor/wiki" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g w" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Wiki&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
+  <a id="wiki-tab" href="/kyverno/kyverno/wiki" data-tab-item="i6wiki-tab" data-selected-links="repo_wiki /kyverno/kyverno/wiki" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g w" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Wiki&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
     
               <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-book UnderlineNav-octicon d-none d-sm-inline">
     <path d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574ZM8.755 4.75l-.004 7.322a3.752 3.752 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25Z"></path>
@@ -1399,18 +1404,18 @@
     
 </a></li>
       <li data-view-component="true" class="d-inline-flex">
-  <a id="security-tab" href="/jbt/markdown-editor/security" data-tab-item="i6security-tab" data-selected-links="security overview alerts policy token_scanning code_scanning /jbt/markdown-editor/security" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g s" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Security&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
+  <a id="security-tab" href="/kyverno/kyverno/security" data-tab-item="i7security-tab" data-selected-links="security overview alerts policy token_scanning code_scanning /kyverno/kyverno/security" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-hotkey="g s" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Security&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" aria-current="page" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item selected">
     
               <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-shield UnderlineNav-octicon d-none d-sm-inline">
     <path d="M7.467.133a1.748 1.748 0 0 1 1.066 0l5.25 1.68A1.75 1.75 0 0 1 15 3.48V7c0 1.566-.32 3.182-1.303 4.682-.983 1.498-2.585 2.813-5.032 3.855a1.697 1.697 0 0 1-1.33 0c-2.447-1.042-4.049-2.357-5.032-3.855C1.32 10.182 1 8.566 1 7V3.48a1.75 1.75 0 0 1 1.217-1.667Zm.61 1.429a.25.25 0 0 0-.153 0l-5.25 1.68a.25.25 0 0 0-.174.238V7c0 1.358.275 2.666 1.057 3.86.784 1.194 2.121 2.34 4.366 3.297a.196.196 0 0 0 .154 0c2.245-.956 3.582-2.104 4.366-3.298C13.225 9.666 13.5 8.36 13.5 7V3.48a.251.251 0 0 0-.174-.237l-5.25-1.68ZM8.75 4.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 1.5 0ZM9 10.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
 </svg>
         <span data-content="Security">Security</span>
-          <include-fragment src="/jbt/markdown-editor/security/overall-count" accept="text/fragment+html"></include-fragment>
+          <include-fragment src="/kyverno/kyverno/security/overall-count" accept="text/fragment+html"></include-fragment>
 
     
 </a></li>
       <li data-view-component="true" class="d-inline-flex">
-  <a id="insights-tab" href="/jbt/markdown-editor/pulse" data-tab-item="i7insights-tab" data-selected-links="repo_graphs repo_contributors dependency_graph dependabot_updates pulse people community /jbt/markdown-editor/pulse" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Insights&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
+  <a id="insights-tab" href="/kyverno/kyverno/pulse" data-tab-item="i8insights-tab" data-selected-links="repo_graphs repo_contributors dependency_graph dependabot_updates pulse people community /kyverno/kyverno/pulse" data-pjax="#repo-content-pjax-container" data-turbo-frame="repo-content-turbo-frame" data-analytics-event="{&quot;category&quot;:&quot;Underline navbar&quot;,&quot;action&quot;:&quot;Click tab&quot;,&quot;label&quot;:&quot;Insights&quot;,&quot;target&quot;:&quot;UNDERLINE_NAV.TAB&quot;}" data-view-component="true" class="UnderlineNav-item no-wrap js-responsive-underlinenav-item js-selected-navigation-item">
     
               <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-graph UnderlineNav-octicon d-none d-sm-inline">
     <path d="M1.5 1.75V13.5h13.75a.75.75 0 0 1 0 1.5H.75a.75.75 0 0 1-.75-.75V1.75a.75.75 0 0 1 1.5 0Zm14.28 2.53-5.25 5.25a.75.75 0 0 1-1.06 0L7 7.06 4.28 9.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.25-3.25a.75.75 0 0 1 1.06 0L10 7.94l4.72-4.72a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Z"></path>
@@ -1424,22 +1429,22 @@
 </ul>
     <div style="visibility:hidden;" data-view-component="true" class="UnderlineNav-actions js-responsive-underlinenav-overflow position-absolute pr-3 pr-md-4 pr-lg-5 right-0">      <action-menu data-select-variant="none" data-view-component="true">
   <focus-group direction="vertical" mnemonics retain>
-    <button id="action-menu-43760632-673a-49cb-b075-0e0319a99e71-button" popovertarget="action-menu-43760632-673a-49cb-b075-0e0319a99e71-overlay" aria-controls="action-menu-43760632-673a-49cb-b075-0e0319a99e71-list" aria-haspopup="true" aria-labelledby="tooltip-fd6f2313-18cf-47c2-bcfe-7cf91382b9ff" type="button" data-view-component="true" class="Button Button--iconOnly Button--secondary Button--medium UnderlineNav-item">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal Button-visual">
+    <button id="action-menu-a7ac5cf5-fee1-4404-b5f7-ee720393e4cf-button" popovertarget="action-menu-a7ac5cf5-fee1-4404-b5f7-ee720393e4cf-overlay" aria-controls="action-menu-a7ac5cf5-fee1-4404-b5f7-ee720393e4cf-list" aria-haspopup="true" aria-labelledby="tooltip-0670b7cd-b914-442d-a826-9a8267e9e451" type="button" data-view-component="true" class="Button Button--iconOnly Button--secondary Button--medium UnderlineNav-item">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal Button-visual">
     <path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
 </svg>
-</button><tool-tip id="tooltip-fd6f2313-18cf-47c2-bcfe-7cf91382b9ff" for="action-menu-43760632-673a-49cb-b075-0e0319a99e71-button" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Additional navigation options</tool-tip>
+</button><tool-tip id="tooltip-0670b7cd-b914-442d-a826-9a8267e9e451" for="action-menu-a7ac5cf5-fee1-4404-b5f7-ee720393e4cf-button" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Additional navigation options</tool-tip>
 
 
-<anchored-position id="action-menu-43760632-673a-49cb-b075-0e0319a99e71-overlay" anchor="action-menu-43760632-673a-49cb-b075-0e0319a99e71-button" align="start" side="outside-bottom" anchor-offset="normal" popover="auto" data-view-component="true">
+<anchored-position id="action-menu-a7ac5cf5-fee1-4404-b5f7-ee720393e4cf-overlay" anchor="action-menu-a7ac5cf5-fee1-4404-b5f7-ee720393e4cf-button" align="start" side="outside-bottom" anchor-offset="normal" popover="auto" data-view-component="true">
   <div data-view-component="true" class="Overlay Overlay--size-auto">
     
       <div data-view-component="true" class="Overlay-body Overlay-body--paddingNone">          <action-list>
   <div data-view-component="true">
-    <ul aria-labelledby="action-menu-43760632-673a-49cb-b075-0e0319a99e71-button" id="action-menu-43760632-673a-49cb-b075-0e0319a99e71-list" role="menu" data-view-component="true" class="ActionListWrap--inset ActionListWrap">
+    <ul aria-labelledby="action-menu-a7ac5cf5-fee1-4404-b5f7-ee720393e4cf-button" id="action-menu-a7ac5cf5-fee1-4404-b5f7-ee720393e4cf-list" role="menu" data-view-component="true" class="ActionListWrap--inset ActionListWrap">
         <li hidden="hidden" data-menu-item="i0code-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-156ae030-620a-4dab-b109-77fea3884103" href="/jbt/markdown-editor" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-7d77f9ae-ab92-4733-a368-8393f6c76091" href="/kyverno/kyverno" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-code">
     <path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"></path>
@@ -1454,7 +1459,7 @@
         <li hidden="hidden" data-menu-item="i1issues-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-ae55f942-b295-4664-a743-b5660171bdea" href="/jbt/markdown-editor/issues" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-095f7887-125c-491f-8c8e-629b72bdb943" href="/kyverno/kyverno/issues" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-issue-opened">
     <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path>
@@ -1469,7 +1474,7 @@
         <li hidden="hidden" data-menu-item="i2pull-requests-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-a59e5b0b-830e-41d2-8ab5-bfba66da044b" href="/jbt/markdown-editor/pulls" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-eff0ded3-bba5-4618-b904-178c9f803714" href="/kyverno/kyverno/pulls" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-git-pull-request">
     <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z"></path>
@@ -1481,10 +1486,25 @@
 </span></a>
   
 </li>
-        <li hidden="hidden" data-menu-item="i3actions-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
+        <li hidden="hidden" data-menu-item="i3discussions-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-fb46f422-7b69-44ab-b8a8-b52b5180e101" href="/jbt/markdown-editor/actions" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-0e03ee51-1aee-4a1f-87f4-997dc24071e2" href="/kyverno/kyverno/discussions" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+        <span class="ActionListItem-visual ActionListItem-visual--leading">
+          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-comment-discussion">
+    <path d="M1.75 1h8.5c.966 0 1.75.784 1.75 1.75v5.5A1.75 1.75 0 0 1 10.25 10H7.061l-2.574 2.573A1.458 1.458 0 0 1 2 11.543V10h-.25A1.75 1.75 0 0 1 0 8.25v-5.5C0 1.784.784 1 1.75 1ZM1.5 2.75v5.5c0 .138.112.25.25.25h1a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h3.5a.25.25 0 0 0 .25-.25v-5.5a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm13 2a.25.25 0 0 0-.25-.25h-.5a.75.75 0 0 1 0-1.5h.5c.966 0 1.75.784 1.75 1.75v5.5A1.75 1.75 0 0 1 14.25 12H14v1.543a1.458 1.458 0 0 1-2.487 1.03L9.22 12.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.22 2.22v-2.19a.75.75 0 0 1 .75-.75h1a.25.25 0 0 0 .25-.25Z"></path>
+</svg>
+        </span>
+      
+        <span data-view-component="true" class="ActionListItem-label">
+          Discussions
+</span></a>
+  
+</li>
+        <li hidden="hidden" data-menu-item="i4actions-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
+    
+    
+    <a tabindex="-1" id="item-975533e4-6aab-4e97-a34d-2f3c4c84eba4" href="/kyverno/kyverno/actions" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-play">
     <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm4.879-2.773 4.264 2.559a.25.25 0 0 1 0 .428l-4.264 2.559A.25.25 0 0 1 6 10.559V5.442a.25.25 0 0 1 .379-.215Z"></path>
@@ -1496,10 +1516,10 @@
 </span></a>
   
 </li>
-        <li hidden="hidden" data-menu-item="i4projects-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
+        <li hidden="hidden" data-menu-item="i5projects-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-d70a43d6-f34a-4cc6-b731-76a3d71041b6" href="/jbt/markdown-editor/projects" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-44a02e2b-f476-4ab3-a449-0cfac5390263" href="/kyverno/kyverno/projects" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-table">
     <path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25ZM6.5 6.5v8h7.75a.25.25 0 0 0 .25-.25V6.5Zm8-1.5V1.75a.25.25 0 0 0-.25-.25H6.5V5Zm-13 1.5v7.75c0 .138.112.25.25.25H5v-8ZM5 5V1.5H1.75a.25.25 0 0 0-.25.25V5Z"></path>
@@ -1511,10 +1531,10 @@
 </span></a>
   
 </li>
-        <li hidden="hidden" data-menu-item="i5wiki-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
+        <li hidden="hidden" data-menu-item="i6wiki-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-e367a2df-b3a3-40b5-9cd3-0160edbe7372" href="/jbt/markdown-editor/wiki" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-8094f0d5-5e39-4cfd-9a46-d4d7bb3d034d" href="/kyverno/kyverno/wiki" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-book">
     <path d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574ZM8.755 4.75l-.004 7.322a3.752 3.752 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25Z"></path>
@@ -1526,10 +1546,10 @@
 </span></a>
   
 </li>
-        <li hidden="hidden" data-menu-item="i6security-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
+        <li hidden="hidden" data-menu-item="i7security-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-915d89a1-7216-4b31-86cf-4e0d2f7515be" href="/jbt/markdown-editor/security" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-18f5e7f3-bf51-48f1-b4c5-1560c5e78d0a" href="/kyverno/kyverno/security" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-shield">
     <path d="M7.467.133a1.748 1.748 0 0 1 1.066 0l5.25 1.68A1.75 1.75 0 0 1 15 3.48V7c0 1.566-.32 3.182-1.303 4.682-.983 1.498-2.585 2.813-5.032 3.855a1.697 1.697 0 0 1-1.33 0c-2.447-1.042-4.049-2.357-5.032-3.855C1.32 10.182 1 8.566 1 7V3.48a1.75 1.75 0 0 1 1.217-1.667Zm.61 1.429a.25.25 0 0 0-.153 0l-5.25 1.68a.25.25 0 0 0-.174.238V7c0 1.358.275 2.666 1.057 3.86.784 1.194 2.121 2.34 4.366 3.297a.196.196 0 0 0 .154 0c2.245-.956 3.582-2.104 4.366-3.298C13.225 9.666 13.5 8.36 13.5 7V3.48a.251.251 0 0 0-.174-.237l-5.25-1.68ZM8.75 4.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 1.5 0ZM9 10.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
@@ -1541,10 +1561,10 @@
 </span></a>
   
 </li>
-        <li hidden="hidden" data-menu-item="i7insights-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
+        <li hidden="hidden" data-menu-item="i8insights-tab" data-targets="action-list.items" role="none" data-view-component="true" class="ActionListItem">
     
     
-    <a tabindex="-1" id="item-509f3c40-2a73-4299-ba5f-93efbc124263" href="/jbt/markdown-editor/pulse" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
+    <a tabindex="-1" id="item-3403ea01-8419-4791-afc6-f2b6aab53a07" href="/kyverno/kyverno/pulse" role="menuitem" data-view-component="true" class="ActionListContent ActionListContent--visual16">
         <span class="ActionListItem-visual ActionListItem-visual--leading">
           <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-graph">
     <path d="M1.5 1.75V13.5h13.75a.75.75 0 0 1 0 1.5H.75a.75.75 0 0 1-.75-.75V1.75a.75.75 0 0 1 1.5 0Zm14.28 2.53-5.25 5.25a.75.75 0 0 1-1.06 0L7 7.06 4.28 9.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.25-3.25a.75.75 0 0 1 1.06 0L10 7.94l4.72-4.72a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Z"></path>
@@ -1580,819 +1600,216 @@
 
     
       
-    <div class="clearfix new-discussion-timeline js-check-all-container container-xl px-3 px-md-4 px-lg-5 mt-4" data-pjax="" data-turbo-frame="">
-      
+  <div class="clearfix new-discussion-timeline container-xl px-3 px-md-4 px-lg-5 mt-4">
+    <div class="js-socket-channel js-updatable-content"
+     data-channel="eyJjIjoicmVwb3NpdG9yeV9hZHZpc29yeToyMjA0OSIsInQiOjE3MjAzNTg2MzF9--50e9b54ea60083ec12ecb6382d51a28c2f12774829e680d0cf1ee94af40dd472"
+     data-url="/kyverno/kyverno/security/advisories/GHSA-9g37-h7p2-2c6r/show_partial?partial=repository_advisory%2Ftitle"
+     >
+
+  <div class="gh-header issue js-repository-advisory-details" >
+    <div class="gh-header-show">
+
+      <h1 class="gh-header-title" >
+        Denial of service from malicious image manifest
+      </h1>
+    </div>
+
+    <div class="gh-header-meta TableObject border-0 pb-0">
+
+        <div class="TableObject-item">
+          <span title="Severity: low" data-view-component="true" class="Label Label--primary Label--large text-bold mr-2">
+  Low
+</span>
+        </div>
+
+      <div class="TableObject-item TableObject-item--primary ws-normal">
+          <a class="author Link--secondary text-bold" data-hovercard-type="user" data-hovercard-url="/users/JimBugwadia/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/JimBugwadia">JimBugwadia</a>
+          published
+          <span class="text-bold user-select-contain">GHSA-9g37-h7p2-2c6r</span>
+          <relative-time datetime="2023-11-13T14:52:39Z" class="no-wrap">Nov 13, 2023</relative-time>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
     
-        <div id="show_issue"
-            class="js-issues-results js-socket-channel js-updatable-content"
-            data-morpheus-enabled="false"
-            data-channel="eyJjIjoiaXNzdWU6NDc2NzU4Mjg2OnRpbWVsaW5lIiwidCI6MTcyMDM1ODQ5NX0=--9a61c1e4152330b56672961bc6d5f1107dca39c3e4ec937588b2ac39cb591210">
 
-            
-  <div
-    id="partial-discussion-header"
-    class="gh-header mb-3 js-details-container Details js-socket-channel js-updatable-content issue"
-    data-channel="eyJjIjoiaXNzdWU6NDc2NzU4Mjg2IiwidCI6MTcyMDM1ODQ5NX0=--5e9a92c3109e8251041d8cc6bbd51122ba36e1adba6a1b9862d99f1b8e156fa5"
-    data-url="/jbt/markdown-editor/issues/106/show_partial?partial=issues%2Ftitle&amp;sticky=true"
-    data-gid="MDU6SXNzdWU0NzY3NTgyODY=">
-
-  <div class="gh-header-show ">
     <div class="d-flex flex-column flex-md-row">
-      <div class="gh-header-actions mt-0 mb-3 mb-md-2 ml-1 flex-md-order-1 flex-shrink-0 d-flex flex-items-center gap-1">
+      <div class="col-12 col-md-9">
+    <div class="Details js-details-container width-full">
+  <div class="Details-content--shown">
+      <div class="Box Box--responsive">
+  <div class="Box-body">
+        <div class="Bow-row border-0 clearfix " >
+  <div class="float-left col-12 col-md-6 pr-md-2 ">
+      <h2 class="text-small color-fg-muted mb-1">Package</h2>
 
-          
-<details class="details-reset details-overlay details-overlay-dark float-right" >
-  <summary
-    class="btn btn-sm btn-primary m-0 ml-0 ml-md-2"
-    
-    
-    
-    
-  >
-    
-    New issue
-  </summary>
-  <details-dialog class="Box Box--overlay d-flex flex-column anim-fade-in fast overflow-auto" aria-label="Sign up for GitHub">
-        <button aria-label="Close dialog" data-close-dialog="" type="button" data-view-component="true" class="Link--muted btn-link position-absolute p-4 right-0">    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x">
-    <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
+    <div >
+        <span >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" fill="none" role="img" aria-labelledby="as2vcgct5z8vxd7bwex78v3vvuq6dgiv" class="octicon" width="16" height="16"><title id="as2vcgct5z8vxd7bwex78v3vvuq6dgiv">gomod</title>
+<path d="M1.29715 7.96201C1.26367 7.96201 1.2553 7.94512 1.27204 7.91979L1.44778 7.69179C1.46452 7.66646 1.50637 7.64957 1.53984 7.64957H4.52748C4.56096 7.64957 4.56933 7.6749 4.55259 7.70023L4.41032 7.91979C4.39358 7.94512 4.35174 7.97046 4.32663 7.97046L1.29715 7.96201Z" fill="#2DBCAF"></path>
+<path d="M0.0334751 8.7389C6.98343e-08 8.7389 -0.00836877 8.72201 0.00836872 8.69668L0.184112 8.46867C0.20085 8.44334 0.242694 8.42645 0.276169 8.42645H4.09232C4.12579 8.42645 4.14253 8.45179 4.13416 8.47712L4.06721 8.67979C4.05884 8.71356 4.02537 8.73045 3.99189 8.73045L0.0334751 8.7389Z" fill="#2DBCAF"></path>
+<path d="M2.05862 9.51578C2.02515 9.51578 2.01678 9.49045 2.03352 9.46512L2.15068 9.25401C2.16742 9.22867 2.20089 9.20334 2.23437 9.20334H3.90812C3.94159 9.20334 3.95833 9.22867 3.95833 9.26245L3.94159 9.46512C3.94159 9.49889 3.90811 9.52423 3.88301 9.52423L2.05862 9.51578Z" fill="#2DBCAF"></path>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M9.96469 8.01579C10.2106 7.94989 10.4521 7.88518 10.7455 7.81001C10.8459 7.78468 10.8794 7.74245 10.8291 7.66645C10.6199 7.17668 10.3019 6.77134 9.85836 6.47579C9.18049 6.01134 8.42731 5.91845 7.64064 6.06201C6.67824 6.23934 5.89158 6.73757 5.2974 7.5229C4.74506 8.24912 4.47726 9.07668 4.58605 9.99712C4.67811 10.774 5.0296 11.3989 5.64888 11.8718C6.31838 12.3785 7.07994 12.5389 7.90008 12.4291C8.89596 12.294 9.68262 11.7958 10.2852 10.9936C10.4218 10.8118 10.5388 10.6208 10.6367 10.4213C10.7777 10.9356 11.0616 11.3773 11.4736 11.7367C12.0594 12.2434 12.754 12.4629 13.5156 12.4798C13.5902 12.4711 13.6658 12.4644 13.7421 12.4576C13.8882 12.4447 14.0366 12.4315 14.1851 12.4038C14.9634 12.2434 15.6413 11.8887 16.1936 11.3229C16.9719 10.5291 17.2983 9.60024 17.156 8.46024C17.0472 7.64957 16.6371 7.03313 15.976 6.57713C15.2479 6.07891 14.4445 5.99446 13.5909 6.14646C12.595 6.32379 11.8586 6.74602 11.2477 7.55668C10.9859 7.9024 10.7896 8.26778 10.6687 8.65445H7.97539C7.84986 8.65445 7.79128 8.7389 7.76618 8.78957C7.64901 9.00912 7.44816 9.44823 7.33937 9.71001C7.28079 9.85357 7.32263 9.96334 7.49838 9.96334H9.11354C9.09193 9.99388 9.07142 10.0233 9.05161 10.0517C8.99471 10.1334 8.94345 10.2069 8.88759 10.2758C8.51099 10.7065 8.03398 10.9091 7.4649 10.8331C6.80377 10.7402 6.34349 10.1829 6.33512 9.50734C6.32675 8.82334 6.61966 8.27445 7.18873 7.9029C7.66575 7.59045 8.17624 7.51445 8.70348 7.77623C8.87922 7.86068 8.97127 7.95357 9.09681 8.09712C9.20146 8.21897 9.21319 8.21579 9.32567 8.1853C9.33012 8.1841 9.33472 8.18285 9.3395 8.18157C9.56969 8.12162 9.76859 8.06833 9.96469 8.01579ZM15.5015 8.97793C15.5032 9.0063 15.5049 9.03619 15.5074 9.06824C15.4655 9.79446 15.1057 10.3349 14.4445 10.6811C14.001 10.9091 13.5407 10.9345 13.0804 10.7318C12.4779 10.4616 12.1599 9.79446 12.3105 9.13579C12.4946 8.34202 12.9967 7.84379 13.775 7.66646C14.5701 7.48068 15.3316 7.95357 15.4823 8.78957C15.4941 8.84936 15.4976 8.90915 15.5015 8.97793Z" fill="#2DBCAF"></path>
 </svg>
-</button>    <div class="d-flex flex-column p-4">
-            <div class="mt-3 mb-2 text-center">
-  <svg height="60" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="60" data-view-component="true" class="octicon octicon-comment-discussion color-fg-accent">
-    <path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 14.25 14H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 15.543V14H1.75A1.75 1.75 0 0 1 0 12.25v-9.5C0 1.784.784 1 1.75 1ZM1.5 2.75v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Z"></path><path d="M22.5 8.75a.25.25 0 0 0-.25-.25h-3.5a.75.75 0 0 1 0-1.5h3.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0 1 22.25 20H21v1.543a1.457 1.457 0 0 1-2.487 1.03L15.939 20H10.75A1.75 1.75 0 0 1 9 18.25v-1.465a.75.75 0 0 1 1.5 0v1.465c0 .138.112.25.25.25h5.5a.75.75 0 0 1 .53.22l2.72 2.72v-2.19a.75.75 0 0 1 .75-.75h2a.25.25 0 0 0 .25-.25v-9.5Z"></path>
-</svg>
-</div>
-
-<div class="px-4">
-  <p class="text-center mb-4">
-    <strong>Have a question about this project?</strong> Sign up for a free GitHub account to open an issue and contact its maintainers and the community.
-  </p>
-
-  <div class="d-flex flex-items-center">
-      <a href="/signup?return_to=%2Fjbt%2Fmarkdown-editor%2Fissues%2Fnew%2Fchoose" data-view-component="true" class="btn-primary btn mx-auto">    Sign up for GitHub
-</a>
-  </div>
-
-  <p class="mt-4 color-fg-muted text-center">By clicking &ldquo;Sign up for GitHub&rdquo;, you agree to our <a class="Link--inTextBlock" href="https://docs.github.com/terms" target="_blank">terms of service</a> and
-  <a class="Link--inTextBlock" href="https://docs.github.com/privacy" target="_blank">privacy statement</a>. We’ll occasionally send you account related emails.</p>
-
-  <p class="mt-4 color-fg-muted text-center">
-    Already on GitHub?
-    <a data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;new issue modal&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/jbt/markdown-editor/issues/106&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="8099e71c769a77b11cd70e6d8af537a5668638f82115605aba52144020078c32" class="Link--inTextBlock" href="/login?return_to=%2Fjbt%2Fmarkdown-editor%2Fissues%2Fnew%2Fchoose">Sign in</a>
-    to your account
-  </p>
-</div>
-
-</div>
-  </details-dialog>
-</details>
-        <div class="flex-auto text-right d-block d-md-none">
-          <a href="#issue-comment-box" class="py-1">Jump to bottom</a>
-        </div>
-      </div>
-
-    <h1 class="gh-header-title mb-2 lh-condensed f1 mr-0 flex-auto wb-break-word">
-      <bdi class="js-issue-title markdown-title">XSS vulnerability on &lt;abbr&gt; and &lt;sup&gt;&lt;EMBED&gt; label</bdi>
-      <span class="f1-light color-fg-muted">#106</span>
-    </h1>
-    </div>
-  </div>
-
-  <div class="d-flex flex-items-center flex-wrap mt-0 gh-header-meta">
-    <div class="flex-shrink-0 mb-2 flex-self-start flex-md-self-center">
-        <span title="Status: Open" data-view-component="true" class="State State--open d-flex flex-items-center">
-  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-issue-opened flex-items-center mr-1">
-    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path>
-</svg>
-  Open
-</span>
-    </div>
-
-      <div class="mb-2 flex-shrink-0">
-          <div>
-      
-  </div>
-
-      </div>
 
 
-      <div class="flex-shrink-0 mb-2 flex-self-start flex-md-self-center">
-          
-      </div>
-
-    <div class="flex-auto min-width-0 mb-2">
-        <a class="author text-bold Link--secondary" data-hovercard-type="user" data-hovercard-url="/users/j1nse/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/j1nse">j1nse</a>  opened this issue
-<relative-time datetime="2019-08-05T09:41:00Z" class="no-wrap">Aug 5, 2019</relative-time>
-&middot; 1 comment
-
-<span data-issue-and-pr-hovercards-enabled>
-  
-</span>
-
-    </div>
-
-  </div>
-
-
-
-
-
-    <div class="js-sticky js-sticky-offset-scroll top-0 gh-header-sticky">
-      <div class="sticky-content">
-        <div class="d-flex flex-items-center flex-justify-between mt-2">
-          <div class="d-flex flex-row flex-items-center min-width-0">
-            <div class="mr-2 mb-2 flex-shrink-0">
-                <span title="Status: Open" data-view-component="true" class="State State--open d-flex flex-items-center">
-  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-issue-opened flex-items-center mr-1">
-    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path>
-</svg>
-  Open
-</span>
-            </div>
-
-
-              <div class="mb-2 flex-shrink-0">
-                  <div>
-      
-  </div>
-
-              </div>
-
-              <div class="mb-2 flex-shrink-0">
-                  
-              </div>
-
-            <div class="min-width-0 mr-2 mb-2">
-              <h1 class="d-flex text-bold f5">
-  <a class="js-issue-title css-truncate css-truncate-target Link--primary width-fit markdown-title js-smoothscroll-anchor" href="#top">
-    XSS vulnerability on &lt;abbr&gt; and &lt;sup&gt;&lt;EMBED&gt; label
-  </a>
-  <span class="gh-header-number color-fg-muted pl-1">#106</span>
-</h1>
-
-              <div class="meta color-fg-muted css-truncate css-truncate-target d-block width-fit">
-                  <a class="author text-bold Link--secondary" data-hovercard-z-index-override="111" data-hovercard-type="user" data-hovercard-url="/users/j1nse/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/j1nse">j1nse</a>  opened this issue
-<relative-time datetime="2019-08-05T09:41:00Z" class="no-wrap">Aug 5, 2019</relative-time>
-&middot; 1 comment
-
-<span data-issue-and-pr-hovercards-enabled>
-  
-</span>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="gh-header-shadow color-shadow-small js-notification-shelf-offset-top"></div>
-</div>
-
-
-            
-
-          <div id="discussion_bucket">
-            <div data-view-component="true" class="Layout Layout--flowRow-until-md Layout--sidebarPosition-end Layout--sidebarPosition-flowRow-end">
-  <div data-view-component="true" class="Layout-main">                  <h2 class="sr-only">Comments</h2>
-<div class="js-quote-selection-container"
-     data-quote-markdown=".js-comment-body"
-     data-discussion-hovercards-enabled
-     data-issue-and-pr-hovercards-enabled
-     data-team-hovercards-enabled>
-
-  <div
-    class="js-discussion  ml-0 pl-0 ml-md-6 pl-md-3"
-    data-hpc
-    >
-      <div class="TimelineItem pt-0 js-comment-container js-socket-channel js-updatable-content "
-  data-gid="MDU6SXNzdWU0NzY3NTgyODY="
-  data-url="/jbt/markdown-editor/issues/106/partials/body?issue=106"
-  data-channel="eyJjIjoiaXNzdWU6NDc2NzU4Mjg2IiwidCI6MTcyMDM1ODQ5NX0=--5e9a92c3109e8251041d8cc6bbd51122ba36e1adba6a1b9862d99f1b8e156fa5">
-
-  <div class="avatar-parent-child TimelineItem-avatar d-none d-md-block">
-  <a class="d-inline-block" data-hovercard-type="user" data-hovercard-url="/users/j1nse/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/j1nse"><img class="avatar rounded-2 avatar-user" src="https://avatars.githubusercontent.com/u/22301107?s=80&amp;u=2a96b29a5ac8e4df5b296ef1043745ba4634ae70&amp;v=4" width="40" height="40" alt="@j1nse" /></a>
-
-</div>
-
-  <div class="  timeline-comment-group js-minimizable-comment-group js-targetable-element TimelineItem-body my-0 " id="issue-476758286">
-
-    <div class="ml-n3 timeline-comment unminimized-comment comment previewable-edit js-task-list-container js-comment timeline-comment--caret"
-        data-body-version="b68ef80e8d7a1d8f606fa3c685687dc2fffe0de9fe6d26b688964581f5fcd066">
-      <div class="timeline-comment-header clearfix d-flex"  data-morpheus-enabled="false">
-  <div class="timeline-comment-actions flex-shrink-0 d-flex flex-items-center">
-    <details class="details-overlay details-reset position-relative d-inline-block">
-      <summary data-view-component="true" class="timeline-comment-action Link--secondary Button--link Button--medium Button">  <span class="Button-content">
-    <span class="Button-label"><svg aria-label="Show options" role="img" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal">
-    <path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
-</svg></span>
-  </span>
-</summary>
-
-      <details-menu
-        class="dropdown-menu dropdown-menu-sw show-more-popover color-fg-default"
-        style="width:185px"
-        src=""
-        preload
-        
-      >
-          <span data-view-component="true">
-  <clipboard-copy aria-label="Copy link" for="issue-476758286-permalink" role="menuitem" data-view-component="true" class="dropdown-item btn-link">
-      
-            Copy link
-
-</clipboard-copy>  <div aria-live="polite" aria-atomic="true" class="sr-only" data-clipboard-copy-feedback></div>
-</span>      </details-menu>
-    </details>
-  </div>
-
-  <div class="d-none d-sm-flex">
-      
-
-      
-
-
-
-      
-
-  </div>
-
-  <h3 class="f5 text-normal" style="flex: 1 1 auto">
-    <div>
-      
-
-      <strong>
-          <a class="author Link--primary text-bold css-overflow-wrap-anywhere " show_full_name="false" data-hovercard-type="user" data-hovercard-url="/users/j1nse/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/j1nse">j1nse</a>
-  
-
-      </strong>
-
-      
-
-      commented
-
-
-        <a href="#issue-476758286" id="issue-476758286-permalink" class="Link--secondary js-timestamp"><relative-time datetime="2019-08-05T09:41:00Z" class="no-wrap">Aug 5, 2019</relative-time></a>
-
-
-      <span class="js-comment-edit-history">
-  <span class="d-inline-block color-fg-muted">&#8226;</span>
-
-  <details class="details-overlay details-reset d-inline-block dropdown hx_dropdown-fullscreen">
-    <summary class="btn-link no-underline color-fg-muted js-notice">
-      <div class="position-relative">
-        <span>
-          edited
-          
         </span>
-        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-triangle-down v-align-middle">
-    <path d="m4.427 7.427 3.396 3.396a.25.25 0 0 0 .354 0l3.396-3.396A.25.25 0 0 0 11.396 7H4.604a.25.25 0 0 0-.177.427Z"></path>
-</svg>
-      </div>
-    </summary>
-    <details-menu
-      class="dropdown-menu dropdown-menu-s width-auto py-0 js-comment-edit-history-menu"
-      style="max-width: 352px; z-index: 99;"
-      src="/user_content_edits/show_edit_history_log/MDU6SXNzdWU0NzY3NTgyODY="
-      preload
-    >
-      <include-fragment class="my-3" style="min-width: 100px;" aria-label="Loading...">
-        <svg style="box-sizing: content-box; color: var(--color-icon-primary);" width="32" height="32" viewBox="0 0 16 16" fill="none" aria-hidden="true" data-view-component="true" class="mx-auto d-block anim-rotate">
-  <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" vector-effect="non-scaling-stroke" fill="none" />
-  <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke" />
-</svg>  <span class="sr-only">Loading</span>
-
-      </include-fragment>
-    </details-menu>
-  </details>
-</span>
-
-    </div>
-
-  </h3>
-</div>
-
-
-      <div class="edit-comment-hide">
-
-        <task-lists disabled sortable>
-<table class="d-block user-select-contain" data-paste-markdown-skip>
-  <tbody class="d-block">
-    <tr class="d-block">
-      <td class="d-block comment-body markdown-body  js-comment-body">
-          <p dir="auto">This label and attack vector will cause  XSS.<br>
-payload:<br>
-<code class="notranslate">&lt;EMBED SRC="data:image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGlkPSJ4c3MiPjxzY3JpcHQgdHlwZT0idGV4dC9lY21hc2NyaXB0Ij5hbGVydCgieHNzISIpOzwvc2NyaXB0Pjwvc3ZnPg==" type="image/svg+xml" AllowScriptAccess="always"&gt;&lt;/EMBED&gt;</code><br>
-<code class="notranslate">&lt;sup style="position:fixed;left:0;top:0;width:10000px;height:10000px;" onmouseover="alert('xss')"&gt;sup&lt;/sup&gt;</code><br>
-<code class="notranslate">&lt;abbr style="position:fixed;left:0;top:0;width:10000px;height:10000px;" onmouseover="alert('xss')"&gt;abbr&lt;/abbr&gt;</code><br>
-if you type the payload,the xss vulnerability will be triggered.<br>
-<a target="_blank" rel="noopener noreferrer nofollow" href="https://user-images.githubusercontent.com/22301107/62455064-27b3e300-b7a8-11e9-8e13-1f902c883bf6.PNG"><img src="https://user-images.githubusercontent.com/22301107/62455064-27b3e300-b7a8-11e9-8e13-1f902c883bf6.PNG" alt="xss" style="max-width: 100%;"></a><br>
-<a target="_blank" rel="noopener noreferrer nofollow" href="https://user-images.githubusercontent.com/22301107/62463582-f560b080-b7bc-11e9-94a2-c96170159209.PNG"><img src="https://user-images.githubusercontent.com/22301107/62463582-f560b080-b7bc-11e9-94a2-c96170159209.PNG" alt="xss2" style="max-width: 100%;"></a><br>
-<a target="_blank" rel="noopener noreferrer nofollow" href="https://user-images.githubusercontent.com/22301107/62463588-f8f43780-b7bc-11e9-8bb5-4337e6c2b5e6.PNG"><img src="https://user-images.githubusercontent.com/22301107/62463588-f8f43780-b7bc-11e9-8bb5-4337e6c2b5e6.PNG" alt="xss3" style="max-width: 100%;"></a></p>
-      </td>
-    </tr>
-      <tr class="d-block pl-3 pr-3 pb-3 js-comment-body-error" hidden>
-        <td class="d-block">
-          <div class="flash flash-warn" role="alert">
-            <p class="mb-1">
-              <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-info">
-    <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path>
-</svg>
-              The text was updated successfully, but these errors were encountered:
-            </p>
-              <ol class="mb-0 pl-4 ml-4">
-              </ol>
-          </div>
-        </td>
-      </tr>
-  </tbody>
-</table>
-</task-lists>
-
-
-        <div class="d-flex">
-
-            <div class="pr-review-reactions">
-              <div data-view-component="true" class="comment-reactions js-reactions-container js-reaction-buttons-container social-reactions reactions-container d-none">
-  <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="js-pick-reaction" data-turbo="false" action="/jbt/markdown-editor/reactions" accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="put" autocomplete="off" /><input type="hidden" name="authenticity_token" value="HME-Er2yuEkPWQhFUIk2d2X_fAfD1Mw8xuJ8CkttbDgO6XGW_jmlxRkl4H_xCfNOtuzcJyibcb_mJlRgW2KuAw" autocomplete="off" />
-    <input type="hidden" name="input[subjectId]" value="MDU6SXNzdWU0NzY3NTgyODY=">
-      <input type="hidden" name="input[context]" value="" >
-    <div  class="js-comment-reactions-options d-flex flex-items-center flex-row flex-wrap">
-      <div class="js-reactions-container">
-        <details class="dropdown details-reset details-overlay d-inline-block js-all-reactions-popover" hidden>
-          <summary aria-haspopup="true" data-view-component="true" class="Button--link Button--medium Button">  <span class="Button-content">
-    <span class="Button-label">All reactions</span>
-  </span>
-</summary>
-
-          <ul class="dropdown-menu dropdown-menu-se">
-          </ul>
-        </details>
-      </div>
-    </div>
-</form></div>
-            </div>
-        </div>
-      </div>
-
-      <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="js-comment-update" id="issue-476758286-edit-form" data-turbo="false" action="/jbt/markdown-editor/issues/106" accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="put" autocomplete="off" /><input type="hidden" data-csrf="true" name="authenticity_token" value="l72AE4nJtOMinTf3SxXMzpQ8Z8duphihOKJF3WMKKIokmXa2YmZsVgnd7mj1TYFAYUoC8igqj1bnBeeozOQ32A==" /></form>    </div>
-</div>
-
-</div>
-
-
-      <div>
-    <div id="js-timeline-progressive-loader" data-timeline-item-src="jbt/markdown-editor/timeline_focused_item?after_cursor=Y3Vyc29yOnYyOpPPAAABbgVN74AAqTU0NjU0NTY1Mg%3D%3D&amp;id=MDU6SXNzdWU0NzY3NTgyODY%3D" ></div>
-
-
-      <div class="js-timeline-item js-timeline-progressive-focus-container" data-gid="MDE3OlJlbmFtZWRUaXRsZUV2ZW50MjUzMzI4MTc5Ng==">
-  
-          <div class="TimelineItem js-targetable-element"  data-team-hovercards-enabled  id="event-2533281796">
-  <div class="TimelineItem-badge ">
-    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-pencil color-fg-inherit">
-    <path d="M11.013 1.427a1.75 1.75 0 0 1 2.474 0l1.086 1.086a1.75 1.75 0 0 1 0 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 0 1-.927-.928l.929-3.25c.081-.286.235-.547.445-.758l8.61-8.61Zm.176 4.823L9.75 4.81l-6.286 6.287a.253.253 0 0 0-.064.108l-.558 1.953 1.953-.558a.253.253 0 0 0 .108-.064Zm1.238-3.763a.25.25 0 0 0-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 0 0 0-.354Z"></path>
-</svg>
-  </div>
-  <div class="TimelineItem-body">
-
-    
-
-        <a class="d-inline-block" data-hovercard-type="user" data-hovercard-url="/users/j1nse/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/j1nse"><img class="avatar avatar-user" src="https://avatars.githubusercontent.com/u/22301107?s=40&amp;u=2a96b29a5ac8e4df5b296ef1043745ba4634ae70&amp;v=4" width="20" height="20" alt="@j1nse" /></a>
-<a class="author Link--primary text-bold" data-hovercard-type="user" data-hovercard-url="/users/j1nse/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/j1nse">j1nse</a>
-
-
-
-
-      changed the title
-<del class="text-bold markdown-title">XSS vulnerability in &lt;EMBED&gt; label</del>
-
-<ins class="text-bold markdown-title no-underline">XSS vulnerability on &lt;abbr&gt; and &lt;sup&gt;&lt;EMBED&gt; label</ins>
-
-
-    <a href="#event-2533281796" class="Link--secondary"><relative-time datetime="2019-08-05T12:04:50Z" class="no-wrap">Aug 5, 2019</relative-time></a>
-
-  </div>
-</div>
-
-
-  <div class="TimelineItem">
-  <div class="TimelineItem-badge">
-    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-cross-reference">
-    <path d="M2.75 3.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h4.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 13H9.06l-2.573 2.573A1.458 1.458 0 0 1 4 14.543V13H2.75A1.75 1.75 0 0 1 1 11.25v-7.5C1 2.784 1.784 2 2.75 2h5.5a.75.75 0 0 1 0 1.5ZM16 1.25v4.146a.25.25 0 0 1-.427.177L14.03 4.03l-3.75 3.75a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l3.75-3.75-1.543-1.543A.25.25 0 0 1 11.604 1h4.146a.25.25 0 0 1 .25.25Z"></path>
-</svg>
-  </div>
-
-  <div class="TimelineItem-body" >
-      <div >
-    <a class="d-inline-block" data-hovercard-type="user" data-hovercard-url="/users/ColeBennett/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/ColeBennett"><img class="avatar avatar-user" src="https://avatars.githubusercontent.com/u/4937136?s=40&amp;v=4" width="20" height="20" alt="@ColeBennett" /></a>
-<a class="author Link--primary text-bold" data-hovercard-type="user" data-hovercard-url="/users/ColeBennett/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/ColeBennett">ColeBennett</a>
-
-
-
-    mentioned this issue
-    <a class="Link--secondary" href="#ref-pullrequest-512758569" >
-      <relative-time datetime="2019-10-25T23:32:55Z" class="no-wrap">Oct 25, 2019</relative-time>
-    </a>
-</div>
-
-<div class="mt-2 d-flex flex-items-start flex-column flex-md-row">
-  <div class="flex-auto wb-break-word" id="ref-pullrequest-512758569" >
-    <a href="/jbt/markdown-editor/pull/110" class="Link--primary f4 text-bold markdown-title" data-hovercard-type="pull_request" data-hovercard-url="/jbt/markdown-editor/pull/110/hovercard">
-      Fix XSS Vulnerability
-      <span class="color-fg-muted text-normal" >#110</span>
-</a>  </div>
-
-
-  <div class="flex-shrink-0 my-1 my-md-0 ml-md-3">
-      <span title="Status: Closed" data-view-component="true" class="State State--closed State--small">
-  <svg height="14" class="octicon octicon-git-pull-request-closed" viewBox="0 0 16 16" version="1.1" width="14" aria-hidden="true"><path d="M3.25 1A2.25 2.25 0 0 1 4 5.372v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.251 2.251 0 0 1 3.25 1Zm9.5 5.5a.75.75 0 0 1 .75.75v3.378a2.251 2.251 0 1 1-1.5 0V7.25a.75.75 0 0 1 .75-.75Zm-2.03-5.273a.75.75 0 0 1 1.06 0l.97.97.97-.97a.748.748 0 0 1 1.265.332.75.75 0 0 1-.205.729l-.97.97.97.97a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-.97-.97-.97.97a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l.97-.97-.97-.97a.75.75 0 0 1 0-1.06ZM2.5 3.25a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0ZM3.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm9.5 0a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"></path></svg> Closed
-</span>
-  </div>
-</div>
-
-
-
-
-  </div>
-</div>
-
-
-
-</div>
-
-      <div class="js-timeline-item js-timeline-progressive-focus-container" data-gid="MDEyOklzc3VlQ29tbWVudDU0NjU0NTY1Mg==">
-  
-      
-<div class="TimelineItem js-comment-container"
-      data-gid="MDEyOklzc3VlQ29tbWVudDU0NjU0NTY1Mg=="
-      data-url="/jbt/markdown-editor/comments/MDEyOklzc3VlQ29tbWVudDU0NjU0NTY1Mg==/partials/timeline_issue_comment"
-      >
-
-  <div class="avatar-parent-child TimelineItem-avatar d-none d-md-block">
-  <a class="d-inline-block" data-hovercard-type="user" data-hovercard-url="/users/ColeBennett/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/ColeBennett"><img class="avatar rounded-2 avatar-user" src="https://avatars.githubusercontent.com/u/4937136?s=80&amp;v=4" width="40" height="40" alt="@ColeBennett" /></a>
-
-</div>
-
-
-  <div class="  timeline-comment-group js-minimizable-comment-group js-targetable-element TimelineItem-body my-0 " id="issuecomment-546545652">
-
-    <div class="ml-n3 timeline-comment unminimized-comment comment previewable-edit js-task-list-container js-comment timeline-comment--caret"
-        data-body-version="d309ceac13cc10fddd3411238c24a264d20b8574f515a0ded4d80abb39b0ef5c">
-      <div class="timeline-comment-header clearfix d-flex"  data-morpheus-enabled="false">
-  <div class="timeline-comment-actions flex-shrink-0 d-flex flex-items-center">
-    <details class="details-overlay details-reset position-relative d-inline-block">
-      <summary data-view-component="true" class="timeline-comment-action Link--secondary Button--link Button--medium Button">  <span class="Button-content">
-    <span class="Button-label"><svg aria-label="Show options" role="img" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal">
-    <path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
-</svg></span>
-  </span>
-</summary>
-
-      <details-menu
-        class="dropdown-menu dropdown-menu-sw show-more-popover color-fg-default"
-        style="width:185px"
-        src=""
-        preload
-        
-      >
-          <span data-view-component="true">
-  <clipboard-copy aria-label="Copy link" for="issuecomment-546545652-permalink" role="menuitem" data-view-component="true" class="dropdown-item btn-link">
-      
-            Copy link
-
-</clipboard-copy>  <div aria-live="polite" aria-atomic="true" class="sr-only" data-clipboard-copy-feedback></div>
-</span>      </details-menu>
-    </details>
-  </div>
-
-  <div class="d-none d-sm-flex">
-      
-
-      
-
-
-
-      
-
-  </div>
-
-  <h3 class="f5 text-normal" style="flex: 1 1 auto">
-    <div>
-      
-
-      <strong>
-          <a class="author Link--primary text-bold css-overflow-wrap-anywhere " show_full_name="false" data-hovercard-type="user" data-hovercard-url="/users/ColeBennett/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/ColeBennett">ColeBennett</a>
-  
-
-      </strong>
-
-      
-
-      commented
-
-
-        <a href="#issuecomment-546545652" id="issuecomment-546545652-permalink" class="Link--secondary js-timestamp"><relative-time datetime="2019-10-25T23:43:44Z" class="no-wrap">Oct 25, 2019</relative-time></a>
-
-
-      <span class="js-comment-edit-history">
-  <span class="d-inline-block color-fg-muted">&#8226;</span>
-
-  <details class="details-overlay details-reset d-inline-block dropdown hx_dropdown-fullscreen">
-    <summary class="btn-link no-underline color-fg-muted js-notice">
-      <div class="position-relative">
-        <span>
-          edited
-          
+      <span class="f4 color-fg-default text-bold">github.com/kyverno/kyverno</span>        <span class="color-fg-muted f4 d-inline-flex" >
+            (<a href="/advisories?query=ecosystem%3Ago" data-view-component="true" class="Link Link--muted">Go</a>)
         </span>
-        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-triangle-down v-align-middle">
-    <path d="m4.427 7.427 3.396 3.396a.25.25 0 0 0 .354 0l3.396-3.396A.25.25 0 0 0 11.396 7H4.604a.25.25 0 0 0-.177.427Z"></path>
-</svg>
-      </div>
-    </summary>
-    <details-menu
-      class="dropdown-menu dropdown-menu-s width-auto py-0 js-comment-edit-history-menu"
-      style="max-width: 352px; z-index: 99;"
-      src="/user_content_edits/show_edit_history_log/MDEyOklzc3VlQ29tbWVudDU0NjU0NTY1Mg=="
-      preload
-    >
-      <include-fragment class="my-3" style="min-width: 100px;" aria-label="Loading...">
-        <svg style="box-sizing: content-box; color: var(--color-icon-primary);" width="32" height="32" viewBox="0 0 16 16" fill="none" aria-hidden="true" data-view-component="true" class="mx-auto d-block anim-rotate">
-  <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" vector-effect="non-scaling-stroke" fill="none" />
-  <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke" />
-</svg>  <span class="sr-only">Loading</span>
-
-      </include-fragment>
-    </details-menu>
-  </details>
-</span>
-
     </div>
+  </div>
 
-  </h3>
+  <div class="float-left col-6 col-md-3 py-2 py-md-0 pr-2">
+      <h2 class="text-small color-fg-muted mb-1">Affected versions</h2>
+
+      <div class="f4 color-fg-default" >NONE</div>
+  </div>
+
+  <div class="float-left col-6 col-md-3 py-2 py-md-0 ">
+      <h2 class="text-small color-fg-muted mb-1">Patched versions</h2>
+
+      <div class="f4 color-fg-default" >1.11.0</div>
+  </div>
+
+</div>
+
+  </div>
 </div>
 
 
-      <div class="edit-comment-hide">
+    <div class="Box Box--responsive mt-3">
+  <div class="Box-header color-bg-default border-bottom-0 ">
+  <h2 class="Box-title h5 color-fg-default">Description</h2>
+</div>
 
-        <task-lists disabled sortable>
-<table class="d-block user-select-contain" data-paste-markdown-skip>
-  <tbody class="d-block">
-    <tr class="d-block">
-      <td class="d-block comment-body markdown-body  js-comment-body">
-          <p dir="auto">Hi @shequ123, thanks for creating an issue for this! I opened a pull request implementing changes to fix these problems and it correctly blocks those scenarios from happening in the editor. Pull request: <a class="issue-link js-issue-link" data-error-text="Failed to load title" data-id="512758569" data-permission-text="Title is private" data-url="https://github.com/jbt/markdown-editor/issues/110" data-hovercard-type="pull_request" data-hovercard-url="/jbt/markdown-editor/pull/110/hovercard" href="https://github.com/jbt/markdown-editor/pull/110">#110</a></p>
-      </td>
-    </tr>
-  </tbody>
-</table>
-</task-lists>
+<div class="Box-body px-5 pb-5">
+  <div class="markdown-body comment-body p-0" >
+    <p dir="auto">A security vulnerability was found in Kyverno where an attacker could cause denial of service of Kyverno. The vulnerable component in Kyvernos Notary verifier. An attacker would need control over the registry from which Kyverno would fetch attestations. With such a position, the attacker could return a malicious response to Kyverno, when Kyverno would send a request to the registry. The malicious response would cause denial of service of Kyverno, such that other users' admission requests would be blocked from being processed.</p>
+<p dir="auto">This is a vulnerability in a new component released in v1.11.0. The only users affected by this are those that have been building Kyverno from source at the main branch which is not encouraged. Users consuming official Kyverno releases are not affected. There are no known cases of this vulnerability being exploited in the wild.</p>
+<p dir="auto">The vulnerability was found during an ongoing security audit of Kyverno conducted by Ada Logics, facilitated by OSTIF and funded by the CNCF.</p>
+  </div>
+</div>
+
+</div>
+
+  </div>
+</div>
 
 
-        <div class="d-flex">
 
-            <div class="pr-review-reactions">
-              <div data-view-component="true" class="comment-reactions js-reactions-container js-reaction-buttons-container social-reactions reactions-container d-none">
-  <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="js-pick-reaction" data-turbo="false" action="/jbt/markdown-editor/reactions" accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="put" autocomplete="off" /><input type="hidden" name="authenticity_token" value="K_gqs2qXo-tFScmiI__LHfPEoKo5dOJD9ZpqpmcLw4k50GU3KRy-Z1M1IZiCfw4kINcAitI7X8DVXkLMdwQBsg" autocomplete="off" />
-    <input type="hidden" name="input[subjectId]" value="MDEyOklzc3VlQ29tbWVudDU0NjU0NTY1Mg==">
-      <input type="hidden" name="input[context]" value="" >
-    <div  class="js-comment-reactions-options d-flex flex-items-center flex-row flex-wrap">
-      <div class="js-reactions-container">
-        <details class="dropdown details-reset details-overlay d-inline-block js-all-reactions-popover" hidden>
-          <summary aria-haspopup="true" data-view-component="true" class="Button--link Button--medium Button">  <span class="Button-content">
-    <span class="Button-label">All reactions</span>
+</div>
+
+  <div class="col-12 col-md-3 pl-md-4 mt-3 mt-md-0">
+    <div class="discussion-sidebar-item js-repository-advisory-details"  >
+  <h3 data-view-component="true" class="mb-2 f6">Severity</h3>
+  <div data-view-component="true" class="d-flex flex-items-baseline pb-1">
+    <span title="Severity: low" data-view-component="true" class="Label Label--primary">
+  Low
+</span>
+
+    <div data-view-component="true" class="lh-condensed d-flex flex-items-baseline ml-2 color-fg-subtle f5">
+      <div style="border-style: none none dashed !important;" data-view-component="true" class="color-fg-default text-semibold border-bottom">
+        <span aria-label="This score calculates overall vulnerability severity from 0 to 10 and is based on the Common Vulnerability Scoring System (CVSS)." data-view-component="true" class="tooltipped tooltipped-n tooltipped-no-delay tooltipped-multiline">3.1</span>
+</div>      <span class="ml-1">/ 10</span>
+</div></div>
+  <div data-view-component="true" class="d-flex flex-column mt-2 p-2 border rounded-2">
+    <h4 data-view-component="true" class="f6 p-1">CVSS base metrics</h4>
+
+      <div data-view-component="true" class="d-flex p-1 flex-justify-between">
+        <span aria-label="More severe the more the remote (logically and physically) an attacker can be in order to exploit the vulnerability" data-view-component="true" class="tooltipped tooltipped-n tooltipped-align-left-1 tooltipped-no-delay tooltipped-multiline">
+          <div style="border-style: none none dashed !important;" data-view-component="true" class="lh-condensed border-bottom">Attack vector</div>
+</span>
+        <div data-view-component="true" class="color-fg-default text-semibold ml-2">Network</div>
+</div>      <div data-view-component="true" class="d-flex p-1 flex-justify-between">
+        <span aria-label="More severe for the least complex attacks" data-view-component="true" class="tooltipped tooltipped-n tooltipped-align-left-1 tooltipped-no-delay tooltipped-multiline">
+          <div style="border-style: none none dashed !important;" data-view-component="true" class="lh-condensed border-bottom">Attack complexity</div>
+</span>
+        <div data-view-component="true" class="color-fg-default text-semibold ml-2">High</div>
+</div>      <div data-view-component="true" class="d-flex p-1 flex-justify-between">
+        <span aria-label="More severe if no privileges are required" data-view-component="true" class="tooltipped tooltipped-n tooltipped-align-left-1 tooltipped-no-delay tooltipped-multiline">
+          <div style="border-style: none none dashed !important;" data-view-component="true" class="lh-condensed border-bottom">Privileges required</div>
+</span>
+        <div data-view-component="true" class="color-fg-default text-semibold ml-2">None</div>
+</div>      <div data-view-component="true" class="d-flex p-1 flex-justify-between">
+        <span aria-label="More severe when no user interaction is required" data-view-component="true" class="tooltipped tooltipped-n tooltipped-align-left-1 tooltipped-no-delay tooltipped-multiline">
+          <div style="border-style: none none dashed !important;" data-view-component="true" class="lh-condensed border-bottom">User interaction</div>
+</span>
+        <div data-view-component="true" class="color-fg-default text-semibold ml-2">Required</div>
+</div>      <div data-view-component="true" class="d-flex p-1 flex-justify-between">
+        <span aria-label="More severe when a scope change occurs, e.g. one vulnerable component impacts resources in components beyond its security scope" data-view-component="true" class="tooltipped tooltipped-n tooltipped-align-left-1 tooltipped-no-delay tooltipped-multiline">
+          <div style="border-style: none none dashed !important;" data-view-component="true" class="lh-condensed border-bottom">Scope</div>
+</span>
+        <div data-view-component="true" class="color-fg-default text-semibold ml-2">Unchanged</div>
+</div>      <div data-view-component="true" class="d-flex p-1 flex-justify-between">
+        <span aria-label="More severe when loss of data confidentiality is highest, measuring the level of data access available to an unauthorized user" data-view-component="true" class="tooltipped tooltipped-n tooltipped-align-left-1 tooltipped-no-delay tooltipped-multiline">
+          <div style="border-style: none none dashed !important;" data-view-component="true" class="lh-condensed border-bottom">Confidentiality</div>
+</span>
+        <div data-view-component="true" class="color-fg-default text-semibold ml-2">None</div>
+</div>      <div data-view-component="true" class="d-flex p-1 flex-justify-between">
+        <span aria-label="More severe when loss of data integrity is the highest, measuring the consequence of data modification possible by an unauthorized user" data-view-component="true" class="tooltipped tooltipped-n tooltipped-align-left-1 tooltipped-no-delay tooltipped-multiline">
+          <div style="border-style: none none dashed !important;" data-view-component="true" class="lh-condensed border-bottom">Integrity</div>
+</span>
+        <div data-view-component="true" class="color-fg-default text-semibold ml-2">None</div>
+</div>      <div data-view-component="true" class="d-flex p-1 flex-justify-between">
+        <span aria-label="More severe when the loss of impacted component availability is highest" data-view-component="true" class="tooltipped tooltipped-n tooltipped-align-left-1 tooltipped-no-delay tooltipped-multiline">
+          <div style="border-style: none none dashed !important;" data-view-component="true" class="lh-condensed border-bottom">Availability</div>
+</span>
+        <div data-view-component="true" class="color-fg-default text-semibold ml-2">Low</div>
+</div></div>
+  <div data-view-component="true" class="mt-2">CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:L</div>
+
+</div>
+
+    
+      <div class="discussion-sidebar-item">
+  <h3 data-view-component="true" class="mb-2 f6">CVE ID</h3>
+  <div class="color-fg-muted" >
+    CVE-2023-42814
+  </div>
+</div>
+
+    <div class="discussion-sidebar-item js-repository-advisory-details" >
+  <h3 data-view-component="true" class="mb-2 f6">Weaknesses</h3>
+    <div data-view-component="true" class="color-fg-subtle">No CWEs</div>
+</div>
+
+      <div class="js-repository-advisory-details discussion-sidebar-item"  >
+    <h3 aria-label="Advisory Credits" data-view-component="true" class="mb-2 f6">Credits</h3>
+
+    <ul class="list-style-none">
+        <li class="py-1 d-flex flex-justify-between" >
+  <span>
+    <a class="d-inline-block" data-hovercard-type="user" data-hovercard-url="/users/AdamKorcz/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/AdamKorcz"><img class="avatar avatar-user" src="https://avatars.githubusercontent.com/u/44787359?s=40&amp;v=4" width="20" height="20" alt="@AdamKorcz" /></a>
+    <a class="Link--primary ml-1 text-bold" data-hovercard-type="user" data-hovercard-url="/users/AdamKorcz/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/AdamKorcz">
+      AdamKorcz</a>  </span>
+
+  <span>
+  <span data-view-component="true" class="Label Label--secondary">Reporter</span>
+
   </span>
-</summary>
 
-          <ul class="dropdown-menu dropdown-menu-se">
-          </ul>
-        </details>
-      </div>
-    </div>
-</form></div>
-            </div>
-        </div>
-      </div>
+</li>
 
-      <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="js-comment-update" id="issuecomment-546545652-edit-form" data-turbo="false" action="/jbt/markdown-editor/issue_comments/546545652" accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="put" autocomplete="off" /><input type="hidden" data-csrf="true" name="authenticity_token" value="AIhtyORG7mOheqvKebUubrSIxaKDWKFyIlYsWGInNoe1pBMjaWnCv7ss7RnpsXEqxBsrF5SIONXU53vwMz8kqw==" />
-            <include-fragment
-  
-  loading="lazy"
-  src="/jbt/markdown-editor/issue_comments/546545652/edit_form?textarea_id=issuecomment-546545652-body&amp;comment_context="
-  class="previewable-comment-form js-comment-edit-form-deferred-include-fragment"
->
-  <p class="text-center mt-3" data-hide-on-error>
-    <svg aria-label="Loading..." style="box-sizing: content-box; color: var(--color-icon-primary);" width="32" height="32" viewBox="0 0 16 16" fill="none" role="img" data-view-component="true" class="anim-rotate">
-  <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" vector-effect="non-scaling-stroke" fill="none" />
-  <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke" />
-</svg>
-  </p>
-  <p class="ml-1 mb-2 mt-2" data-show-on-error hidden>
-    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-alert">
-    <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
-</svg>
-    Sorry, something went wrong.
-  </p>
-</include-fragment>
-
-</form>    </div>
-</div>
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-  <!-- Rendered timeline since 2019-10-25 16:43:44 -->
-  <div class="js-timeline-marker js-socket-channel js-updatable-content"
-        id="partial-timeline"
-        data-channel="eyJjIjoiaXNzdWU6NDc2NzU4Mjg2IiwidCI6MTcyMDM1ODQ5NX0=--5e9a92c3109e8251041d8cc6bbd51122ba36e1adba6a1b9862d99f1b8e156fa5"
-        data-url="/jbt/markdown-editor/issues/106/partials/unread_timeline?issue=106&amp;since=2019-10-25T23%3A43%3A44.000000000Z"
-        data-last-modified="2019-10-25T23:43:44.000000000Z"
-        data-morpheus-enabled="false"
-        data-gid="MDU6SXNzdWU0NzY3NTgyODY=">
-    <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="d-none js-timeline-marker-form" data-turbo="false" action="/_graphql/MarkNotificationSubjectAsRead" accept-charset="UTF-8" data-remote="true" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="GEBx3N1JMOgg6WZfysZjncfMz6zFb7ZazNp0hMk4ppmsC/hcKfRUaBgSd1JE7IWtmt7xtqaeqVzj7DWnoc93cA==" />
-      <input type="hidden" name="variables[subjectId]" value="MDU6SXNzdWU0NzY3NTgyODY=">
-</form>  </div>
-</div>
-
-
+    </ul>
   </div>
 
 
 
-  <span id="issue-comment-box"></span>
-  <div class="discussion-timeline-actions">
-              <div data-view-component="true" class="flash flash-warn mt-3">
-  
-    <a rel="nofollow" class="btn btn-primary" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;signed out comment&quot;,&quot;repository_id&quot;:6034984,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/jbt/markdown-editor/issues/106&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="fbc04eabdf372c58155b125b93ba6dc940f7574bd6b7d4b4345919b734289143" href="/join?source=comment-repo">Sign up for free</a>
-    <strong>to join this conversation on GitHub</strong>.
-    Already have an account?
-    <a rel="nofollow" class="Link--inTextBlock" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;signed out comment&quot;,&quot;repository_id&quot;:6034984,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/jbt/markdown-editor/issues/106&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="ae0cea7513f4745b58d0dcbe723d984920188d9cccf6c80aaef812b40d96d52b" data-test-selector="comments-sign-in-link" href="/login?return_to=https%3A%2F%2Fgithub.com%2Fjbt%2Fmarkdown-editor%2Fissues%2F106">Sign in to comment</a>
-
-
-  
-</div>
-
   </div>
-</div>
-
-</div>
-  <div data-view-component="true" class="Layout-sidebar">                  <div id="partial-discussion-sidebar"
-  class="js-socket-channel js-updatable-content"
-  data-channel="eyJjIjoiaXNzdWU6NDc2NzU4Mjg2IiwidCI6MTcyMDM1ODQ5NX0=--5e9a92c3109e8251041d8cc6bbd51122ba36e1adba6a1b9862d99f1b8e156fa5"
-  data-gid="MDU6SXNzdWU0NzY3NTgyODY="
-  data-url="/jbt/markdown-editor/issues/106/show_partial?partial=issues%2Fsidebar"
-  data-project-hovercards-enabled>
-
-
-
-    <div class="discussion-sidebar-item sidebar-assignee js-discussion-sidebar-item">
-  <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="js-issue-sidebar-form" aria-label="Select assignees" data-turbo="false" action="/jbt/markdown-editor/issues/106/assignees" accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="put" autocomplete="off" /><input type="hidden" data-csrf="true" name="authenticity_token" value="Z3ZwLYxfzdXvJybhdgTvV9AOn7mPKBgAD+dd+JCpIE5hakoGa3gNstJeMZGu/DDoGZQxsIl9UQTLsFUqPnb0Wg==" />
-
-      
-  <div class="discussion-sidebar-heading text-bold">
-    Assignees
-  </div>
-
-
-        
-<span class="css-truncate js-issue-assignees">
-    No one assigned
-</span>
-
-
-</form></div>
-
-
-      
-<div class="discussion-sidebar-item js-discussion-sidebar-item">
-  
-
-
-  <div class="discussion-sidebar-heading text-bold">
-    Labels
-  </div>
-
-
-    <div class="js-issue-labels d-flex flex-wrap">
-    None yet
-</div>
-
-</div>
-
-
-      
-
-  <div class="discussion-sidebar-item js-discussion-sidebar-item">
-    <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="js-issue-sidebar-form" aria-label="Select projects" data-turbo="false" action="/jbt/markdown-editor/projects/issues/106" accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="put" autocomplete="off" /><input type="hidden" data-csrf="true" name="authenticity_token" value="8dA+0x02zmcZRjjKkJKgYN8fYV2WQZK7PC9jZjn7IE9vlEJYmoywfQ5ZJqlv/4mdNXDnzgF2YyuoP250RKxTPQ==" />
-        <div class="discussion-sidebar-heading text-bold">
-    Projects
-  </div>
-
-        <div aria-live="polite">
-</div>
-<span class="css-truncate sidebar-progress-bar">
-    None yet
-
-</span>
-
-</form>  </div>
-
-
-      <div class="discussion-sidebar-item sidebar-progress-bar js-discussion-sidebar-item">
-  <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="js-issue-sidebar-form" aria-label="Select milestones" data-turbo="false" action="/jbt/markdown-editor/issues/106/set_milestone?partial=issues%2Fsidebar%2Fshow%2Fmilestone" accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="put" autocomplete="off" /><input type="hidden" data-csrf="true" name="authenticity_token" value="HP9dh5UOIK+1jEZORzSrmZpcg8s4LvjUJOGnC0RsMdpjaeiEpdKnWD0Wb+E1rmCwViot8qmF2MKr9+XR63woxg==" />
-    
-  <div class="discussion-sidebar-heading text-bold">
-    Milestone
-  </div>
-
-      No milestone
-
-</form></div>
-
-
-    
-      <create-branch
-        data-default-repo="jbt/markdown-editor"
-        data-selected-nwo="jbt/markdown-editor"
-        data-default-source-branch="master"
-        data-sidebar-url="/jbt/markdown-editor/issues/closing_references/partials/sidebar?source_id=476758286&amp;source_type=ISSUE"
-        class="discussion-sidebar-item d-block">
-          
-<div class="js-discussion-sidebar-item" data-target="create-branch.sidebarContainer">
-  <div data-issue-and-pr-hovercards-enabled >
-    <development-menu>
-      <!-- '"` --><!-- </textarea></xmp> --></option></form><form data-target="create-branch.developmentForm" data-turbo="false" class="js-issue-sidebar-form" aria-label="Link issues" action="/jbt/markdown-editor/issues/closing_references?source_id=476758286&amp;source_type=ISSUE" accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="put" autocomplete="off" /><input type="hidden" data-csrf="true" name="authenticity_token" value="3X89FQoO6iuD3XXihDGyMWtegjLAZQdl1qH0Ke93t+VHqmsqCcM4fhIFcp8XcxiDjOOlY4TIirR9lVyqeCPkAg==" />
-        
-    <div class="discussion-sidebar-heading text-bold" >
-    Development
-  </div>
-
-
-
-              <p>No branches or pull requests</p>
-
-
-
-
-
-</form>    </development-menu>
-  </div>
-</div>
-
-        
-      </create-branch>
-
-    
-
-  
-      <div id="partial-users-participants" class="discussion-sidebar-item">
-  <div class="participation">
-    <div class="discussion-sidebar-heading text-bold">
-      2 participants
-    </div>
-    <div class="participation-avatars d-flex flex-wrap">
-        <a class="participant-avatar" data-hovercard-type="user" data-hovercard-url="/users/ColeBennett/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/ColeBennett">
-          <img class="avatar avatar-user" src="https://avatars.githubusercontent.com/u/4937136?s=52&amp;v=4" width="26" height="26" alt="@ColeBennett" /> 
-</a>        <a class="participant-avatar" data-hovercard-type="user" data-hovercard-url="/users/j1nse/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/j1nse">
-          <img class="avatar avatar-user" src="https://avatars.githubusercontent.com/u/22301107?s=52&amp;v=4" width="26" height="26" alt="@j1nse" /> 
-</a>    </div>
-  </div>
-</div>
-
-
-
-    
-
-    
-
-
-
-
-    
-
-</div>
-
-</div>
-  
-</div>          </div>
-        </div>
-
 
     </div>
+  </div>
 
 
   </div>
 
 </turbo-frame>
 
-
-    </main>
-  </div>
-
+      </main>
   </div>
 
           <footer class="footer pt-8 pb-6 f6 color-fg-muted p-responsive" role="contentinfo" >

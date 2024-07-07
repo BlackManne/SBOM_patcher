@@ -31,7 +31,7 @@ def modify_software_version(version):
     # 有两个区间，此时需要用逗号隔开，在<号之前插入一个逗号
     if range_num == 2:
         idx_to_insert = version.find("<")
-        detailed_version = version[0:idx_to_insert] + "," + version[idx_to_insert:]
+        version = version[0:idx_to_insert] + "," + version[idx_to_insert:]
     return version
 
 
@@ -105,7 +105,7 @@ def search_nvd_using_url(url):
                     software_list_dict[software_name] = {
                         "software_name": software_name,
                         "interval_versions": [],
-                        "detail_versions":[],
+                        "detail_versions": [],
                         "raw_versions": []
                     }
                 # 整合软件版本信息

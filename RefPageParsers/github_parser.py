@@ -9,7 +9,7 @@ headers = {
     'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
     'Accept': 'application/json, application/vnd.github+json',
     'Authorization': 'Bearer '
-                     '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',
+                     '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',
     'Host': 'api.github.com',
     'Connection': 'keep-alive'
 }
@@ -174,6 +174,9 @@ def advisory_parse(url):
                         reference.append(p_detail)
                     elif e.text == 'For more information':
                         more += p_detail
+                    else:
+                        # 都不满足的话就添加到description字段里面
+                        description += '\n' + e.text
 
     advisory_detail = {
         'title': title,
