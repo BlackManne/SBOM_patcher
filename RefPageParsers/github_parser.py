@@ -9,7 +9,7 @@ headers = {
     'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
     'Accept': 'application/json, application/vnd.github+json',
     'Authorization': 'Bearer '
-                     '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',
+                     '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',
     'Host': 'api.github.com',
     'Connection': 'keep-alive'
 }

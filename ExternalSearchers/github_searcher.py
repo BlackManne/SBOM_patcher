@@ -4,7 +4,6 @@ import base64
 
 from bs4 import BeautifulSoup
 
-from RefPageParsers.github_parser import github_parse
 from RefPageParsers.github_parser import commits_parse
 from RefPageParsers.github_parser import commit_parse
 from RefPageParsers.github_parser import advisory_parse
@@ -14,7 +13,7 @@ headers = {
     'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
     'Accept': 'application/json, application/vnd.github+json',
     'Authorization': 'Bearer '
-                     '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',
+                     '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',
     'Connection': 'keep-alive'
 }
 
@@ -145,34 +144,8 @@ def advisories_search_by_url(advisory_url):
         return None
 
 
-def advisories_search():
+def graphql_search(query):
     url = 'https://api.github.com/graphql'
-    # 构建GraphQL查询
-    query = '''
-    query {
-        securityAdvisories(first:20){
-            edges{
-                node{
-                    classification
-                    cvss{
-                        score
-                        vectorString
-                    }
-                    ghsaId
-                    id 
-                    identifiers{
-                        type
-                        value
-                    }
-                    origin
-                    permalink
-                    publishedAt
-                }
-            }
-        }
-    }
-    '''
-
     data = {
         'query': query
     }
@@ -182,6 +155,60 @@ def advisories_search():
 
     # 处理响应数据
     result = response.json()
+    return result
+
+
+def advisories_search():
+    # 构建GraphQL查询
+    query = '''
+    query {
+        securityAdvisories(first:20, publishedSince: "2023-01-01T00:00:00Z"){
+            edges{
+                node{
+                    id
+                    ghsaId
+                    classification
+                    cvss{
+                        score
+                        vectorString
+                    } 
+                    identifiers{
+                        type
+                        value
+                    }
+                    description
+                    origin
+                    permalink
+                    publishedAt
+                    updatedAt
+                    references{
+                        url
+                    }
+                    severity
+                    summary
+                    vulnerabilities(first:10){
+                        edges{
+                            node{
+                                firstPatchedVersion{
+                                    identifier
+                                }
+                                package{
+                                    ecosystem
+                                    name
+                                }
+                                updatedAt
+                                vulnerableVersionRange    
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    '''
+
+    # 处理响应数据
+    result = graphql_search(query)
     if result is not None:
         ret_advisories_list = []
         advisories_list_raw = result['data']['securityAdvisories']['edges']
@@ -192,8 +219,7 @@ def advisories_search():
     return None
 
 
-# if __name__ == "__main__":
-    # advisories_search('CVE-2023-1495')
-    # advisories_list = advisories_search()
-    # for advisory in advisories_list:
-    #     print(advisory)
+if __name__ == "__main__":
+    advisories_list = advisories_search()
+    for advisory in advisories_list:
+        print(advisory)

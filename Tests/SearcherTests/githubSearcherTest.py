@@ -15,5 +15,8 @@ class TestGithubSearcher(unittest.TestCase):
         advisories_testcases = []
         generate_testcases(advisories_list, advisories_testcases, github_searcher.advisories_search_by_url)
 
+    def test_search_advisories(self):
+        github_searcher.advisories_search()
+
     if __name__ == '__main__':
         unittest.main()
