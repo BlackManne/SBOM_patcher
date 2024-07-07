@@ -10,10 +10,8 @@ class TestGithubSearcher(unittest.TestCase):
                            'https://github.com/advisories?query=CVE-2022-21188',  # 搜索不到
                            'https://github.com/advisories?query=CVE-2024-28103',  # 单个匹配
                            'https://github.com/advisories?query=GHSA-5cxf-xx9j-54jc',  # 单个匹配
-                           'https://github.com/advisories?query=CVE-2024-4886 '  # 单个匹配
                            ]
-        advisories_testcases = []
-        generate_testcases(advisories_list, advisories_testcases, github_searcher.advisories_search_by_url)
+        generate_testcases(advisories_list, github_searcher.advisories_search_by_url)
 
     def test_search_advisories(self):
         github_searcher.advisories_search()

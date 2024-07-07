@@ -22,7 +22,7 @@ def get_html_from_url(url):
         return HtmlResponse.create_response(500, None)
 
 
-def generate_testcases(url_list, testcases_list, func):
+def generate_testcases(url_list, func):
     for i in range(len(url_list)):
         url = url_list[i]
         parsed_data = func(url)

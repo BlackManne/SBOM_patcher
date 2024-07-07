@@ -9,8 +9,7 @@ class TestGithubParser(unittest.TestCase):
         url_list = [
             "https://github.com/PX4/PX4-Autopilot/commit/d1fcd39a44e6312582c6ab02b0d5ee2599fb55aa",
         ]
-        commit_testcases = []
-        generate_testcases(url_list, commit_testcases, github_parser.commit_parse)
+        generate_testcases(url_list, github_parser.commit_parse)
 
     def test_advisory_parse(self):
         url_list = [
@@ -22,8 +21,7 @@ class TestGithubParser(unittest.TestCase):
             "https://github.com/git/git/security/advisories/GHSA-j342-m5hw-rr3v",
             "https://github.com/github/gh-ost/security/advisories/GHSA-rrp4-2xx3-mv29",
             "https://github.com/cloudflare/cfrpki/security/advisories/GHSA-3pqh-p72c-fj85"]
-        advisory_testcases = []
-        generate_testcases(url_list, advisory_testcases, github_parser.advisory_parse)
+        generate_testcases(url_list, github_parser.advisory_parse)
 
     def test_issue_parse(self):
         url_list = [
@@ -31,16 +29,14 @@ class TestGithubParser(unittest.TestCase):
             "https://github.com/jbt/markdown-editor/issues/106",
             "https://github.com/go-sonic/sonic/issues/56"
         ]
-        issue_testcases = []
-        generate_testcases(url_list, issue_testcases, github_parser.issue_parse)
+        generate_testcases(url_list, github_parser.issue_parse)
 
     def test_pull_parse(self):
         url_list = [
             "https://github.com/openshift/kubernetes/pull/1736",
             "https://github.com/PX4/PX4-Autopilot/pull/17264/commits/555f900cf52c0057e4c429ff3699c91911a21cab",
         ]
-        pull_testcases = []
-        generate_testcases(url_list, pull_testcases, github_parser.pull_parse)
+        generate_testcases(url_list, github_parser.pull_parse)
 
     def test_github_parser(self):
         url_list = [
@@ -50,8 +46,7 @@ class TestGithubParser(unittest.TestCase):
             "https://github.com/Lissy93/dashy/issues/1336",
             "https://github.com/openshift/kubernetes/pull/1736"
             ]
-        github_testcases = []
-        generate_testcases(url_list, github_testcases, github_parser.github_parse)
+        generate_testcases(url_list, github_parser.github_parse)
 
     if __name__ == '__main__':
         unittest.main()
