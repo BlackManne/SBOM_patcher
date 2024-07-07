@@ -12,10 +12,13 @@ nvd_mappings = \
                     "software_name": {
                         "type": "text",
                     },
-                    "versions": {
+                    "interval_versions": {
                         "type": "nested"
                     },
-                    "versions_raw": {
+                    "detail_versions": {
+                        "type": "nested"
+                    },
+                    "raw_versions": {
                         "type": "text"
                     }
                 }

@@ -31,7 +31,7 @@ def modify_software_version(version):
     # 有两个区间，此时需要用逗号隔开，在<号之前插入一个逗号
     if range_num == 2:
         idx_to_insert = version.find("<")
-        version = version[0:idx_to_insert] + "," + version[idx_to_insert:]
+        detailed_version = version[0:idx_to_insert] + "," + version[idx_to_insert:]
     return version
 
 
@@ -94,7 +94,6 @@ def search_nvd_using_url(url):
                     print("unsupported cpe version!")
                     continue
                 software_with_version = temp[start_idx:]
-                print(software_with_version)
 
                 # 第一个空格之后是版本，之前是软件名称
                 space_idx = temp.find(' ')
@@ -105,19 +104,19 @@ def search_nvd_using_url(url):
                 if software_name not in software_list_dict:
                     software_list_dict[software_name] = {
                         "software_name": software_name,
-                        "versions": [],
-                        "versions_raw": []
+                        "interval_versions": [],
+                        "detail_versions":[],
+                        "raw_versions": []
                     }
                 # 整合软件版本信息
                 if curr_version is not None:
                     # 将版本信息修改为>=号和<=号的修改
                     curr_version = modify_software_version(curr_version)
-                    software_list_dict[software_name]["versions"].append(curr_version)
-                    software_list_dict[software_name]["versions_raw"].append(software_with_version)
+                    software_list_dict[software_name]["interval_versions"].append(curr_version)
+                    software_list_dict[software_name]["raw_versions"].append(software_with_version)
 
     # 此时的dict已经存放了这个网页下面所有软件和版本信息，key为软件名，版本信息为value，将其转换为数组
     software_list = [value for value in software_list_dict.values()]
-    print(software_list)
 
     for badge in badge_list:
         curr_href = badge.find_parent('tr').find('a').get('href')
@@ -186,12 +185,12 @@ def parse_nvd(url):
 #             'CVE-2023-36569'  # 微软的patch
 #             ]
 
-# nvd_list = ['CVE-2023-37582',
-#             'CVE-2020-19952',
-#             'CVE-2023-43746',
-#             'CVE-2023-36568'
-#             ]
-# for cve_id in nvd_list:
-#     search_nvd_using_cve_id(cve_id)
+# if __name__ == "__main__":
+#     nvd_list = [
+#                 'https://nvd.nist.gov/vuln/detail/CVE-2021-41094'
+#                 ]
+#     for cve_id in nvd_list:
+#         nvd_detail = search_nvd_using_url(cve_id)
+#         print(nvd_detail)
 
 # search_nvd_using_url('https://nvd.nist.gov/vuln/detail/CVE-2023-37582')

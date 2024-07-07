@@ -1,3 +1,6 @@
+import json
+import os
+
 import requests
 
 from Tests.Utils import HtmlResponse
@@ -20,18 +23,30 @@ def get_html_from_url(url):
 
 
 def generate_testcases(url_list, testcases_list, func):
-    for url in url_list:
-        testcases_list.append({
-            "parsed_data": func(url),
-            "raw_html": get_html_from_url(url)
-        })
-    print(testcases_list)
+    for i in range(len(url_list)):
+        url = url_list[i]
+        parsed_data = func(url)
+        raw_html = get_html_from_url(url)
+        print(f'parsed_data: {parsed_data}')
+        print(f'raw_html: {raw_html.data}')
+        filename = f'{func.__name__}_testcase_{i}'
+        save_html(f'{filename}.html', raw_html.data)
+        save_json(f'{filename}.json', parsed_data)
 
-    # 如果需要分别打印html和json数据，可以使用这里的代码
-    # for element in testcases_list:
-    #     if element["raw_html"].get_code() == 200:
-    #         print("parsed_data", element["parsed_data"])
-    #         print("raw_html:", element["raw_html"].get_data())
 
+def save_html(filename, content):
+    directory = './testcases'  # 数据保存的目录
+    filepath = directory + '/' + filename  # 构建完整的文件路径
+
+    with open(filepath, 'w', encoding='utf-8') as file:
+        file.write(content)  # 将内容写入文件
+
+
+def save_json(filename, data):
+    directory = './testcases'  # 数据保存的目录
+    filepath = directory + '/' + filename  # 构建完整的文件路径
+
+    with open(filepath, 'w', encoding='utf-8') as file:
+        json.dump(data, file)  # 将数据以 JSON 格式保存到文件中
 
 
