@@ -99,6 +99,100 @@ def get_cve_affect_sw(cve_etree):
     # 如果没有找到对应的表格 这里会直接返回空
     # result_json = json.dumps(data, ensure_ascii=False)
 
+    def increment_version(version_list):
+        """
+        增加版本号。
+
+        参数：
+        version_list (list): 整数列表表示的版本号。
+
+        返回：
+        list: 增加后的版本号。
+        """
+        for i in reversed(range(len(version_list))):
+            version_list[i] += 1
+            if version_list[i] < 10:
+                break
+            else:
+                version_list[i] = 0
+                if i == 0:
+                    version_list.insert(0, 1)
+        return version_list
+
+    def extract_detail_versions(versions_raw):
+        """
+        从给定的版本范围列表中提取所有版本号。
+
+        参数：
+        versions_raw (list): 包含版本范围的列表。
+
+        返回：
+        list: 包含所有提取版本号的新列表。
+        """
+        final_versions = []
+
+        for version in versions_raw:
+            # 查找包含From和Up to的版本范围
+            match = re.match(r"From\(including\)([\d.]+)-Up to\(excluding\)([\d.]+)", version)
+
+            if match:
+                # 提取起始和结束版本号
+                start_version = match.group(1)
+                end_version = match.group(2)
+
+                # 将版本号分割成整数列表
+                start_version_list = list(map(int, start_version.split('.')))
+                end_version_list = list(map(int, end_version.split('.')))
+
+                # 生成版本号
+                current_version_list = start_version_list.copy()
+                while current_version_list < end_version_list:
+                    # 将整数列表转成版本字符串
+                    current_version = '.'.join(map(str, current_version_list))
+                    final_versions.append(current_version)
+
+                    # 增加版本号
+                    current_version_list = increment_version(current_version_list)
+            else:
+                # 如果是单独版本号，直接添加到最终列表
+                final_versions.append(version)
+
+        return final_versions
+
+    def convert_versions_to_interval(versions_raw):
+        """
+        将版本范围列表转换为数学表示。
+
+        参数：
+        versions_raw (list): 包含版本范围的列表。
+
+        返回：
+        list: 包含数学表示的新列表。
+        """
+        math_versions = []
+
+        for version in versions_raw:
+            # 查找包含From和Up to的版本范围
+            match = re.match(r"From\(including\)([\d.]+)-Up to\(excluding\)([\d.]+)", version)
+
+            if match:
+                # 提取起始和结束版本号
+                start_version = match.group(1)
+                end_version = match.group(2)
+
+                # 将起始和结束版本号转换为数学表示
+                start_math = f">={start_version}"
+                end_math = f"<={end_version}"
+
+                # 将数学表示添加到新列表
+                math_versions.append(start_math)
+                math_versions.append(end_math)
+            else:
+                # 如果是单独版本号，直接添加到最终列表
+                math_versions.append(version)
+
+        return math_versions
+
     def merge_versions(data):
         result = {}
         if data:
@@ -108,12 +202,19 @@ def get_cve_affect_sw(cve_etree):
                 impact = item.get("影响面")
 
                 if product_name not in result:
-                    result[product_name] = {"software_name": product_name, "versions": [], "versions_raw": []}
+                    result[product_name] = {"software_name": product_name,
+                                            "interval_version": [],
+                                            "detail_version": [],
+                                            "raw_version": []}
                 if impact:
-                    result[product_name]["versions_raw"].append(impact)
+                    result[product_name]["raw_version"].append(impact)
                 else:
-                    result[product_name]["versions_raw"].append(version_info)
-
+                    result[product_name]["raw_version"].append(version_info)
+        # 调用函数并打印结果
+        for product_item in result.values():
+            print(f"product 的类型: {type(product_item)}")
+            product_item["detail_version"] = extract_detail_versions(product_item["raw_version"])
+            product_item["interval_version"] = convert_versions_to_interval(product_item["raw_version"])
         return list(result.values())
 
     return merge_versions(data)
@@ -152,6 +253,7 @@ def main():
                     'type': content[2],
                     'time': content[3],
                     'rate': content[4],
+                    'source': "https://avd.aliyun.com/nvd/list?type=WEB应用",
                     'description': content[5],
                     # 'ref_link': content[6],
                     'affected_software': content[6],
