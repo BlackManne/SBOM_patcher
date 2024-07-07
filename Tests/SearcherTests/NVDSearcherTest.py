@@ -14,8 +14,7 @@ class TestNVDSearcher(unittest.TestCase):
                     'https://nvd.nist.gov/vuln/detail/CVE-2020-19952',
                     'https://nvd.nist.gov/vuln/detail/CVE-2023-36568'
                     ]
-        nvd_testcases = []
-        generate_testcases(nvd_list, nvd_testcases, nvd_searcher.search_nvd_using_url)
+        generate_testcases(nvd_list, nvd_searcher.search_nvd_using_url)
 
     if __name__ == '__main__':
         unittest.main()

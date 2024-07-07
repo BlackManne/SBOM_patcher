@@ -1,9 +1,14 @@
 import re
+import time
+
 import requests
 from bs4 import BeautifulSoup
 from RefPageParsers.github_parser import github_parse
 from Utils.TimeUtils import get_current_time
-
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions
 # from RefPageParsers.windows_parser import win_parser
 
 headers = {
@@ -13,6 +18,34 @@ headers = {
 }
 
 cve_pattern = re.compile("(cve|CVE)-[0-9]{4}-[0-9]{4,}$")
+
+
+def selenium_parse(url):
+    driver = webdriver.Chrome()
+    # 打开网页
+    driver.get(url)
+    buttons = [driver.find_elements(By.CSS_SELECTOR, "[data-cpe-list-toggle]"),
+               driver.find_elements(By.CSS_SELECTOR, "[data-cpe-range-toggle]")]
+    for button_list in buttons:
+        for button in button_list:
+            button.click()
+    time.sleep(5)
+    cpe_lists = driver.find_elements(By.CSS_SELECTOR, "[data-list-cpes]")
+    if cpe_lists is None:
+        return None
+    detail_versions = []
+    for element in cpe_lists:
+        cpes = element.find_elements(By.TAG_NAME, 'li')
+        temp_list = []
+        for cpe in cpes:
+            version = cpe.text
+            idx = version.find('\n')
+            if idx != -1:
+                # 说明是被修改过的格式
+                version = version[idx + 1:]
+            temp_list.append(version)
+        detail_versions.append(list(set(temp_list)))
+    return detail_versions
 
 
 def modify_software_version(version):
@@ -51,6 +84,7 @@ def search_nvd_using_url(url):
     cve_id = url[cve_id_idx.span()[0]:cve_id_idx.span()[1]]
     response = requests.request("GET", url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
+    detail_versions = selenium_parse(url)
     title = soup.find('title').text.strip()
     # cve-id合法，但是并不能找到对应的cve
     if title == 'NVD - Invalid Parameters':
@@ -80,7 +114,8 @@ def search_nvd_using_url(url):
 
     software_text_list = soup.find_all('pre')
     software_list_dict = {}
-    for software in software_text_list:
+    for i in range(0, len(software_text_list)):
+        software = software_text_list[i]
         software_text = software.text
         if software_text.startswith('OR'):
             temp_list = software_text.split('\n')
@@ -105,7 +140,7 @@ def search_nvd_using_url(url):
                     software_list_dict[software_name] = {
                         "software_name": software_name,
                         "interval_versions": [],
-                        "detail_versions": [],
+                        "detail_versions": detail_versions[i],
                         "raw_versions": []
                     }
                 # 整合软件版本信息
@@ -193,4 +228,4 @@ def parse_nvd(url):
 #         nvd_detail = search_nvd_using_url(cve_id)
 #         print(nvd_detail)
 
-# search_nvd_using_url('https://nvd.nist.gov/vuln/detail/CVE-2023-37582')
+# search_nvd_using_url('https://nvd.nist.gov/vuln/detail/CVE-2023-43746')

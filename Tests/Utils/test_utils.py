@@ -37,7 +37,8 @@ def generate_testcases(url_list, func):
 def save_html(filename, content):
     directory = './testcases'  # 数据保存的目录
     filepath = directory + '/' + filename  # 构建完整的文件路径
-
+    if content is None:
+        content = 'None'
     with open(filepath, 'w', encoding='utf-8') as file:
         file.write(content)  # 将内容写入文件
 
