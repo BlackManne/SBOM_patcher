@@ -181,7 +181,7 @@ def search_nvd_using_url(url):
         for patch_url in patch_url_list:
             patch_detail = parse_nvd(patch_url)
             nvd_detail['patch_list'].append({
-                'patch_url': patch_detail,
+                'patch_url': patch_url,
                 'service_name': patch_detail['service_name'],
                 'patch_detail': patch_detail['detail'],
                 'time': get_current_time()
@@ -228,4 +228,4 @@ def parse_nvd(url):
 #         nvd_detail = search_nvd_using_url(cve_id)
 #         print(nvd_detail)
 
-# search_nvd_using_url('https://nvd.nist.gov/vuln/detail/CVE-2023-43746')
+# search_nvd_using_url('https://nvd.nist.gov/vuln/detail/CVE-2020-19952')

@@ -9,7 +9,7 @@ headers = {
     'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
     'Accept': 'application/json, application/vnd.github+json',
     'Authorization': 'Bearer '
-                     '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',
+                     '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',
     'Host': 'api.github.com',
     'Connection': 'keep-alive'
 }
@@ -294,7 +294,7 @@ def github_parse(url):
     github_detail = {
         "detail": None,
         "source": "github",
-        "service_name": ""
+        "service_name": "github"
     }
     # 根据其中的链接判断是哪一种github页面
     # 格式是https://github.com/{users}/{repos}/xxxx
@@ -312,19 +312,18 @@ def github_parse(url):
     elif re.match(advisory_format, url) is not None or re.match(advisories_format, url) is not None:
         github_detail["detail"] = advisory_parse(url)
         github_detail["service_name"] += "_advisory"
-        # github_commit, github_advisory
     elif re.match(issue_format, url) is not None:
         github_detail["detail"] = issue_parse(url)
-        github_detail["source"] += "_issue"
+        github_detail["service_name"] += "_issue"
     elif re.match(pull_format, url) is not None:
         github_detail["detail"] = pull_parse(url)
-        github_detail["source"] += "_pull"
+        github_detail["service_name"] += "_pull"
     elif re.match(file_format, url) is not None:
         github_detail["detail"] = file_parse(url)
-        github_detail["source"] += "_file"
+        github_detail["service_name"] += "_file"
     elif re.match(commits_format, url) is not None:
         github_detail["detail"] = commits_parse(url)
-        github_detail["source"] += "_commits"
+        github_detail["service_name"] += "_commits"
     else:
         print("NOT SUPPORTED FORMAT!")
     # print(github_detail)
