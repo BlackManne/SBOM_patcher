@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from elasticsearch import Elasticsearch
 
-collection_to_index = {'NVD': 'nvd', 'relation': 'relation'}
+collection_to_index = {'NVD_NEW': 'nvd_new'}
 
 
 def get_from_mongo(_collection):
@@ -10,7 +10,7 @@ def get_from_mongo(_collection):
     db = client['local']
     db_collection = db[_collection]  # 集合名称
     # 读取数据
-    db_data = list(db_collection.find({}).limit(10))
+    db_data = list(db_collection.find({}))
     print(db_data)
     return db_data
 
@@ -24,28 +24,19 @@ def write_to_es(_index, _data):
         print("no such index!!")
         return
 
-    if _index == 'nvd':
+    if _index == 'nvd_new':
         for doc_with_id in _data:
-            info = doc_with_id['info']
             doc = {
                 'No': doc_with_id['No'],
-                'title': info['title'],
-                'description': info['description'],
-                'score': info['score'],
-                'third_party_list': info['third_party_list'] if info['third_party_list'] is not None else None,
-                'vendor_list': info['vendor_list'] if info['vendor_list'] is not None else None,
-                'exploit_list': info['exploit'] if info['exploit'] is not None else None,
-                'patch_list': info['patch_list'] if info['patch_list'] is not None else None,
-                'patch_detail': info['patch_detail'] if info['patch_detail'] is not None else None,
-            }
-            response = es.index(index=_index, document=doc)
-            print(response['result'])
-
-    elif _index == 'relation':
-        for doc_with_id in _data:
-            doc = {
-                'software': doc_with_id['software'],
-                'related_cve': [{'cve_number': item['cve_number']} for item in doc_with_id['related_cve']]
+                'title': doc_with_id['title'],
+                'description': doc_with_id['description'],
+                'score': doc_with_id['score'],
+                'source_url': doc_with_id['source_url'],
+                'affected_software': doc_with_id['affected_software'],
+                'third_party_list': doc_with_id['third_party_list'] if doc_with_id['third_party_list'] is not None else None,
+                'vendor_list': doc_with_id['vendor_list'] if doc_with_id['vendor_list'] is not None else None,
+                'exploit_list': doc_with_id['exploit'] if doc_with_id['exploit'] is not None else None,
+                'patch_list': doc_with_id['patch_list'] if doc_with_id['patch_list'] is not None else None,
             }
             response = es.index(index=_index, document=doc)
             print(response['result'])
