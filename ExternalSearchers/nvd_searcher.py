@@ -45,6 +45,7 @@ def selenium_parse(url):
                 version = version[idx + 1:]
             temp_list.append(version)
         detail_versions.append(list(set(temp_list)))
+    driver.quit()
     return detail_versions
 
 
@@ -211,7 +212,6 @@ def parse_nvd(url):
         patch_detail['detail'] = 'NOT SUPPORTED URL!!'
         patch_detail['service_name'] = None
     return patch_detail
-
 
 # nvd_list = ['CVE-2022-1',  # 无效的
 #             'CVE-2022-28066',  # 被拒绝的
