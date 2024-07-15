@@ -98,17 +98,17 @@ def crawl_nvd(base_url):
     mongodb_client.close()
 
 
-def crawl_by_time():
-    input_string = input("请输入开始时间和结束时间，格式均为yyyy-mm-dd，用空格隔开，例如:2024-07-11 2024-07-12:\n")
-    if input_string is None:
-        print("您尚未输入任何字符串！")
-        return
-    if len(input_string.split(' ')) != 2:
-        print("输入格式不对")
-        return
-    input_arrays = input_string.split(' ')
-    start_time = input_arrays[0]
-    end_time = input_arrays[1]
+def crawl_by_time(start_time, end_time):
+    # input_string = input("请输入开始时间和结束时间，格式均为yyyy-mm-dd，用空格隔开，例如:2024-07-11 2024-07-12:\n")
+    # if input_string is None:
+    #     print("您尚未输入任何字符串！")
+    #     return
+    # if len(input_string.split(' ')) != 2:
+    #     print("输入格式不对")
+    #     return
+    # input_arrays = input_string.split(' ')
+    # start_time = input_arrays[0]
+    # end_time = input_arrays[1]
     start_arrays = str(start_time).split('-')
     end_arrays = str(end_time).split('-')
     if len(end_arrays) != 3 or len(start_arrays) != 3:

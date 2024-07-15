@@ -1,0 +1,11 @@
+elasticsearch~=8.13.0
+pymongo~=4.6.0
+requests~=2.31.0
+bs4~=0.0.1
+beautifulsoup4~=4.12.2
+lxml~=4.9.3
+openai~=0.28.0
+selenium~=4.15.2
+urlextract~=1.8.0
+pandas~=2.1.2
+fastapi~=0.111.0

@@ -1,0 +1,32 @@
+# Kubernetes Deployment YAML
+apiVersion: SBOM/v1
+kind: Deployment
+metadata:
+  name: SBOM
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: SBOM
+  template:
+    metadata:
+      labels:
+        app: SBOM
+    spec:
+      containers:
+      - name: SBOM
+        image: SBOM:latest
+        ports:
+        - containerPort: 5000
+---
+# Kubernetes Service YAML
+apiVersion: v1
+kind: Service
+metadata:
+  name: SBOM
+spec:
+  selector:
+    app: SBOM
+  ports:
+  - port: 80
+    targetPort: 5000
