@@ -11,7 +11,7 @@ def nvd_crawl_all():
 
 @app.post('/nvd/crawl/by_time/start_time=<string:start_time>/end_time=<string:end_time>')
 def nvd_crawl_by_time(start_time, end_time):
-    crawl_by_time(start_time=start_time,end_time=end_time)
+    crawl_by_time(start_time=start_time, end_time=end_time)
 
 
 @app.get('/get/cve_id=<string:cve_id>')

@@ -9,6 +9,14 @@ COPY . .
 
 # 安装Python依赖
 RUN pip install --no-cache-dir -r requirements.txt
+# 安装MongoDB客户端
+RUN apt-get update && apt-get install -y mongodb-clients
+
+# 安装Elasticsearch客户端
+RUN apt-get update && apt-get install -y default-jdk
+RUN wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.15.2-linux-x86_64.tar.gz
+RUN tar -xzf elasticsearch-7.15.2-linux-x86_64.tar.gz
+RUN mv elasticsearch-7.15.2 /usr/local/elasticsearch
 
 # 暴露Flask应用的端口
 EXPOSE 5000
