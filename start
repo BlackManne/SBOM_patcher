@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#遇到错误时中止
+set -e
+
+echo "Starting mongodb.."
+docker run -d -p 27017:27017 --name mongodb mongo
+
+echo "Starting elasticsearch"
+docker run -d -p 9200:9200 --name elasticsearch -e "discovery.type=single-node" elasticsearch:8.12.1
+
+echo "Waiting for mongodb and elasticsearch to start..."
+sleep 30
+
+echo "starting python applications"
+docker run --name SBOM -d -p 5000:5000 --link mongodb:mongodb --link elasticsearch:elasticsearch SBOM
+
+echo "All services have been started"

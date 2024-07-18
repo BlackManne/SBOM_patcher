@@ -1,0 +1,9 @@
+#!/bin/bash
+
+. ../deconfig.sh
+
+dcoker_skip_rebuild "SBOM:latest"
+
+docker build --no-cache -t SBOM:latest .
+
+push_image_remote "SBOM:latest"
