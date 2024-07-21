@@ -1,16 +1,22 @@
 from pymongo import MongoClient
 from elasticsearch import Elasticsearch
 
-collection_to_index = {'nvd': 'nvd'}
+collection_to_index = {'mergedCVE': 'merged_cve'}
 
 
-def get_from_mongo(_collection):
+def get_from_mongo(_collection, time=None):
     # 连接到MongoDB
     client = MongoClient('mongodb://localhost:27017/')
     db = client['local']
     db_collection = db[_collection]  # 集合名称
     # 读取数据
-    db_data = list(db_collection.find({}))
+    # 全量读取数据
+    if time is None:
+        db_data = list(db_collection.find({}))
+    # 非全量读取数据
+    else:
+        query = {"time": {"$gt": time}}
+        db_data = list(db_collection.find(query))
     print(db_data)
     return db_data
 

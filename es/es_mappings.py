@@ -6,6 +6,15 @@ nvd_mappings = \
             "description": {"type": "text"},
             "score": {"type": "text"},
             "source_url": {"type": "text"},
+            "cve_published_time": {
+                "type": "text"
+            },
+            "cve_modified_time": {
+                "type": "text"
+            },
+            "crawl_time": {
+                "type": "text"
+            },
             "affected_software": {
                 "type": "nested",
                 "properties": {
