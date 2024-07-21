@@ -196,7 +196,7 @@ def search_nvd_using_url(url):
         'source_url': url,  # 网页的链接 url
         'cve_published_time': published_date,
         'cve_modified_time': modified_date,
-        'crawl_time': None,  # todo
+        'crawl_time': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         'affected_software': software_list
     }
     # 如果我们可以找到patch就对patch_list进行解析并返回

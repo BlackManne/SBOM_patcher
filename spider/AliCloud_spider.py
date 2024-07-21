@@ -1,21 +1,17 @@
 # -*- coding: utf-8 -*-
-import json
+import datetime
 import re
 import time
 from lxml import etree
 import pymongo
 
-from RefPageParsers import github_parser
-from RefPageParsers import apache_parser
-from RefPageParsers.parseDriver import parse_url
+from RefPageParsers.parse_driver import parse_url
 from Utils.TimeUtils import get_current_time
 from Utils.util import get_page_content
-from Utils.WebsiteEnum import WebsiteFormat
 
-START_PAGE_NUM = 1
-END_PAGE_NUM = 10
-list_base_url = 'https://avd.aliyun.com/nvd/list?type=WEB应用&page='
-detail_base_url = 'https://avd.aliyun.com/detail?id=AVD'
+list_base_url = "https://avd.aliyun.com/nvd/list?type=WEB应用&page="
+search_base_url = "https://avd.aliyun.com/search?q="
+detail_base_url = "https://avd.aliyun.com/detail?id=AVD"
 
 
 def get_cve_content(res):
@@ -220,59 +216,72 @@ def get_cve_affect_sw(cve_etree):
     return merge_versions(data)
 
 
-def main():
+def crawl_url(url):
+    # 某一页的全部数据，html格式
+    html = get_page_content(url)
+    # 用正则表达式找到html里面需要用的格式
+    for content in get_cve_content(html):
+        content = list(content)
+        for i in range(0, len(content)):
+            content[i] = content[i].strip()  # 去除字符串中的空格
+        nvd_no = str(content[0])
+        detail_html = get_page_content(detail_base_url + nvd_no[3:])
+        detail_html_etree = etree.HTML(detail_html)
+        cve_description = str(get_cve_description(detail_html_etree))
+        cve_patch_details = get_cve_patch_details(detail_html_etree)
+        # cve_ref_link = get_cve_ref_link(detail_html_etree)
+        # json格式
+        cve_affect_sw = get_cve_affect_sw(detail_html_etree)
+        try:
+            content.append(cve_description)
+            # content.append(cve_ref_link)
+            content.append(cve_affect_sw)
+            content.append(cve_patch_details)
+            cve_info_dict = {
+                'No': content[0],
+                'name': content[1],
+                'type': content[2],
+                'cve_published_time': content[3],
+                'cve_modified_time': content[3],
+                'crawl_time': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                'rate': content[4],
+                'source_url': url,
+                'description': content[5],
+                # 'ref_link': content[6],
+                'affected_software': content[6],
+                'patch_list': content[7]
+            }
+            # 如果已经找到了对应编号的cve，就不要再存了
+            if len(list(cve_collection.find({'No': cve_info_dict['No']}))) == 1:
+                print("\033[92m" + "已有CVE编号为" + str(content[0]) + "的漏洞，不存入" + "\033[0m")
+                continue
+            # 没找到说明没有，这个时候再存
+            insert_id = cve_collection.insert_one(cve_info_dict).inserted_id
+            print("已将CVE编号为" + str(content[0]) + "的漏洞存入数据库")
+        except:
+            print("\033[31m" + "读取与存入CVE编号为" + str(content[0]) + " 的信息时出现异常" + "\033[0m")
+
+
+def crawl_by_pages(start_page_num, end_page_num):
     global get_cve_patch_details
-    for page_num in range(START_PAGE_NUM, END_PAGE_NUM):
+    for page_num in range(start_page_num, end_page_num):
         print("正在爬取第" + str(page_num) + "页数据")
-        content_list = []
         # 某一页的url
         url = list_base_url + str(page_num)
-        # 某一页的全部数据，html格式
-        html = get_page_content(url)
-        # 用正则表达式找到html里面需要用的格式
-        for content in get_cve_content(html):
-            content = list(content)
-            for i in range(0, len(content)):
-                content[i] = content[i].strip()  # 去除字符串中的空格
-            nvd_no = str(content[0])
-            detail_html = get_page_content(detail_base_url + nvd_no[3:])
-            detail_html_etree = etree.HTML(detail_html)
-            cve_description = str(get_cve_description(detail_html_etree))
-            cve_patch_details = get_cve_patch_details(detail_html_etree)
-            # cve_ref_link = get_cve_ref_link(detail_html_etree)
-            # json格式
-            cve_affect_sw = get_cve_affect_sw(detail_html_etree)
-            try:
-                content.append(cve_description)
-                # content.append(cve_ref_link)
-                content.append(cve_affect_sw)
-                content.append(cve_patch_details)
-                cve_info_dict = {
-                    'No': content[0],
-                    'name': content[1],
-                    'type': content[2],
-                    'time': content[3],
-                    'rate': content[4],
-                    'source': "https://avd.aliyun.com/nvd/list?type=WEB应用",
-                    'description': content[5],
-                    # 'ref_link': content[6],
-                    'affected_software': content[6],
-                    'patch_list': content[7]
-                }
-                # 如果已经找到了对应编号的cve，就不要再存了
-                if len(list(cve_collection.find({'No': cve_info_dict['No']}))) == 1:
-                    print("\033[92m" + "已有CVE编号为" + str(content[0]) + "的漏洞，不存入" + "\033[0m")
-                    continue
-                # 没找到说明没有，这个时候再存
-                insert_id = cve_collection.insert_one(cve_info_dict).inserted_id
-                print("已将CVE编号为" + str(content[0]) + "的漏洞存入数据库")
-            except:
-                print("\033[31m" + "读取与存入CVE编号为" + str(content[0]) + " 的信息时出现异常" + "\033[0m")
+        crawl_url(url)
         time.sleep(3)
+
+
+def crawl_one_by_cve_id(cve_id):
+    global get_cve_patch_details
+    url = search_base_url + cve_id
+    crawl_url(url)
 
 
 if __name__ == "__main__":
     mongodb_client = pymongo.MongoClient("mongodb://localhost:27017")
     db = mongodb_client['local']
-    cve_collection = db['CVE']
-    main()
+    cve_collection = db['aliCloud']
+    # crawl_by_pages(1, 10)
+    crawl_one_by_cve_id("CVE-2020-13992")
+    crawl_one_by_cve_id("CVE-2020-15073")

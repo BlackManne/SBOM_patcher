@@ -11,7 +11,6 @@ from bs4 import BeautifulSoup
 
 from ExternalSearchers.nvd_searcher import search_nvd_using_cve_id, headers
 
-
 thread_num = 5
 data_queue = queue.Queue()
 
@@ -56,6 +55,7 @@ def crawl_nvd(base_url):
     if nvd_total_num == 0:
         return
     pages = math.ceil(nvd_total_num / 20)
+
     mongodb_thread = threading.Thread(target=write_to_mongo)
     mongodb_thread.start()
 
@@ -115,4 +115,4 @@ def crawl_all():
 
 
 if __name__ == "__main__":
-    crawl_by_time("2021-06-11", "2021-07-11")
+    crawl_by_time("2020-06-11", "2020-07-11")
