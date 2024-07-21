@@ -1,5 +1,6 @@
 import re
 import time
+from datetime import datetime
 
 import requests
 from bs4 import BeautifulSoup
@@ -78,6 +79,18 @@ def search_nvd_using_cve_id(cve_id):
     return search_nvd_using_url(url)
 
 
+def transfer_nvd_time(date_string):
+    input_format = "%d/%m/%Y"  # 输入日期的格式
+    output_format = "%Y-%m-%d"  # 输出日期的格式
+    # 将输入日期字符串解析为 datetime 对象
+    date = datetime.strptime(date_string, input_format)
+
+    # 将 datetime 对象转换为输出日期字符串
+    output_date_string = date.strftime(output_format)
+
+    return output_date_string
+
+
 def search_nvd_using_url(url):
     cve_id_idx = re.search(cve_pattern, url)
     if cve_id_idx is None:
@@ -108,6 +121,13 @@ def search_nvd_using_url(url):
     # 这里假设score在class_='severityDetail'这个标签的正后面并且只有一个
     score = soup.find(id="Vuln3CvssPanel").find(class_='severityDetail').find_next('a').text
     badge_list = soup.find_all(class_='badge')
+    # 查找具有 data-testid="vuln-published-on" 的字段
+    published_date = soup.find(attrs={"data-testid": "vuln-published-on"})
+    if published_date is not None:
+        published_date = transfer_nvd_time(published_date.text)
+    modified_date = soup.find(attrs = {"data-testid", "vuln-last-modified-on"})
+    if modified_date is not None:
+        modified_date = transfer_nvd_time(modified_date.text)
     patch_url_list = []
     third_party_advisory = []
     vendor_advisory = []
@@ -174,6 +194,9 @@ def search_nvd_using_url(url):
         'description': description,
         'score': score,
         'source_url': url,  # 网页的链接 url
+        'cve_published_time': published_date,
+        'cve_modified_time': modified_date,
+        'crawl_time': None,  # todo
         'affected_software': software_list
     }
     # 如果我们可以找到patch就对patch_list进行解析并返回
