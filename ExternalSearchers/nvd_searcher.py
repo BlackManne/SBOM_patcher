@@ -187,12 +187,10 @@ def search_nvd_using_url(url):
                 'patch_detail': patch_detail['detail'],
                 'time': get_current_time()
             })
-    # 如果找不到的话就返回vendor advisory和third party advisory
-    # exploit也是个重要的格式，代表在哪里发现了漏洞
-    else:
-        nvd_detail['third_party_list'] = third_party_advisory
-        nvd_detail['vendor_list'] = vendor_advisory
-        nvd_detail['exploit'] = exploit
+
+    nvd_detail['third_party_list'] = third_party_advisory
+    nvd_detail['vendor_list'] = vendor_advisory
+    nvd_detail['exploit'] = exploit
     print(nvd_detail)
     return nvd_detail
 

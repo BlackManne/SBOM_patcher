@@ -32,7 +32,7 @@ def crawl_nvd_page(base_url, nowpage, maxpages):
 
 mongodb_client = pymongo.MongoClient("mongodb://localhost:27017")
 db = mongodb_client['local']
-nvd_collection = db['NVD_NEW']
+nvd_collection = db['nvd']
 
 
 def write_to_mongo():

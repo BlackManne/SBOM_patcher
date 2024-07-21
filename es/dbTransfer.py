@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from elasticsearch import Elasticsearch
 
-collection_to_index = {'NVD_NEW': 'nvd_new'}
+collection_to_index = {'nvd': 'nvd'}
 
 
 def get_from_mongo(_collection):
@@ -24,7 +24,7 @@ def write_to_es(_index, _data):
         print("no such index!!")
         return
 
-    if _index == 'nvd_new':
+    if _index == 'nvd':
         for doc_with_id in _data:
             doc = {
                 'No': doc_with_id['No'],
@@ -42,7 +42,13 @@ def write_to_es(_index, _data):
             print(response['result'])
 
 
-if __name__ == "__main__":
+def transfer_to_es():
     for collection, index in collection_to_index.items():
         mongo_data = get_from_mongo(collection)
         write_to_es(index, mongo_data)
+
+
+# if __name__ == "__main__":
+#     for collection, index in collection_to_index.items():
+#         mongo_data = get_from_mongo(collection)
+#         write_to_es(index, mongo_data)

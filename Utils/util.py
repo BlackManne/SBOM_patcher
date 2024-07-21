@@ -1,3 +1,5 @@
+import re
+
 import requests
 from random import randint
 from urlextract import URLExtract
@@ -29,3 +31,12 @@ def get_page_content(url, session=None):
 def get_URL_from_text(text):
     urlExtractor = URLExtract()
     return list(set(urlExtractor.find_urls(text)))
+
+
+def validate_cve_id(cve_id):
+    pattern = r'^CVE-\d{4}-\d{4,}$'
+    match = re.match(pattern, cve_id)
+    if match:
+        return True
+    else:
+        return False

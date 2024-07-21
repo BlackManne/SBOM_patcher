@@ -1,8 +1,9 @@
 # 用来创建es的两个index
 from elasticsearch import Elasticsearch
 import es_mappings
+from es.dbTransfer import transfer_to_es
+from Utils.util import validate_cve_id
 
-# collection_index = {'nvd', 'relation'}
 collection_index = {'nvd'}
 
 
@@ -28,5 +29,39 @@ def establish_es_index():
         #     print(create_index_response)
 
 
-if __name__ == "__main__":
+def write_to_es():
     establish_es_index()
+    transfer_to_es()
+
+
+def search_by_cve_id(cve_id):
+    cve_id = cve_id.upper()
+    # 不是有效的cve-id
+    if not validate_cve_id(cve_id):
+        return {
+            'code': 500,
+            'message': 'cve格式不正确！',
+            'data': None
+        }
+    index_name = 'nvd'
+    body = {
+        "query": {
+            "term": {
+                "No": cve_id
+            }
+        }
+    }
+
+    es = Elasticsearch("http://localhost:9200")
+    try:
+        result = es.search(index=index_name, body=body)
+    except Exception as e:
+        print("es搜索出现异常：{},{}".format(e, e.__traceback__))
+    print("query data: ", result)
+    hits = result["hits"]["hits"]
+    return {
+        'code': 200,
+        'message': '成功',
+        'data': hits[0]["_source"] if hits else None
+    }
+

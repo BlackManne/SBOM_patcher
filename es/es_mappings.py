@@ -45,16 +45,3 @@ nvd_mappings = \
             }
         }
     }
-
-# relation_mappings = \
-#     {
-#         "properties": {
-#             "software": {"type": "text"},
-#             "related_cve": {
-#                 "type": "nested",
-#                 "properties": {
-#                     "cve_number": {"type": "text"}
-#                 }
-#             }
-#         }
-#     }
