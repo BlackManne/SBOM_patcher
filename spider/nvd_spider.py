@@ -2,6 +2,7 @@ import math
 import queue
 import threading
 from threading import Thread
+from datetime import datetime, timedelta
 
 import pymongo
 
@@ -51,8 +52,10 @@ def crawl_nvd(base_url):
         return
     # 获取元素的内容
     nvd_total_num = int(element.text.replace(',', ''))
+    print(f"找到符合条件的结果{nvd_total_num}条")
+    if nvd_total_num == 0:
+        return
     pages = math.ceil(nvd_total_num / 20)
-
     mongodb_thread = threading.Thread(target=write_to_mongo)
     mongodb_thread.start()
 
@@ -82,6 +85,15 @@ def crawl_by_time(start_time, end_time):
     # input_arrays = input_string.split(' ')
     # start_time = input_arrays[0]
     # end_time = input_arrays[1]
+    start_datetime = datetime.strptime(start_time, "%Y-%m-%d")
+    end_datetime = datetime.strptime(end_time, "%Y-%m-%d")
+    # 计算两个日期之间的时间差
+    delta = end_datetime - start_datetime
+    # 检查时间差是否等于120天
+    is_within_120_days = delta == timedelta(days=120)
+    if is_within_120_days:
+        print(f'开始时间和结束时间差值不能超过120天，输入的差值为:{is_within_120_days}')
+        return
     start_arrays = str(start_time).split('-')
     end_arrays = str(end_time).split('-')
     if len(end_arrays) != 3 or len(start_arrays) != 3:
@@ -93,7 +105,7 @@ def crawl_by_time(start_time, end_time):
     end_year = end_arrays[0]
     end_month = end_arrays[1]
     end_day = end_arrays[2]
-    base_url = f'https://nvd.nist.gov/vuln/search/results?form_type=Advanced&results_type=overview&search_type=all&isCpeNameSearch=false&pub_start_date={start_month}%2F{start_day}%2F{start_year}&pub_end_date={end_month}%2F{end_day}%2F{end_year}&mod_start_date={start_month}%2F{start_day}%2F2024&{start_year}&mod_end_date={end_month}%2F{end_day}%2F{end_year}&startIndex='
+    base_url = f'https://nvd.nist.gov/vuln/search/results?form_type=Advanced&results_type=overview&search_type=all&isCpeNameSearch=false&pub_start_date={start_month}%2F{start_day}%2F{start_year}&pub_end_date={end_month}%2F{end_day}%2F{end_year}&mod_start_date={start_month}%2F{start_day}%2F{start_year}&mod_end_date={end_month}%2F{end_day}%2F{end_year}&startIndex='
     crawl_nvd(base_url)
 
 
@@ -103,4 +115,4 @@ def crawl_all():
 
 
 if __name__ == "__main__":
-    crawl_all()
+    crawl_by_time("2021-06-11", "2021-07-11")
