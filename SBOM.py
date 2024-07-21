@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from spider.nvd_spider import *
-from es.es_util import search_by_cve_id
-
+from es.es_util import search_by_cve_id, establish_es_index
+from es.dbTransfer import transfer_to_es
 app = FastAPI()
 
 
@@ -9,6 +9,9 @@ app = FastAPI()
 def nvd_crawl_all():
     crawl_all()
     # todo 添加阿里云爬虫的入口
+    # todo 阿里云合并的入口
+    establish_es_index()
+    transfer_to_es()
 
 
 @app.post('/nvd/crawl/by_time/start_time=<string:start_time>/end_time=<string:end_time>')

@@ -4,18 +4,18 @@ import es_mappings
 from es.dbTransfer import transfer_to_es
 from Utils.util import validate_cve_id
 
-collection_index = {'nvd'}
+collection_index = {'merged_cve'}
+# 连接到Elasticsearch
+es = Elasticsearch("http://localhost:9200")
 
 
 def establish_es_index():
-    # 连接到Elasticsearch
-    es = Elasticsearch("http://localhost:9200")
     for index_name in collection_index:
-        # 先删除已有索引
+        # 如果已经存在索引，照常使用
         if es.indices.exists(index=index_name):
             print("The index has already existed, going to remove it")
-            es.options(ignore_status=404).indices.delete(index=index_name)
-        if index_name == 'nvd':
+            return
+        if index_name == 'merged_cve':
             create_index_response = es.indices.create(index=index_name, body={
                 "mappings": es_mappings.nvd_mappings
             })
