@@ -1,7 +1,6 @@
 # 用来创建es的两个index
 from elasticsearch import Elasticsearch
-import es_mappings
-from es.dbTransfer import transfer_to_es
+from es import es_mappings
 from Utils.util import validate_cve_id
 
 collection_index = {'merged_cve'}
@@ -27,11 +26,6 @@ def establish_es_index():
         #         "mappings": es_mappings.relation_mappings
         #     })
         #     print(create_index_response)
-
-
-def write_to_es():
-    establish_es_index()
-    transfer_to_es()
 
 
 def search_by_cve_id(cve_id):

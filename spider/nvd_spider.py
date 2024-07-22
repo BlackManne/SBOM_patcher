@@ -2,8 +2,7 @@ import math
 import queue
 import threading
 from threading import Thread
-from datetime import datetime, timedelta
-
+from datetime import datetime, timedelta, date
 import pymongo
 
 import requests
@@ -85,7 +84,7 @@ def crawl_nvd(base_url):
     mongodb_client.close()
 
 
-def crawl_by_time(start_time, end_time):
+def crawl_by_time(start_time):
     # input_string = input("请输入开始时间和结束时间，格式均为yyyy-mm-dd，用空格隔开，例如:2024-07-11 2024-07-12:\n")
     # if input_string is None:
     #     print("您尚未输入任何字符串！")
@@ -96,14 +95,20 @@ def crawl_by_time(start_time, end_time):
     # input_arrays = input_string.split(' ')
     # start_time = input_arrays[0]
     # end_time = input_arrays[1]
+
+    # 获取当前日期
+    today = date.today()
+    # 将日期转换为所需格式
+    end_time = today.strftime("%Y-%m-%d")
+    print(end_time)
     start_datetime = datetime.strptime(start_time, "%Y-%m-%d")
     end_datetime = datetime.strptime(end_time, "%Y-%m-%d")
     # 计算两个日期之间的时间差
     delta = end_datetime - start_datetime
     # 检查时间差是否等于120天
-    is_within_120_days = delta == timedelta(days=120)
-    if is_within_120_days:
-        print(f'开始时间和结束时间差值不能超过120天，输入的差值为:{is_within_120_days}')
+    is_within_120_days = delta <= timedelta(days=120)
+    if not is_within_120_days:
+        print(f'开始时间和结束时间差值不能超过120天，输入的差值为:{delta}')
         return
     start_arrays = str(start_time).split('-')
     end_arrays = str(end_time).split('-')
@@ -126,4 +131,4 @@ def crawl_all():
 
 
 if __name__ == "__main__":
-    crawl_by_time("2020-06-11", "2020-07-11")
+    crawl_by_time("2024-06-11")

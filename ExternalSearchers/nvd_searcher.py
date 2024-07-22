@@ -80,7 +80,7 @@ def search_nvd_using_cve_id(cve_id):
 
 
 def transfer_nvd_time(date_string):
-    input_format = "%d/%m/%Y"  # 输入日期的格式
+    input_format = "%m/%d/%Y"  # 输入日期的格式
     output_format = "%Y-%m-%d"  # 输出日期的格式
     # 将输入日期字符串解析为 datetime 对象
     date = datetime.strptime(date_string, input_format)
