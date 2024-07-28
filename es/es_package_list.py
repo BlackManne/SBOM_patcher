@@ -6,6 +6,7 @@ import requests
 from lxml import etree
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
+from Constants.dbConstants import es_url
 import os
 
 
@@ -37,7 +38,7 @@ def save_data(version):
                 return
 
     if not es:
-        es = Elasticsearch("http://localhost:9200")
+        es = Elasticsearch(es_url)
     index_name = "openeuler-" + version.lower()
     if es.indices.exists(index=index_name):
         es.indices.delete(index=index_name)
@@ -90,7 +91,7 @@ def save_data(version):
 def search(lib, version='22.03-LTS-SP3'):
     global es
     if not es:
-        es = Elasticsearch("http://localhost:9200")
+        es = Elasticsearch(es_url)
     index_name = "openeuler-" + version.lower()
     query_body = {
         "bool": {

@@ -2,10 +2,11 @@
 from elasticsearch import Elasticsearch
 from es import es_mappings
 from Utils.util import validate_cve_id
+from Constants.dbConstants import es_url
 
 collection_index = {'merged_cve'}
 # 连接到Elasticsearch
-es = Elasticsearch("http://localhost:9200")
+es = Elasticsearch(es_url)
 
 
 def establish_es_index():
@@ -37,7 +38,6 @@ def search_by_cve_id(cve_id):
             'message': 'cve格式不正确！',
             'data': None
         }
-    index_name = 'nvd'
     body = {
         "query": {
             "term": {
@@ -45,12 +45,20 @@ def search_by_cve_id(cve_id):
             }
         }
     }
+    return search_by_query(body)
 
-    es = Elasticsearch("http://localhost:9200")
+
+def search_by_query(body):
+    index_name = 'merged_cve'
     try:
         result = es.search(index=index_name, body=body)
     except Exception as e:
         print("es搜索出现异常：{},{}".format(e, e.__traceback__))
+        return {
+            'code': 500,
+            'message': 'es搜索出现异常',
+            'data': None
+        }
     print("query data: ", result)
     hits = result["hits"]["hits"]
     return {
@@ -58,4 +66,3 @@ def search_by_cve_id(cve_id):
         'message': '成功',
         'data': hits[0]["_source"] if hits else None
     }
-

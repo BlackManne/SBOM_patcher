@@ -8,6 +8,7 @@ import pymongo
 from RefPageParsers.parse_driver import parse_url
 from Utils.TimeUtils import get_current_time
 from Utils.util import get_page_content
+from Constants.dbConstants import mongo_url
 
 list_base_url = "https://avd.aliyun.com/nvd/list?type=WEB应用&page="
 search_base_url = "https://avd.aliyun.com/search?q="
@@ -279,7 +280,7 @@ def crawl_one_by_cve_id(cve_id):
 
 
 if __name__ == "__main__":
-    mongodb_client = pymongo.MongoClient("mongodb://localhost:27017")
+    mongodb_client = pymongo.MongoClient(mongo_url)
     db = mongodb_client['local']
     cve_collection = db['aliCloud']
     # crawl_by_pages(1, 10)

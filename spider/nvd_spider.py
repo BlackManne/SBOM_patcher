@@ -9,6 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from ExternalSearchers.nvd_searcher import search_nvd_using_cve_id, headers
+from Constants.dbConstants import mongo_url
 
 thread_num = 5
 data_queue = queue.Queue()
@@ -28,7 +29,7 @@ def crawl_nvd_page(base_url, nowpage, maxpages):
         nowpage += thread_num
 
 
-mongodb_client = pymongo.MongoClient("mongodb://localhost:27017")
+mongodb_client = pymongo.MongoClient(mongo_url)
 db = mongodb_client['local']
 nvd_collection = db['nvd']
 

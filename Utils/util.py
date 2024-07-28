@@ -2,7 +2,12 @@ import re
 
 import requests
 from random import randint
+
+from elasticsearch import Elasticsearch
 from urlextract import URLExtract
+from Constants.dbConstants import es_url, mongo_url
+from pymongo import MongoClient
+from pymongo.errors import ConnectionFailure
 
 
 def github_url_transfer(url):
@@ -40,3 +45,29 @@ def validate_cve_id(cve_id):
         return True
     else:
         return False
+
+
+def check_elasticsearch():
+    es = Elasticsearch(es_url)
+    return es.ping()
+
+
+def check_mongodb():
+    client = MongoClient(mongo_url)
+    try:
+        client.server_info()
+        return True
+    except ConnectionFailure:
+        return False
+
+
+def heartbeat():
+    es_status = check_elasticsearch()
+    mongo_status = check_mongodb()
+    overall_status = all([es_status, mongo_status])
+    return {
+        'es_status': es_status,
+        'mongo_status': mongo_status,
+        'SBOM_status': True,
+        'all_status': overall_status
+    }

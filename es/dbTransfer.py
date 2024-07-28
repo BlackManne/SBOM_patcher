@@ -3,17 +3,17 @@ from elasticsearch import Elasticsearch
 from queue import Queue
 from threading import Thread
 from es.es_util import establish_es_index
-
+from Constants.dbConstants import mongo_url, es_url
 collection_to_index = {'mergedCVE': 'merged_cve'}
 collection = 'mergedCVE'
 index = 'merged_cve'
 
 # 连接到MongoDB
-client = MongoClient('mongodb://localhost:27017/')
+client = MongoClient(mongo_url)
 db = client['local']
 db_collection = db[collection]  # 集合名称
 # 连接到es
-es = Elasticsearch("http://localhost:9200")
+es = Elasticsearch(es_url)
 
 # 定义线程数和队列大小
 NUM_THREADS = 4

@@ -1,9 +1,9 @@
 import datetime
 
 from pymongo import MongoClient
-
+from Constants.dbConstants import mongo_url
 # 连接MongoDB
-mongodb_client = MongoClient("mongodb://localhost:27017")
+mongodb_client = MongoClient(mongo_url)
 db = mongodb_client['local']
 
 # 获取集合
