@@ -49,7 +49,12 @@ def validate_cve_id(cve_id):
 
 def check_elasticsearch():
     es = Elasticsearch(es_url)
-    return es.ping()
+    try:
+        res = es.ping()
+        return res
+    except Exception as e:
+        print("ping es出现异常：{},{}".format(e, e.__traceback__))
+        return False
 
 
 def check_mongodb():
