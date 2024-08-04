@@ -9,10 +9,12 @@ from Constants.dbConstants import es_url, mongo_url
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure
 
+from RefPageParsers.github_parser import github_parse
 
-def github_url_transfer(url):
-    # 把每一个github url转换为调用api.github.com的链接
-    return str(url).replace("github.com", "api.github.com/repos")
+cve_pattern = r'^CVE-\d{4}-\d{4,}$'
+
+
+
 
 
 def get_page_content(url, session=None):
@@ -38,9 +40,32 @@ def get_URL_from_text(text):
     return list(set(urlExtractor.find_urls(text)))
 
 
+def parse_patch_url(url):
+    # 首先初始化为不能解析的数据
+    patch_detail = {
+        'detail': 'NOT SUPPORTED URL!!',
+        'service_name': 'others'
+    }
+    # 根据传入的patch url解析，调用不同的parse函数
+    if re.match("https://github.com/.+", url):
+        github_detail = github_parse(url)
+        patch_detail['detail'] = github_detail['detail']
+        patch_detail['service_name'] = github_detail['service_name']
+    elif re.match("https://msrc.microsoft.com/.+", url):
+        patch_detail['service_name'] = 'microsoft'
+    elif re.match("https://osv.dev/vulnerability/.+", url):
+        patch_detail['service_name'] = 'osv_dev'
+    elif re.match(r"https://bugzilla.redhat.com/show_bug.cgi?id=" + cve_pattern, url):
+        patch_detail['service_name'] = 'redhat'
+    elif re.match(r"https://ubuntu.com/security/" + cve_pattern, url):
+        patch_detail['service_name'] = 'ubuntu'
+    elif re.match(r"https://security-tracker.debian.org/tracker/" + cve_pattern, url):
+        patch_detail['service_name'] = 'debian'
+    return patch_detail
+
+
 def validate_cve_id(cve_id):
-    pattern = r'^CVE-\d{4}-\d{4,}$'
-    match = re.match(pattern, cve_id)
+    match = re.match(cve_pattern, cve_id)
     if match:
         return True
     else:

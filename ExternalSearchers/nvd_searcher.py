@@ -8,6 +8,7 @@ from RefPageParsers.github_parser import github_parse
 from Utils.TimeUtils import get_current_time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from Utils.util import parse_patch_url
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 # from RefPageParsers.windows_parser import win_parser
@@ -129,6 +130,7 @@ def search_nvd_using_url(url):
     if modified_date is not None:
         modified_date = transfer_nvd_time(modified_date.text)
     patch_url_list = []
+    patch_list = []
     third_party_advisory = []
     vendor_advisory = []
     exploit = []
@@ -197,42 +199,27 @@ def search_nvd_using_url(url):
         'cve_published_time': published_date,
         'cve_modified_time': modified_date,
         'crawl_time': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        'affected_software': software_list
+        'affected_software': software_list,
     }
+
     # 如果我们可以找到patch就对patch_list进行解析并返回
     if patch_url_list:
-        nvd_detail['patch_list'] = []
         for patch_url in patch_url_list:
-            patch_detail = parse_nvd(patch_url)
-            nvd_detail['patch_list'].append({
+            patch_detail = parse_patch_url(patch_url)
+            patch_list.append({
                 'patch_url': patch_url,
                 'service_name': patch_detail['service_name'],
                 'patch_detail': patch_detail['detail'],
                 'time': get_current_time()
             })
 
+    nvd_detail['patch_list'] = patch_list
     nvd_detail['third_party_list'] = third_party_advisory
     nvd_detail['vendor_list'] = vendor_advisory
     nvd_detail['exploit'] = exploit
     print(nvd_detail)
     return nvd_detail
 
-
-def parse_nvd(url):
-    patch_detail = {}
-    # 根据传入的patch url解析，调用不同的parse函数
-    if re.match("https://github.com/.+", url):
-        github_detail = github_parse(url)
-        patch_detail['detail'] = github_detail['detail']
-        patch_detail['service_name'] = github_detail['service_name']
-    # elif re.match("https://msrc.microsoft.com/.+", url):
-    #     nvd_detail['detail'] = win_parser.parse(url)
-    #     nvd_detail['service_name'] = 'microsoft'
-    else:
-        print('no supported parser for url:' + url)
-        patch_detail['detail'] = 'NOT SUPPORTED URL!!'
-        patch_detail['service_name'] = None
-    return patch_detail
 
 # nvd_list = ['CVE-2022-1',  # 无效的
 #             'CVE-2022-28066',  # 被拒绝的
@@ -249,4 +236,4 @@ def parse_nvd(url):
 #         nvd_detail = search_nvd_using_url(cve_id)
 #         print(nvd_detail)
 
-# search_nvd_using_url('https://nvd.nist.gov/vuln/detail/CVE-2020-19952')
+search_nvd_using_url('https://nvd.nist.gov/vuln/detail/CVE-2023-50868')

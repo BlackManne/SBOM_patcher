@@ -4,6 +4,7 @@ from queue import Queue
 from threading import Thread
 from es.es_util import establish_es_index
 from Constants.dbConstants import mongo_url, es_url
+from mongoDB.mongoUtils import query_by_updated_time
 collection_to_index = {'mergedCVE': 'merged_cve'}
 collection = 'mergedCVE'
 index = 'merged_cve'
@@ -11,7 +12,6 @@ index = 'merged_cve'
 # 连接到MongoDB
 client = MongoClient(mongo_url)
 db = client['local']
-db_collection = db[collection]  # 集合名称
 # 连接到es
 es = Elasticsearch(es_url)
 
@@ -23,20 +23,7 @@ data_queue = Queue(QUEUE_SIZE)
 
 
 def get_from_mongo(time=None):
-
-    # 读取数据
-    # 全量读取数据
-    if time is None:
-        db_data = list(db_collection.find({}))
-    # 非全量读取数据
-    else:
-        query = {
-            "$or": [
-                {"cve_published_time": {"$gte": time}},
-                {"cve_modified_time": {"$gte": time}}
-            ]
-        }
-        db_data = list(db_collection.find(query))
+    db_data = query_by_updated_time(time, collection)
     print(db_data)
 
     for doc in db_data:

@@ -1,6 +1,5 @@
 import requests
 
-from Utils.util import github_url_transfer
 
 headers = {
     'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',

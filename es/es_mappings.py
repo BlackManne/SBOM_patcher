@@ -37,20 +37,59 @@ nvd_mappings = \
             "exploit_list": {"type": "nested"},
             "patch_list": {
                 "type": "nested",
-                "properties": {
-                    "time": {
+                "nvd": {
+                    "type": "nested",
+                    "properties": {
+                      "time": {
                         "type": "date"
-                    },
-                    "patch_url": {
+                      },
+                      "patch_url": {
                         "type": "text"
-                    },
-                    "service_name": {
+                      },
+                      "service_name": {
                         "type": "text"
-                    },
-                    "patch_detail": {
+                      },
+                      "patch_detail": {
                         "type": "nested"
+                      }
                     }
-                }
-            }
+                },
+                "alicloud": {
+                    "type": "nested",
+                    "properties": {
+                      "time": {
+                        "type": "date"
+                      },
+                      "patch_url": {
+                        "type": "text"
+                      },
+                      "service_name": {
+                        "type": "text"
+                      },
+                      "patch_detail": {
+                        "type": "nested"
+                      }
+                    }
+                },
+                "debian": {
+                    "type": "nested",
+                    "properties": {
+                      "time": {
+                        "type": "date"
+                      },
+                      "patch_url": {
+                        "type": "text"
+                      },
+                      "service_name": {
+                        "type": "text"
+                      },
+                      "patch_detail": {
+                        "type": "nested"
+                      }
+                    }
+                },
+            },
+            "debian_list": {"type": "nested"},
+            "advisories_list": {"type": "nested"}
         }
     }

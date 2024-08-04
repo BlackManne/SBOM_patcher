@@ -7,7 +7,8 @@ from bs4 import BeautifulSoup
 from RefPageParsers.github_parser import commits_parse
 from RefPageParsers.github_parser import commit_parse
 from RefPageParsers.github_parser import advisory_parse
-from Utils.util import github_url_transfer
+from RefPageParsers.github_parser import github_url_transfer
+from mongoDB.mongoUtils import insert_or_update_by_cve_id
 
 headers = {
     'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
@@ -16,6 +17,8 @@ headers = {
                      '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',
     'Connection': 'keep-alive'
 }
+
+collection_name = 'githubAdvisories'
 
 
 def get_github_blob(url):
@@ -110,6 +113,20 @@ def fix_commits_search(url):
     print(len(fix_commits_list))
     print(fix_commits_list)
     return fix_commits_list
+
+
+# 根据cve_id的列表爬取advisories对应的数据，然后保存进入advisories的数据库
+# 最后返回一个dict，key为cve-id，value为对应的数据
+def get_from_advisories_by_cve_list(cve_list):
+    data_dict = {}
+    if cve_list is None or len(cve_list) == 0:
+        return None
+    for cve_id in cve_list:
+        data = advisories_search_by_id(cve_id=cve_id)
+        if data is not None:
+            insert_or_update_by_cve_id(cve_id=cve_id, collection_name=collection_name, doc=data)
+            data_dict[cve_id] = data
+    return data_dict
 
 
 def advisories_search_by_id(cve_id):
@@ -220,6 +237,4 @@ def advisories_search():
 
 
 if __name__ == "__main__":
-    advisories_list = advisories_search()
-    for advisory in advisories_list:
-        print(advisory)
+    print(get_from_advisories_by_cve_list(['CVE-2023-50868', 'CVE-2023-50866']))

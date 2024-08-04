@@ -2,18 +2,22 @@ import re
 
 import requests
 from bs4 import BeautifulSoup
-from Utils.util import github_url_transfer
 
 # 给headers赋值，默认是application/json格式
 headers = {
     'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
     'Accept': 'application/json, application/vnd.github+json',
     'Authorization': 'Bearer '
-                     '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',
+                     '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',
     'Host': 'api.github.com',
     'Connection': 'keep-alive'
 }
 payload = {}
+
+
+def github_url_transfer(url):
+    # 把每一个github url转换为调用api.github.com的链接
+    return str(url).replace("github.com", "api.github.com/repos")
 
 
 # commits界面的解析
@@ -153,7 +157,7 @@ def advisory_parse(url):
                     href = p.get('href') if p is not None else None
                     # print(p.text + ' : ' + href)
                     if p:
-                        p_detail_list.append(p.text + ' : ' + href)
+                        p_detail_list.append(p.text)
 
                 if p in other_descriptions:
                     break
@@ -180,6 +184,7 @@ def advisory_parse(url):
 
     advisory_detail = {
         'title': title,
+        'source_url': url,
         'package': {'name': package, 'link': package_link},
         'affected_versions': affected_versions,
         'patched_versions': patched_versions,
