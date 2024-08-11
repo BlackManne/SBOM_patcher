@@ -3,9 +3,9 @@ nvd_mappings = \
         "properties": {
             "No": {"type": "text"},
             "title": {"type": "text"},
-            "description": {"type": "text"},
+            "description": {"type": "nested"},
             "score": {"type": "text"},
-            "source_url": {"type": "text"},
+            "source_urls": {"type": "nested"},
             "cve_published_time": {
                 "type": "text"
             },
@@ -28,7 +28,7 @@ nvd_mappings = \
                         "type": "nested"
                     },
                     "raw_versions": {
-                        "type": "text"
+                        "type": "nested"
                     }
                 }
             },
@@ -90,6 +90,7 @@ nvd_mappings = \
                 },
             },
             "debian_list": {"type": "nested"},
-            "advisories_list": {"type": "nested"}
+            "advisories_list": {"type": "nested"},
+            "github_advisories_patches": {"type": "text"}
         }
     }

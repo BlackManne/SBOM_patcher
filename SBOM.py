@@ -49,3 +49,4 @@ def check_heartbeat():
         'message': '成功',
         'data': heartbeat()
     }
+

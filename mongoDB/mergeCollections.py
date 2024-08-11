@@ -2,7 +2,7 @@ import datetime
 
 from pymongo import MongoClient
 from Constants.dbConstants import mongo_url
-from mongoUtils import query_by_updated_time
+from mongoDB.mongoUtils import query_by_updated_time
 from ExternalSearchers.debian_searcher import get_from_debian_by_cve_list
 from ExternalSearchers.github_searcher import get_from_advisories_by_cve_list
 from mongoDB.mongoUtils import insert_or_update_by_cve_id
@@ -27,6 +27,10 @@ def merge_mongo_database(time=None):
         nvd_docs = nvd_new_collection.find({})
     else:
         nvd_docs = query_by_updated_time(time, nvd_db_name)
+    merge_mongo_by_nvd_docs(nvd_docs)
+
+
+def merge_mongo_by_nvd_docs(nvd_docs):
     # 获取nvd列表里面全部的cve_id
     cve_id_list = [doc['No'] for doc in nvd_docs]
     # 根据nvd增量或者全量爬取debian和advisories
@@ -77,12 +81,15 @@ def merge_mongo_database(time=None):
         if debian_list is not None and cve_id in debian_list:
             debian_data = debian_list[cve_id]
             merged_doc['debian_list'] = debian_data['ref_links']
+            merged_doc['source_urls']['debian'] = debian_data['source_url']
             if debian_data['patch_list'] is not None:
                 merged_doc['patch_list']['debian'] = debian_data['patch_list']
         # 如果有advisory数据，合并
         if advisories_list is not None and cve_id in advisories_list:
             advisories_data = advisories_list[cve_id]
             merged_doc['advisories_list'] = advisories_data['reference']
+            merged_doc['source_urls']['advisories'] = advisories_data['source_url']
+            merged_doc['github_advisories_patches'] = advisories_data['patches']
 
         # 插入或更新MergedCVE表
         cve_id = nvd_doc.get('No')

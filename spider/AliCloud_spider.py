@@ -14,6 +14,9 @@ list_base_url = "https://avd.aliyun.com/nvd/list?type=WEB应用&page="
 search_base_url = "https://avd.aliyun.com/search?q="
 detail_base_url = "https://avd.aliyun.com/detail?id=AVD"
 
+mongodb_client = pymongo.MongoClient(mongo_url)
+db = mongodb_client['local']
+cve_collection = db['aliCloud']
 
 def get_cve_content(res):
     match = re.compile(
@@ -280,9 +283,6 @@ def crawl_one_by_cve_id(cve_id):
 
 
 if __name__ == "__main__":
-    mongodb_client = pymongo.MongoClient(mongo_url)
-    db = mongodb_client['local']
-    cve_collection = db['aliCloud']
     # crawl_by_pages(1, 10)
     crawl_one_by_cve_id("CVE-2020-13992")
     crawl_one_by_cve_id("CVE-2020-15073")

@@ -46,12 +46,18 @@ def write_to_es():
             'title': doc_with_id['title'],
             'description': doc_with_id['description'],
             'score': doc_with_id['score'],
-            'source_url': doc_with_id['source_url'],
+            'cve_published_time': doc_with_id['cve_published_time'],
+            'cve_modified_time': doc_with_id['cve_modified_time'],
+            'crawl_time': doc_with_id['merge_time'],
+            'source_urls': doc_with_id['source_urls'],
             'affected_software': doc_with_id['affected_software'],
             'third_party_list': doc_with_id['third_party_list'] if doc_with_id['third_party_list'] is not None else None,
             'vendor_list': doc_with_id['vendor_list'] if doc_with_id['vendor_list'] is not None else None,
             'exploit_list': doc_with_id['exploit'] if doc_with_id['exploit'] is not None else None,
             'patch_list': doc_with_id['patch_list'] if doc_with_id['patch_list'] is not None else None,
+            'debian_list': doc_with_id['debian_list'] if doc_with_id['debian_list'] is not None else None,
+            'advisories_list': doc_with_id['advisories_list'] if doc_with_id['advisories_list'] is not None else None,
+            'github_advisories_patches': doc_with_id['github_advisories_patches']
         }
         body = {
             "query": {
