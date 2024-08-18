@@ -69,5 +69,5 @@ def debian_search_by_cve_id(cve_id):
     }
 
 
-if __name__ == '__main__':
-    print(get_from_debian_by_cve_list(['CVE-2023-50868', 'CVE-2023-50866']))
+# if __name__ == '__main__':
+#     print(get_from_debian_by_cve_list(['CVE-2023-50868', 'CVE-2023-50866']))

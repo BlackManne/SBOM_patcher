@@ -34,6 +34,19 @@ def generate_testcases(url_list, func):
         save_json(f'{filename}.json', parsed_data)
 
 
+def generate_testcase_general(url_list, param_list, func):
+    for i in range(len(url_list)):
+        url = url_list[i]
+        param = param_list[i]
+        parsed_data = func(param)
+        raw_html = get_html_from_url(url)
+        print(f'parsed_data: {parsed_data}')
+        print(f'raw_html: {raw_html.data}')
+        filename = f'{func.__name__}_testcase_{i}'
+        save_html(f'{filename}.html', raw_html.data)
+        save_json(f'{filename}.json', parsed_data)
+
+
 def save_html(filename, content):
     directory = './testcases'  # 数据保存的目录
     filepath = directory + '/' + filename  # 构建完整的文件路径
