@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+
+from spider.AliCloud_spider import *
 from spider.nvd_spider import *
 from es.es_util import search_by_cve_id, establish_es_index, search_by_query
 from es.dbTransfer import transfer_to_es
@@ -9,16 +11,16 @@ app = FastAPI()
 
 
 @app.post('/nvd/crawl/all')
-def nvd_crawl_all():
-    crawl_all()
-    # todo 添加阿里云全量爬虫的入口
+def crawl_all():
+    nvd_crawl_all()
+    alicloud_crawL_all()
     merge_mongo_database()
     establish_es_index()
     transfer_to_es()
 
 
 @app.post('/nvd/crawl/by_time/{start_time}')
-def nvd_crawl_by_time(start_time: str):
+def crawl_by_time(start_time: str):
     # 格式为 2024-07-11
     crawl_by_time(start_time=start_time)
     # todo 添加阿里云增量爬虫的入口

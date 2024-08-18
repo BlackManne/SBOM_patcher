@@ -18,6 +18,17 @@ mongodb_client = pymongo.MongoClient(mongo_url)
 db = mongodb_client['local']
 cve_collection = db['aliCloud']
 
+
+def get_all_page_cnt():
+    html = get_page_content(list_base_url)
+    html_tree = etree.HTML(html)
+    pages_str = html_tree.xpath("/html/body/main/div/div/div[2]/div/span/text()")[0]
+    # 使用正则表达式提取页数
+    match = re.search(r"第\s*(\d+)\s*页\s*/\s*(\d+)\s*页", pages_str)
+    total_pages = int(match.group(2))
+    return total_pages
+
+
 def get_cve_content(res):
     match = re.compile(
         '<tr>.*?target="_blank">(.*?)' +
@@ -282,7 +293,16 @@ def crawl_one_by_cve_id(cve_id):
     crawl_url(url)
 
 
+def alicloud_crawL_all():
+    for page_num in range(1, get_all_page_cnt()):
+        print("正在爬取第" + str(page_num) + "页数据")
+        # 某一页的url
+        url = list_base_url + str(page_num)
+        crawl_url(url)
+        time.sleep(3)
+
+
 if __name__ == "__main__":
-    # crawl_by_pages(1, 10)
-    crawl_one_by_cve_id("CVE-2020-13992")
-    crawl_one_by_cve_id("CVE-2020-15073")
+    crawl_by_pages(1, 10)
+    # crawl_one_by_cve_id("CVE-2020-13992")
+    # crawl_one_by_cve_id("CVE-2020-15073")

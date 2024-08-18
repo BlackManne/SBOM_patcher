@@ -126,7 +126,7 @@ def crawl_by_time(start_time):
     crawl_nvd(base_url)
 
 
-def crawl_all():
+def nvd_crawl_all():
     base_url = "https://nvd.nist.gov/vuln/search/results?isCpeNameSearch=false&results_type=overview&form_type=Basic&search_type=all&startIndex="
     crawl_nvd(base_url)
 
