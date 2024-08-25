@@ -35,26 +35,22 @@ nvd_collection = db['nvd']
 
 
 def write_to_mongo():
-    return
-    # while True:
-    #     try:
-    #         data = data_queue.get(timeout=5)
-    #         # 将数据写入 MongoDB
-    #         cve_id = data['No']
-    #
-    #         # 构建查询条件
-    #         query = {'No': cve_id}
-    #         # 查询是否存在该cve-id，若有则为更新
-    #         existing_document = nvd_collection.find_one(query)
-    #
-    #         # 已经存在文档的话则更新
-    #         if existing_document:
-    #             nvd_collection.update_one(query, {"$set": data})
-    #         else:
-    #             nvd_collection.insert_one(data)
-    #         data_queue.task_done()
-    #     except queue.Empty:
-    #         return
+    while True:
+        data = data_queue.get()
+        # 将数据写入 MongoDB
+        cve_id = data['No']
+
+        # 构建查询条件
+        query = {'No': cve_id}
+        # 查询是否存在该cve-id，若有则为更新
+        existing_document = nvd_collection.find_one(query)
+
+        # 已经存在文档的话则更新
+        if existing_document:
+            nvd_collection.update_one(query, {"$set": data})
+        else:
+            nvd_collection.insert_one(data)
+        data_queue.task_done()
 
 
 def crawl_nvd(base_url):
@@ -72,20 +68,19 @@ def crawl_nvd(base_url):
     pages = math.ceil(nvd_total_num / 20)
     print(f"共有{pages}页")
 
+    crawl_threads = [Thread(target=crawl_nvd_page, args=(base_url, i, pages)) for i in range(0, thread_num)]
+
     mongodb_thread = threading.Thread(target=write_to_mongo)
-    mongodb_thread.start()
 
-    threads = [Thread(target=crawl_nvd_page, args=(base_url, i, pages)) for i in range(0, thread_num)]
-
-    for thread in threads:
+    for thread in crawl_threads:
         thread.start()
 
-    for thread in threads:
-        thread.join()  # 等待所有线程完成
+    mongodb_thread.start()
 
-    data_queue.join()
+    for thread in crawl_threads:
+        thread.join()  # 等待所有爬取线程完成
 
-    mongodb_thread.join()
+    mongodb_thread.join()  # 等待写入mongo线程完成
 
     mongodb_client.close()
 
