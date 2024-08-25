@@ -22,12 +22,6 @@ def establish_es_index():
             print(create_index_response)
         else:
             print("UNSUPPORTED INDEX NAME!!")
-        # elif index_name == 'relation':
-        #     create_index_response = es.indices.create(index=index_name, body={
-        #         "mappings": es_mappings.relation_mappings
-        #     })
-        #     print(create_index_response)
-
 
 def search_by_cve_id(cve_id):
     cve_id = cve_id.upper()

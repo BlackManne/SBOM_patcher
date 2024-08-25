@@ -35,25 +35,26 @@ nvd_collection = db['nvd']
 
 
 def write_to_mongo():
-    while True:
-        try:
-            data = data_queue.get(timeout=5)
-            # 将数据写入 MongoDB
-            cve_id = data['No']
-
-            # 构建查询条件
-            query = {'No': cve_id}
-            # 查询是否存在该cve-id，若有则为更新
-            existing_document = nvd_collection.find_one(query)
-
-            # 已经存在文档的话则更新
-            if existing_document:
-                nvd_collection.update_one(query, {"$set": data})
-            else:
-                nvd_collection.insert_one(data)
-            data_queue.task_done()
-        except queue.Empty:
-            return
+    return
+    # while True:
+    #     try:
+    #         data = data_queue.get(timeout=5)
+    #         # 将数据写入 MongoDB
+    #         cve_id = data['No']
+    #
+    #         # 构建查询条件
+    #         query = {'No': cve_id}
+    #         # 查询是否存在该cve-id，若有则为更新
+    #         existing_document = nvd_collection.find_one(query)
+    #
+    #         # 已经存在文档的话则更新
+    #         if existing_document:
+    #             nvd_collection.update_one(query, {"$set": data})
+    #         else:
+    #             nvd_collection.insert_one(data)
+    #         data_queue.task_done()
+    #     except queue.Empty:
+    #         return
 
 
 def crawl_nvd(base_url):

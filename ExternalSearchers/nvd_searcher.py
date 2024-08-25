@@ -4,14 +4,10 @@ from datetime import datetime
 
 import requests
 from bs4 import BeautifulSoup
-from RefPageParsers.github_parser import github_parse
 from Utils.TimeUtils import get_current_time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from Utils.util import parse_patch_url
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions
-# from RefPageParsers.windows_parser import win_parser
 
 headers = {
     'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',

@@ -1,32 +1,36 @@
-from cryptography.fernet import Fernet
+import os
 
-# 生成一个密钥
-key = Fernet.generate_key()
-cipher_suite = Fernet(key)
+import keyring
 
-filename = 'github_token'
-directory = '../crypto'  # 数据保存的目录
-filepath = directory + '/' + filename
+from Utils.TokenEncryptor import singleton
 
 
-def crypt_token():
-    # 要加密的 token
-    token = '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'
-    token_bytes = token.encode()
+# 服务名和用户名，对于GitHub，通常是固定的
 
-    # 加密 token
-    encrypted_token = cipher_suite.encrypt(token_bytes)
-    print("加密后的 token:", encrypted_token)
+@singleton
+class KeyRingEncryptor:
 
-    with open(filepath, 'wb') as file:
-        file.write(encrypted_token)  # 将内容写入文件
+    def __init__(self):
+        self.github_service = 'github-token'
+        self.github_user = 'SBOM'
+        self.directory = 'C:\\BlackMann\\MASTER\\PMX\\coding\\SBOM_patcher\\crypto\\'
+        self.set_github_token(self.read_token_from_file())
+
+    # 设置GitHub token
+    def set_github_token(self, token):
+        keyring.set_password(self.github_service, self.github_user, self.read_token_from_file())
+
+    # 获取GitHub token
+    def get_github_token(self):
+        return keyring.get_password(self.github_service, self.github_user)
+
+    def read_token_from_file(self):
+        filename = 'raw_token'
+        filepath = os.path.join(self.directory, filename)
+        with open(filepath, 'r') as file:
+            data = file.read()
+            return data
 
 
-def decrypt_token():
-    with open(filepath, 'rb') as file:
-        byte_data = file.read()
-        # 解密 token
-        decrypted_token = cipher_suite.decrypt(byte_data).decode()
-        print("解密后的 token:", decrypted_token)
-        return decrypted_token
-
+# if __name__ == "__main__":
+#     print(KeyRingEncryptor().get_github_token())
