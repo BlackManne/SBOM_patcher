@@ -3,12 +3,13 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
+from Utils.CryptoUtils import decrypt_token
+
 # 给headers赋值，默认是application/json格式
 headers = {
     'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
     'Accept': 'application/json, application/vnd.github+json',
-    'Authorization': 'Bearer '
-                     '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',
+    'Authorization': 'Bearer ' + decrypt_token(),
     'Host': 'api.github.com',
     'Connection': 'keep-alive'
 }

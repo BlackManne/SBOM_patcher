@@ -13,8 +13,7 @@ from mongoDB.mongoUtils import insert_or_update_by_cve_id
 headers = {
     'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
     'Accept': 'application/json, application/vnd.github+json',
-    'Authorization': 'Bearer '
-                     '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',
+    # 如果还需要使用graphQL，请在这里附上github token
     'Connection': 'keep-alive'
 }
 

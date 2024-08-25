@@ -9,3 +9,4 @@ selenium~=4.15.2
 urlextract~=1.8.0
 pandas~=2.1.2
 fastapi~=0.111.0
+cryptography~=42.0.8

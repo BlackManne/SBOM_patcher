@@ -8,9 +8,10 @@ import pymongo
 from RefPageParsers.parse_driver import parse_url
 from Utils.TimeUtils import get_current_time
 from Utils.util import get_page_content
+from Utils.TimeUtils import compare_dates
 from Constants.dbConstants import mongo_url
 
-list_base_url = "https://avd.aliyun.com/nvd/list?type=WEB应用&page="
+list_base_url = "https://avd.aliyun.com/nvd/list?page="
 search_base_url = "https://avd.aliyun.com/search?q="
 detail_base_url = "https://avd.aliyun.com/detail?id=AVD"
 
@@ -231,7 +232,7 @@ def get_cve_affect_sw(cve_etree):
     return merge_versions(data)
 
 
-def crawl_url(url):
+def crawl_url(url, start_time=None):
     # 某一页的全部数据，html格式
     html = get_page_content(url)
     # 用正则表达式找到html里面需要用的格式
@@ -242,6 +243,9 @@ def crawl_url(url):
         nvd_no = str(content[0])
         detail_html = get_page_content(detail_base_url + nvd_no[3:])
         detail_html_etree = etree.HTML(detail_html)
+        cve_time = content[3]
+        if start_time is not None and compare_dates(cve_time, start_time) == -1:
+            return -1
         cve_description = str(get_cve_description(detail_html_etree))
         cve_patch_details = get_cve_patch_details(detail_html_etree)
         # cve_ref_link = get_cve_ref_link(detail_html_etree)
@@ -293,12 +297,23 @@ def crawl_one_by_cve_id(cve_id):
     crawl_url(url)
 
 
-def alicloud_crawL_all():
+def alicloud_crawl_all():
     for page_num in range(1, get_all_page_cnt()):
         print("正在爬取第" + str(page_num) + "页数据")
         # 某一页的url
         url = list_base_url + str(page_num)
         crawl_url(url)
+        time.sleep(3)
+
+
+def alicloud_crawl_by_time(start_time):
+    for page_num in range(1, get_all_page_cnt()):
+        print("正在爬取第" + str(page_num) + "页数据")
+        # 某一页的url
+        url = list_base_url + str(page_num)
+        if crawl_url(url, start_time) == -1:
+            print(f'截止到{start_time}的阿里云数据已经爬取完成!')
+            return
         time.sleep(3)
 
 

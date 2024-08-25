@@ -13,7 +13,7 @@ app = FastAPI()
 @app.post('/nvd/crawl/all')
 def crawl_all():
     nvd_crawl_all()
-    alicloud_crawL_all()
+    alicloud_crawl_all()
     merge_mongo_database()
     establish_es_index()
     transfer_to_es()
@@ -22,8 +22,8 @@ def crawl_all():
 @app.post('/nvd/crawl/by_time/{start_time}')
 def crawl_by_time(start_time: str):
     # 格式为 2024-07-11
-    crawl_by_time(start_time=start_time)
-    # todo 添加阿里云增量爬虫的入口
+    nvd_crawl_by_time(start_time=start_time)
+    alicloud_crawl_by_time(start_time=start_time)
     merge_mongo_database(time=start_time)
     establish_es_index()
     transfer_to_es(time=start_time)

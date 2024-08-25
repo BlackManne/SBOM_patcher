@@ -36,21 +36,24 @@ nvd_collection = db['nvd']
 
 def write_to_mongo():
     while True:
-        data = data_queue.get()
-        # 将数据写入 MongoDB
-        cve_id = data['No']
+        try:
+            data = data_queue.get(timeout=5)
+            # 将数据写入 MongoDB
+            cve_id = data['No']
 
-        # 构建查询条件
-        query = {'No': cve_id}
-        # 查询是否存在该cve-id，若有则为更新
-        existing_document = nvd_collection.find_one(query)
+            # 构建查询条件
+            query = {'No': cve_id}
+            # 查询是否存在该cve-id，若有则为更新
+            existing_document = nvd_collection.find_one(query)
 
-        # 已经存在文档的话则更新
-        if existing_document:
-            nvd_collection.update_one(query, {"$set": data})
-        else:
-            nvd_collection.insert_one(data)
-        data_queue.task_done()
+            # 已经存在文档的话则更新
+            if existing_document:
+                nvd_collection.update_one(query, {"$set": data})
+            else:
+                nvd_collection.insert_one(data)
+            data_queue.task_done()
+        except queue.Empty:
+            return
 
 
 def crawl_nvd(base_url):
@@ -66,6 +69,7 @@ def crawl_nvd(base_url):
     if nvd_total_num == 0:
         return
     pages = math.ceil(nvd_total_num / 20)
+    print(f"共有{pages}页")
 
     mongodb_thread = threading.Thread(target=write_to_mongo)
     mongodb_thread.start()
@@ -85,18 +89,7 @@ def crawl_nvd(base_url):
     mongodb_client.close()
 
 
-def crawl_by_time(start_time):
-    # input_string = input("请输入开始时间和结束时间，格式均为yyyy-mm-dd，用空格隔开，例如:2024-07-11 2024-07-12:\n")
-    # if input_string is None:
-    #     print("您尚未输入任何字符串！")
-    #     return
-    # if len(input_string.split(' ')) != 2:
-    #     print("输入格式不对")
-    #     return
-    # input_arrays = input_string.split(' ')
-    # start_time = input_arrays[0]
-    # end_time = input_arrays[1]
-
+def nvd_crawl_by_time(start_time):
     # 获取当前日期
     today = date.today()
     # 将日期转换为所需格式
@@ -132,4 +125,4 @@ def nvd_crawl_all():
 
 
 if __name__ == "__main__":
-    crawl_by_time("2024-06-11")
+    nvd_crawl_by_time("2024-06-11")

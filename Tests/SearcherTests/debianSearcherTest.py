@@ -4,9 +4,9 @@ from ExternalSearchers import debian_searcher
 from Tests.Utils.test_utils import generate_testcase_general
 
 
-class TestNVDSearcher(unittest.TestCase):
+class TestDebianSearcher(unittest.TestCase):
 
-    def test_nvd_search(self):
+    def test_debian_search(self):
         debian_list = ['CVE-2021-36489',
                     'CVE-2024-21490',
                     'CVE-2024-29857',
