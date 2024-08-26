@@ -18,5 +18,9 @@ class TestAliyunSpider(unittest.TestCase):
 
         AliCloud_spider.alicloud_crawl_by_time(start_time=yesterday_str)
 
+    def test_aliyun_crawl_by_cve_id(self):
+        cve_id = 'CVE-2024-8135'
+        AliCloud_spider.crawl_one_by_cve_id(cve_id)
+
     if __name__ == '__main__':
         unittest.main()

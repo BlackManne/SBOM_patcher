@@ -37,6 +37,8 @@ nvd_collection = db['nvd']
 def write_to_mongo():
     while True:
         data = data_queue.get()
+        if data is None:
+            break
         # 将数据写入 MongoDB
         cve_id = data['No']
 
@@ -68,19 +70,21 @@ def crawl_nvd(base_url):
     pages = math.ceil(nvd_total_num / 20)
     print(f"共有{pages}页")
 
-    crawl_threads = [Thread(target=crawl_nvd_page, args=(base_url, i, pages)) for i in range(0, thread_num)]
+    producer_threads = [Thread(target=crawl_nvd_page, args=(base_url, i, pages)) for i in range(0, thread_num)]
 
-    mongodb_thread = threading.Thread(target=write_to_mongo)
+    consumer_thread = threading.Thread(target=write_to_mongo)
 
-    for thread in crawl_threads:
+    for thread in producer_threads:
         thread.start()
 
-    mongodb_thread.start()
+    consumer_thread.start()
 
-    for thread in crawl_threads:
+    for thread in producer_threads:
         thread.join()  # 等待所有爬取线程完成
 
-    mongodb_thread.join()  # 等待写入mongo线程完成
+    data_queue.put(None)
+
+    consumer_thread.join()  # 等待写入mongo线程完成
 
     mongodb_client.close()
 

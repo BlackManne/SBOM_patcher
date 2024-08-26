@@ -15,6 +15,6 @@ def parse_url(url):
     #     nvd_detail['service_name'] = 'microsoft'
     else:
         print('no supported parser for url:' + url)
-        patch_detail['detail'] = 'NOT SUPPORTED URL!!'
+        patch_detail['detail'] = None
         patch_detail['service_name'] = None
     return patch_detail

@@ -16,7 +16,7 @@ class TestNVDSpider(unittest.TestCase):
         # 格式化昨天的日期为字符串
         yesterday_str = yesterday.strftime('%Y-%m-%d')
 
-        nvd_crawl_by_time(start_time='2024-08-25')
+        nvd_crawl_by_time(start_time=yesterday_str)
 
     if __name__ == '__main__':
         unittest.main()

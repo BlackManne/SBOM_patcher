@@ -40,7 +40,7 @@ def get_URL_from_text(text):
 def parse_patch_url(url):
     # 首先初始化为不能解析的数据
     patch_detail = {
-        'detail': 'NOT SUPPORTED URL!!',
+        'detail': None,
         'service_name': 'others'
     }
     # 根据传入的patch url解析，调用不同的parse函数

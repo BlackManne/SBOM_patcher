@@ -1,5 +1,6 @@
 nvd_mappings = \
     {
+        "dynamic": True,  # 启用动态映射
         "properties": {
             "No": {"type": "text"},
             "title": {"type": "text"},
@@ -37,60 +38,44 @@ nvd_mappings = \
             "exploit_list": {"type": "nested"},
             "patch_list": {
                 "type": "nested",
-                "nvd": {
-                    "type": "nested",
-                    "properties": {
-                      "time": {
-                        "type": "date"
-                      },
-                      "patch_url": {
-                        "type": "text"
-                      },
-                      "service_name": {
-                        "type": "text"
-                      },
-                      "patch_detail": {
-                        "type": "nested"
-                      }
-                    }
-                },
-                "alicloud": {
-                    "type": "nested",
-                    "properties": {
-                      "time": {
-                        "type": "date"
-                      },
-                      "patch_url": {
-                        "type": "text"
-                      },
-                      "service_name": {
-                        "type": "text"
-                      },
-                      "patch_detail": {
-                        "type": "nested"
-                      }
-                    }
-                },
-                "debian": {
-                    "type": "nested",
-                    "properties": {
-                      "time": {
-                        "type": "date"
-                      },
-                      "patch_url": {
-                        "type": "text"
-                      },
-                      "service_name": {
-                        "type": "text"
-                      },
-                      "patch_detail": {
-                        "type": "nested"
-                      }
-                    }
-                },
+                "properties": {
+                    "nvd": {
+                        "type": "nested",
+                        "properties": {
+                            "time": {"type": "text"},
+                            "patch_url": {"type": "text"},
+                            "service_name": {"type": "text"},
+                            "patch_detail": {
+                                "type": "object",
+                                "dynamic": True,
+                            }
+                        }
+                    },
+                    "alicloud": {
+                        "type": "nested",
+                        "properties": {
+                            "time": {"type": "text"},
+                            "patch_url": {"type": "text"},
+                            "service_name": {"type": "text"},
+                            "patch_detail": {
+                                "type": "object",
+                                "dynamic": True,
+                            }
+                        }
+                    },
+                    "debian": {
+                        "type": "nested",
+                        "properties": {
+                            "time": {"type": "text"},
+                            "patch_url": {"type": "text"},
+                            "service_name": {"type": "text"},
+                            "patch_detail": {
+                                "type": "object",
+                                "dynamic": True,
+                            }
+                        }
+                    },
+                }
             },
-            "debian_list": {"type": "nested"},
-            "advisories_list": {"type": "nested"},
-            "github_advisories_patches": {"type": "text"}
         }
     }

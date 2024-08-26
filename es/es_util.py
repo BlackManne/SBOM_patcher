@@ -13,7 +13,7 @@ def establish_es_index():
     for index_name in collection_index:
         # 如果已经存在索引，照常使用
         if es.indices.exists(index=index_name):
-            print("The index has already existed, going to remove it")
+            print(f"Already exists index: {index_name}")
             return
         if index_name == 'merged_cve':
             create_index_response = es.indices.create(index=index_name, body={
@@ -22,6 +22,7 @@ def establish_es_index():
             print(create_index_response)
         else:
             print("UNSUPPORTED INDEX NAME!!")
+
 
 def search_by_cve_id(cve_id):
     cve_id = cve_id.upper()

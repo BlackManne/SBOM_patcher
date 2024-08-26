@@ -239,6 +239,9 @@ def issue_parse(url):
     comment_list = []
     requested_reviewers = []
     for time_line in list(timeline_content):
+        if not isinstance(time_line, dict):
+            # 如果不是字典，跳过
+            continue
         # 如果有body，说明是一个comment
         if 'body' in time_line and time_line['body'] is not None:
             comment = time_line['body']
