@@ -79,7 +79,7 @@ def find_project_root(start_path, root_marker='.git'):
 
 
 # if __name__ == "__main__":
-#     token = "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"
+#     token = "请在这里输入要加密的token"
 #     encryptor = TokenEncryptor()
 #     encryptor.encrypt_token(token)
 #     decryptor = TokenDecryptor()
