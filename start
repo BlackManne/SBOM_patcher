@@ -1,18 +1,23 @@
 #!/bin/bash
 
-#遇到错误时中止
-set -e
+# Function to check if a Docker container is running
+container_exists() {
+    docker ps -a --format '{{.Names}}' | grep -q "$1"
+}
 
-echo "Starting mongodb.."
-docker run -d -p 27017:27017 --name mongodb mongo
+# Check if MongoDB and Elasticsearch containers are already running
+if ! container_exists "mongodb"; then
+    echo "MongoDB container is not running. Starting MongoDB container using Docker Compose..."
+    docker-compose -f docker-compose.yaml up -d mongodb
+fi
 
-echo "Starting elasticsearch"
-docker run -d -p 9200:9200 --name elasticsearch -e "discovery.type=single-node" elasticsearch:8.12.1
+if ! container_exists "elasticsearch"; then
+    echo "Elasticsearch container is not running. Starting Elasticsearch container using Docker Compose..."
+    docker-compose -f docker-compose.yaml up -d elasticsearch
+fi
 
-echo "Waiting for mongodb and elasticsearch to start..."
-sleep 30
-
-echo "starting python applications"
-docker run --name SBOM -d -p 5000:5000 --link mongodb:mongodb --link elasticsearch:elasticsearch SBOM
-
-echo "All services have been started"
+# Start the SBOM container using the Dockerfile
+docker build -t sbom .
+echo "Building SBOM container..."
+docker run -d --name sbom -p 5000:5000 --link mongodb --link elasticsearch sbom
+echo "all container already started..."

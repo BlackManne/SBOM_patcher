@@ -4,14 +4,13 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-from Utils.CryptoUtils import KeyRingEncryptor
+from Utils.TokenEncryptor import TokenDecryptor
 
-encryptor = KeyRingEncryptor()
 # 给headers赋值，默认是application/json格式
 headers = {
     'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
     'Accept': 'application/json, application/vnd.github+json',
-    'Authorization': 'Bearer ' + encryptor.get_github_token(),
+    'Authorization': 'Bearer ' + TokenDecryptor().decrypt_token(),
     'Host': 'api.github.com',
     'Connection': 'keep-alive'
 }
@@ -343,13 +342,11 @@ def github_parse(url):
 
 # if __name__ == "__main__":
 #     url_list = [
+#         "https://github.com/PX4/PX4-Autopilot/commit/d1fcd39a44e6312582c6ab02b0d5ee2599fb55aa",
 #         "https://github.com/advisories/GHSA-6qjm-h442-97p9",
-#         "https://github.com/advisories/GHSA-fxg5-wq6x-vr4w",
 #         "https://github.com/kyverno/kyverno/security/advisories/GHSA-9g37-h7p2-2c6r",
-#         "https://github.com/actions/toolkit/security/advisories/GHSA-7r3h-m5j6-3q42",  # todo 第五个的reference解析还是有问题
-#         "https://github.com/fastify/github-action-merge-dependabot/security/advisories/GHSA-v5vr-h3xq-8v6w",
-#         "https://github.com/git/git/security/advisories/GHSA-j342-m5hw-rr3v",
-#         "https://github.com/github/gh-ost/security/advisories/GHSA-rrp4-2xx3-mv29",
-#         "https://github.com/cloudflare/cfrpki/security/advisories/GHSA-3pqh-p72c-fj85"]
+#         "https://github.com/Lissy93/dashy/issues/1336",
+#         "https://github.com/openshift/kubernetes/pull/1736"
+#     ]
 #     for url in url_list:
-#         advisory_parse(url)
+#         github_parse(url)
