@@ -79,7 +79,7 @@ def find_project_root(start_path, root_marker='.git'):
 
 
 # if __name__ == "__main__":
-#     token = "请在这里输入要加密的token"
+#     token = "请在这里输入你使用的token"
 #     encryptor = TokenEncryptor()
 #     encryptor.encrypt_token(token)
 #     decryptor = TokenDecryptor()
