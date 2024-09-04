@@ -19,7 +19,7 @@ COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
 # 暴露端口
-EXPOSE 5000 # SBOM运行在5000端口
+EXPOSE 5000
 
 # 设置容器启动时执行的命令
 CMD ["bash", "start.sh"]

@@ -1,4 +1,3 @@
-from fastapi import FastAPI
 
 from spider.AliCloud_spider import *
 from spider.nvd_spider import *
@@ -7,48 +6,82 @@ from es.dbTransfer import transfer_to_es
 from mongoDB.mongoUtils import query_by_cve_id_and_db_name
 from mongoDB.mergeCollections import merge_mongo_database
 from Utils.util import heartbeat
-app = FastAPI()
+from flask import Flask, request, jsonify
+app = Flask(__name__)
 
 
-@app.post('/nvd/crawl/all')
+@app.route('/nvd/crawl/all', methods=['POST'])
 def crawl_all():
     nvd_crawl_all()
     alicloud_crawl_all()
     merge_mongo_database()
     establish_es_index()
     transfer_to_es()
+    return jsonify({"message": "获取成功"}), 200
 
 
-@app.post('/nvd/crawl/by_time/{start_time}')
-def crawl_by_time(start_time: str):
+@app.route('/nvd/crawl/by_time', methods=['POST'])
+def crawl_by_time():
+    start_time = request.args.get('time')
     # 格式为 2024-07-11
     nvd_crawl_by_time(start_time=start_time)
     alicloud_crawl_by_time(start_time=start_time)
     merge_mongo_database(time=start_time)
     establish_es_index()
     transfer_to_es(time=start_time)
+    return jsonify({"message": "获取成功"}), 200
 
 
-@app.get('/get/merged/{cve_id}')
-def query_es_by_cve_id(cve_id: str):
-    return search_by_cve_id(cve_id=cve_id)
+@app.route('/get_by_cve', methods=['GET'])
+def query_es_by_cve_id():
+    cve_id = request.args.get('cve_id')
+    if not cve_id:
+        return jsonify({"message": "没有找到cve_id参数！"}), 400
+    data = search_by_cve_id(cve_id=cve_id)
+    return jsonify({
+        'message': data['message'],
+        'data': data['data']
+    }), data['code']
 
 
-@app.get('/get/merged/{query}')
-def query_es_by_expression(query: str):
-    return search_by_query(body=query)
+@app.route('/get_by_query', methods=['GET'])
+def query_es_by_expression():
+    query = request.args.get('query')
+
+    if not query:
+        return jsonify({"message": "没有找到query参数！"}), 400
+    data = search_by_query(body=query)
+    return jsonify({
+        'message': data['message'],
+        'data': data['data']
+    }), data['code']
 
 
-@app.get('/get/{db_name}}/{cve_id}')
-def query_mongo_by_cve_id_and_db_name(db_name: str, cve_id: str):
-    return query_by_cve_id_and_db_name(cve_id=cve_id, db_name=db_name)
+@app.route('/get_by_db_cve', methods=['GET'])
+def query_mongo_by_cve_id_and_db_name():
+    cve_id = request.args.get('cve_id')
+    db_name = request.args.get('db_name')
+    if not cve_id:
+        return jsonify({"message": "没有找到cve_id参数！"}), 400
+    if not db_name:
+        return jsonify({"message": "没有找到db_name参数！"}), 400
+    data = query_by_cve_id_and_db_name(cve_id=cve_id, db_name=db_name)
+    return jsonify({
+        'message': data['message'],
+        'data': data['data']
+    }), data['code']
 
 
-@app.get('/heartbeat')
+@app.route('/heartbeat',methods=['GET'])
 def check_heartbeat():
-    return {
-        'code': 200,
+    return jsonify({
         'message': '成功',
         'data': heartbeat()
-    }
+    }), 200
+
+
+@app.route('/', methods=['GET'])
+def hello():
+    return jsonify({"message": "没有找到cve_id参数！"}), 200
+
 

@@ -20,4 +20,5 @@ fi
 docker build -t sbom .
 echo "Building SBOM container..."
 docker run -d --name sbom -p 5000:5000 --link mongodb --link elasticsearch sbom
+
 echo "all container already started..."
