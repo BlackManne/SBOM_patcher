@@ -6,6 +6,9 @@ RUN apt-get update && apt-get install -y netcat
 
 WORKDIR /SBOM
 
+ENV FLASK_APP=SBOM.py
+ENV FLASK_RUN_HOST=0.0.0.0
+
 # 安装Python依赖
 COPY requirements.txt /SBOM/requirements.txt
 
@@ -15,11 +18,11 @@ RUN pip install -r requirements.txt
 COPY . /SBOM
 
 # 添加启动脚本
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
+COPY start /start
+RUN chmod +x /start
 
 # 暴露端口
 EXPOSE 5000
 
 # 设置容器启动时执行的命令
-CMD ["bash", "start.sh"]
+CMD ["flask", "run", "--debug"]

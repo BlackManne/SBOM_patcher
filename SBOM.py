@@ -82,6 +82,6 @@ def check_heartbeat():
 
 @app.route('/', methods=['GET'])
 def hello():
-    return jsonify({"message": "没有找到cve_id参数！"}), 200
+    return jsonify({"message": "欢迎来到SBOM_patcher漏洞爬取系统！"}), 200
 
 

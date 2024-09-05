@@ -19,6 +19,16 @@ fi
 # Start the SBOM container using the Dockerfile
 docker build -t sbom .
 echo "Building SBOM container..."
-docker run -d --name sbom -p 5000:5000 --link mongodb --link elasticsearch sbom
 
+# Connect to specific network
+#network_name=sbom_patcher_sbom_network
+#if docker network inspect $network_name &>/dev/null; then
+#    docker network connect $network_name sbom
+#    echo "Container sbom connected to network $network_name"
+#else
+#    echo "Network $network_name does not exists"
+#fi
+
+docker run --name sbom -p 5000:5000  --network sbom_patcher_sbom_network --link mongodb --link elasticsearch -d sbom
+docker exec -d sbom python SBOM.py
 echo "all container already started..."
