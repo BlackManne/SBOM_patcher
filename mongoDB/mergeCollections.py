@@ -75,7 +75,7 @@ def merge_mongo_by_nvd_docs(nvd_docs):
             merged_doc['rate'] = alicloud_doc.get('rate')
             merged_doc['source_urls']['alicloud_source_url'] = alicloud_doc.get('source_url')
             merged_doc['affected_software'] += alicloud_doc.get('affected_software')
-            merged_doc['patch_list']['alicloud'] = alicloud_doc.get('patch_list')
+            merged_doc['aliyun_list'] = alicloud_doc.get('patch_list')
         # 如果有debian数据，合并
         if debian_list is not None and cve_id in debian_list:
             debian_data = debian_list[cve_id]

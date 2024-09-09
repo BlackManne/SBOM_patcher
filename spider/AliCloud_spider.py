@@ -241,7 +241,8 @@ def crawl_url(url, start_time=None):
         for i in range(0, len(content)):
             content[i] = content[i].strip()  # 去除字符串中的空格
         nvd_no = str(content[0])
-        detail_html = get_page_content(detail_base_url + nvd_no[3:])
+        detail_url = detail_base_url + nvd_no[3:]
+        detail_html = get_page_content(detail_url)
         detail_html_etree = etree.HTML(detail_html)
         cve_time = content[3]
         if start_time is not None and compare_dates(cve_time, start_time) == -1:
@@ -264,7 +265,7 @@ def crawl_url(url, start_time=None):
                 'cve_modified_time': content[3],
                 'crawl_time': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 'rate': content[4],
-                'source_url': url,
+                'source_url': detail_url,
                 'description': content[5],
                 # 'ref_link': content[6],
                 'affected_software': content[6],

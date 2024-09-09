@@ -26,6 +26,9 @@ def query_by_cve_id(collection, cve_id):
 
 
 def query_by_updated_time(time, db_name):
+    if db_name not in db_name_collections:
+        print('数据库名称错误')
+        return None
     db_collection = db[db_name]
     # 读取数据
     # 全量读取数据

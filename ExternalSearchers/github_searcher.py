@@ -123,6 +123,9 @@ def get_from_advisories_by_cve_list(cve_list):
     for cve_id in cve_list:
         data = advisories_search_by_id(cve_id=cve_id)
         if data is not None:
+            # cve编号是利用query条件来进行插入和更新的，此处应该删除掉
+            if 'No' in data:
+                del data['No']
             insert_or_update_by_cve_id(cve_id=cve_id, collection_name=collection_name, doc=data)
             data_dict[cve_id] = data
     return data_dict

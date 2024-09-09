@@ -1,1 +1,23 @@
-{"title": "Improper Input Validation of `-database` Parameter", "package": {"name": "gh-ost(Go)", "link": "/advisories?query=ecosystem%3Ago"}, "affected_versions": ["<= 1.1.2"], "patched_versions": ["1.1.3"], "description": "Gh-ost version <= 1.1.2 allows users to inject DSN strings via the -database parameter.This is a low severity vulnerability as the attacker must have access to the target host or trick an administrator into executing a malicious gh-ost command on a host running gh-ost, plus network access from host running gh-ost to the attack's malicious MySQL server.", "impact": "This issue may lead to arbitrary local file read.", "patches": "Fixed in 1.1.3+.", "workarounds": "None", "reference": ["https://advisory.dw1.io/51 : https://advisory.dw1.io/51"], "more": "If you have any questions or comments about this advisory:github/gh-ost : https://github.com/github/gh-ost"}
+{
+    "No": "CVE-2022-21687",
+    "title": "Improper Input Validation of `-database` Parameter",
+    "source_url": "https://github.com/github/gh-ost/security/advisories/GHSA-rrp4-2xx3-mv29",
+    "package": {
+        "name": "gh-ost(Go)",
+        "link": "/advisories?query=ecosystem%3Ago"
+    },
+    "affected_versions": [
+        "<= 1.1.2"
+    ],
+    "patched_versions": [
+        "1.1.3"
+    ],
+    "description": "Gh-ost version <= 1.1.2 allows users to inject DSN strings via the -database parameter.This is a low severity vulnerability as the attacker must have access to the target host or trick an administrator into executing a malicious gh-ost command on a host running gh-ost, plus network access from host running gh-ost to the attack's malicious MySQL server.",
+    "impact": "This issue may lead to arbitrary local file read.",
+    "patches": "Fixed in 1.1.3+.",
+    "workarounds": "None",
+    "reference": [
+        "https://advisory.dw1.io/51"
+    ],
+    "more": "If you have any questions or comments about this advisory:github/gh-ost"
+}

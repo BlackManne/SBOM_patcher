@@ -54,6 +54,7 @@ def save_html(filename, content):
         content = 'None'
     with open(filepath, 'w', encoding='utf-8') as file:
         file.write(content)  # 将内容写入文件
+    print(f'存储{filename}的html文件完成')
 
 
 def save_json(filename, data):
@@ -61,6 +62,7 @@ def save_json(filename, data):
     filepath = directory + '/' + filename  # 构建完整的文件路径
 
     with open(filepath, 'w', encoding='utf-8') as file:
-        json.dump(data, file)  # 将数据以 JSON 格式保存到文件中
+        json.dump(data, file, indent=4)  # 将数据以 JSON 格式保存到文件中
+    print(f'存储{filename}的json文件完成')
 
 

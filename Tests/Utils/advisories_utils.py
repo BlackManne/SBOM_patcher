@@ -1,5 +1,5 @@
 from ExternalSearchers.github_searcher import graphql_search
-from Utils.test_utils import get_html_from_url
+from test_utils import get_html_from_url
 
 
 def generate_testcases_for_advisories(url_list, advisories_testcases, parsed_data_list):

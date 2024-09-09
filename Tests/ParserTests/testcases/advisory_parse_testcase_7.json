@@ -1,1 +1,21 @@
-{"title": "Improper Preservation of Permissions in github.com/cloudflare/cfrpki/cmd/octorpki", "package": {"name": "github.com/cloudflare/cfrpki/cmd/octorpki(Go)", "link": "/advisories?query=ecosystem%3Ago"}, "affected_versions": ["< v1.4.0"], "patched_versions": ["v1.4.2"], "description": "", "impact": "When copying files with rsync, octorpki uses the \"-a\" flag 0, which forces rsync to copy binaries with the suid bit set as root. Since the provided service definition defaults to root (https://github.com/cloudflare/cfrpki/blob/master/package/octorpki.service) this could allow for a vector, when combined with another vulnerability that causes octorpki to process a malicious TAL file, for a local privilege escalation.", "patches": "", "workarounds": "", "reference": [], "more": "If you have any questions or comments about this advisory email us at security@cloudflare.com"}
+{
+    "No": "CVE-2021-3978",
+    "title": "Improper Preservation of Permissions in github.com/cloudflare/cfrpki/cmd/octorpki",
+    "source_url": "https://github.com/cloudflare/cfrpki/security/advisories/GHSA-3pqh-p72c-fj85",
+    "package": {
+        "name": "github.com/cloudflare/cfrpki/cmd/octorpki(Go)",
+        "link": "/advisories?query=ecosystem%3Ago"
+    },
+    "affected_versions": [
+        "< v1.4.0"
+    ],
+    "patched_versions": [
+        "v1.4.2"
+    ],
+    "description": "",
+    "impact": "When copying files with rsync, octorpki uses the \"-a\" flag 0, which forces rsync to copy binaries with the suid bit set as root. Since the provided service definition defaults to root (https://github.com/cloudflare/cfrpki/blob/master/package/octorpki.service) this could allow for a vector, when combined with another vulnerability that causes octorpki to process a malicious TAL file, for a local privilege escalation.",
+    "patches": "",
+    "workarounds": "",
+    "reference": [],
+    "more": "If you have any questions or comments about this advisory email us at security@cloudflare.com"
+}

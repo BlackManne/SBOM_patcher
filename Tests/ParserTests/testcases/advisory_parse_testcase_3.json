@@ -1,1 +1,25 @@
-{"title": "Delimiter injection vulnerability in @actions/core exportVariable", "package": {"name": "@actions/core(npm)", "link": "/advisories?query=ecosystem%3Anpm"}, "affected_versions": ["<= 1.9.0"], "patched_versions": ["1.9.1"], "description": "", "impact": "The\u00a0core.exportVariable\u00a0function uses a well known delimiter that attackers can use to break out of that specific variable and assign values to other arbitrary variables. Workflows that write untrusted values to the GITHUB_ENV file may cause the path or other environment variables to be modified without the intention of the workflow or action author.", "patches": "Users should upgrade to @actions/core v1.9.1.", "workarounds": "If you are unable to upgrade the @actions/core package, you can modify your action to ensure that any user input does not contain the delimiter _GitHubActionsFileCommandDelimeter_ before calling core.exportVariable.", "reference": ["More information about setting-an-environment-variable in workflows", "If you have any questions or comments about this advisory:", "actions/toolkit : https://github.com/actions/toolkit/issues"], "more": ""}
+{
+    "No": "CVE-2022-35954",
+    "title": "Delimiter injection vulnerability in @actions/core exportVariable",
+    "source_url": "https://github.com/actions/toolkit/security/advisories/GHSA-7r3h-m5j6-3q42",
+    "package": {
+        "name": "@actions/core(npm)",
+        "link": "/advisories?query=ecosystem%3Anpm"
+    },
+    "affected_versions": [
+        "<= 1.9.0"
+    ],
+    "patched_versions": [
+        "1.9.1"
+    ],
+    "description": "",
+    "impact": "The\u00a0core.exportVariable\u00a0function uses a well known delimiter that attackers can use to break out of that specific variable and assign values to other arbitrary variables. Workflows that write untrusted values to the GITHUB_ENV file may cause the path or other environment variables to be modified without the intention of the workflow or action author.",
+    "patches": "Users should upgrade to @actions/core v1.9.1.",
+    "workarounds": "If you are unable to upgrade the @actions/core package, you can modify your action to ensure that any user input does not contain the delimiter _GitHubActionsFileCommandDelimeter_ before calling core.exportVariable.",
+    "reference": [
+        "More information about setting-an-environment-variable in workflows",
+        "If you have any questions or comments about this advisory:",
+        "actions/toolkit"
+    ],
+    "more": ""
+}
