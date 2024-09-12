@@ -85,3 +85,7 @@ def hello():
     return jsonify({"message": "欢迎来到SBOM_patcher漏洞爬取系统！"}), 200
 
 
+if __name__ == "__main__":
+    app.run()
+
+

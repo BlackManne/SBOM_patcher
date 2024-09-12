@@ -1,5 +1,7 @@
+import logging
 import re
 
+import pymongo
 import requests
 from random import randint
 
@@ -75,7 +77,7 @@ def check_elasticsearch():
         res = es.ping()
         return res
     except Exception as e:
-        print("ping es出现异常：{},{}".format(e, e.__traceback__))
+        logging.info("ping es出现异常：{},{}".format(e, e.__traceback__))
         return False
 
 
@@ -84,8 +86,10 @@ def check_mongodb():
     try:
         client.server_info()
         return True
-    except ConnectionFailure:
-        return False
+    except pymongo.errors.ServerSelectionTimeoutError as e:
+        logging.info("ping mongo出现异常：{},{}".format(e, e.__traceback__))
+    except Exception as e:
+        print("An error occurred:", e)
 
 
 def heartbeat():
