@@ -1,3 +1,4 @@
+import json
 
 from spider.AliCloud_spider import *
 from spider.nvd_spider import *
@@ -47,7 +48,10 @@ def query_es_by_cve_id():
 @app.route('/get_by_query', methods=['GET'])
 def query_es_by_expression():
     query = request.args.get('query')
-
+    # 去掉多余的字符
+    # 使用正则表达式删除所有空白字符
+    query = re.sub(r'\s+', '', query)
+    query = json.loads(query)
     if not query:
         return jsonify({"message": "没有找到query参数！"}), 400
     data = search_by_query(body=query)

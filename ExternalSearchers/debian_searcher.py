@@ -19,6 +19,7 @@ def get_from_debian_by_cve_list(cve_list):
         data = debian_search_by_cve_id(cve_id=cve_id)
         if data is not None:
             insert_or_update_by_cve_id(cve_id=cve_id, collection_name=collection_name, doc=data)
+            print(data)
             data_dict[cve_id] = data
     return data_dict
 

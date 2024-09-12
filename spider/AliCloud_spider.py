@@ -60,13 +60,14 @@ def get_cve_description(cve_etree):
 def get_cve_patch_details(cve_etree):
     result_str = []
     for para in cve_etree.xpath("/html/body/div[3]/div/div[1]/div[2]/div[3]/table/tbody/tr/td/a/@href"):
-        patch_detail = parse_url(para)
-        result_str.append({
-            'patch_url': str(para),
-            'service_name': patch_detail.get('service_name'),
-            'patch_detail': patch_detail.get('detail'),
-            'time': get_current_time()
-        })
+        # patch_detail = parse_url(para)
+        # result_str.append({
+        #     'patch_url': str(para),
+        #     'service_name': patch_detail.get('service_name'),
+        #     'patch_detail': patch_detail.get('detail'),
+        #     'time': get_current_time()
+        # })
+        result_str.append(str(para))
     return result_str
 
 

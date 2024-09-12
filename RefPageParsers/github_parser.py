@@ -71,12 +71,16 @@ def commit_parse(url):
 
 
 def advisory_parse(url):
+    print(url)
     response = requests.request("GET", url, headers={'User-Agent': 'baidu'})
     soup = BeautifulSoup(response.text, "html.parser")
     title_node = soup.find(class_='gh-header-title')
     title = title_node.text.strip() if title_node is not None else soup.find('title').text.split('·')[0]
-    filtered_elements = soup.find_all('div', class_='color-fg-muted', string=lambda t: t and t.strip().startswith('CVE-'))[0]
-    cve_id = filtered_elements.text.strip()
+    filtered_elements = soup.find_all('div', class_='color-fg-muted', string=lambda t: t and t.strip().startswith('CVE-'))
+    if filtered_elements is None or len(filtered_elements) == 0:
+        cve_id = 'No known CVE'
+    else:
+        cve_id = filtered_elements[0].text.strip()
     # print(title)
     # 寻找package
     package_node = soup.find(class_='f4 color-fg-default text-bold')
