@@ -2,7 +2,7 @@ nvd_mappings = \
     {
         "dynamic": True,  # 启用动态映射
         "properties": {
-            "No": {"type": "text"},
+            "No": {"type": "keyword"},
             "title": {"type": "text"},
             "description": {"type": "nested"},
             "score": {"type": "text"},

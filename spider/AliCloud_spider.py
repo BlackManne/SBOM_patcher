@@ -269,7 +269,7 @@ def crawl_url(url, start_time=None):
                 'description': content[5],
                 # 'ref_link': content[6],
                 'affected_software': content[6],
-                'patch_list': content[7]
+                'reference': content[7]
             }
             # 如果已经找到了对应编号的cve，就不要再存了
             if len(list(cve_collection.find({'No': cve_info_dict['No']}))) == 1:
