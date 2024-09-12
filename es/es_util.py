@@ -1,12 +1,9 @@
 # 用来创建es的两个index
-from elasticsearch import Elasticsearch
 from es import es_mappings
 from Utils.util import validate_cve_id
-from Constants.dbConstants import es_url
+from Constants.dbConstants import es
 
 collection_index = {'merged_cve'}
-# 连接到Elasticsearch
-es = Elasticsearch(es_url)
 
 
 def establish_es_index():

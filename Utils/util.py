@@ -5,10 +5,8 @@ import pymongo
 import requests
 from random import randint
 
-from elasticsearch import Elasticsearch
 from urlextract import URLExtract
-from Constants.dbConstants import es_url, mongo_url
-from pymongo import MongoClient
+from Constants.dbConstants import es, client
 from pymongo.errors import ConnectionFailure
 
 from RefPageParsers.github_parser import github_parse
@@ -72,7 +70,6 @@ def validate_cve_id(cve_id):
 
 
 def check_elasticsearch():
-    es = Elasticsearch(es_url)
     try:
         res = es.ping()
         return res
@@ -82,7 +79,6 @@ def check_elasticsearch():
 
 
 def check_mongodb():
-    client = MongoClient(mongo_url)
     try:
         client.server_info()
         return True

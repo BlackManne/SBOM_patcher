@@ -1,22 +1,14 @@
-import time
-
-from pymongo import MongoClient
-from elasticsearch import Elasticsearch
 import queue
 from threading import Thread
 from es.es_util import establish_es_index
-from Constants.dbConstants import mongo_url, es_url
+from Constants.dbConstants import es, client
 from mongoDB.mongoUtils import query_by_updated_time
 
 collection_to_index = {'mergedCVE': 'merged_cve'}
 collection = 'mergedCVE'
 index = 'merged_cve'
 
-# 连接到MongoDB
-client = MongoClient(mongo_url)
 db = client['local']
-# 连接到es
-es = Elasticsearch(es_url)
 
 # 定义线程数和队列
 NUM_THREADS = 5

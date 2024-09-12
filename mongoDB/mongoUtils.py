@@ -1,8 +1,7 @@
-from pymongo import MongoClient
-from Constants.dbConstants import mongo_url
+from Constants.dbConstants import client
 
 # 连接MongoDB
-mongodb_client = MongoClient(mongo_url)
+mongodb_client = client
 db = mongodb_client['local']
 
 db_name_collections = {'nvd', 'aliCloud', 'debian', 'githubAdvisories', 'mergedCVE'}

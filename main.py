@@ -5,8 +5,7 @@ import pandas
 import requests
 from lxml import etree
 from random import randint
-import pymongo
-from Constants.dbConstants import mongo_url
+from Constants.dbConstants import client
 
 START_PAGE_NUM = 1
 END_PAGE_NUM = 2
@@ -56,7 +55,7 @@ def get_cve_ref_link(cve_etree):
 
 
 def main():
-    mongodb_client = pymongo.MongoClient(mongo_url)
+    mongodb_client = client
     db = mongodb_client['local']
     collection = db['CVE']
     result_df = pandas.DataFrame(

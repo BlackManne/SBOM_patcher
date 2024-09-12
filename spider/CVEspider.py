@@ -4,7 +4,7 @@ import re
 import time
 from lxml import etree
 import pymongo
-from Constants.dbConstants import mongo_url
+from Constants.dbConstants import client
 from RefPageParsers import github_parser
 from RefPageParsers import apache_parser
 from Utils.util import get_page_content
@@ -175,7 +175,7 @@ def main():
 
 
 if __name__ == "__main__":
-    mongodb_client = pymongo.MongoClient(mongo_url)
+    mongodb_client = client
     db = mongodb_client['local']
     cve_collection = db['CVE']
     relation_collection = db['relation']

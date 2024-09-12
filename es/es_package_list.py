@@ -4,17 +4,16 @@ import sys
 from bs4 import BeautifulSoup
 import requests
 from lxml import etree
-from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
-from Constants.dbConstants import es_url
+from Constants.dbConstants import es
 import os
 
 
-es = []
+# es = []
 
 
 def save_data(version):
-    global es
+    # global es
     localdir = "files" + os.sep + version + os.sep
     if not os.path.exists(localdir):
         os.makedirs(localdir)
@@ -37,8 +36,8 @@ def save_data(version):
                 sys.stderr.write("error version")
                 return
 
-    if not es:
-        es = Elasticsearch(es_url)
+    # if not es:
+    #     es = Elasticsearch(es_url)
     index_name = "openeuler-" + version.lower()
     if es.indices.exists(index=index_name):
         es.indices.delete(index=index_name)
@@ -89,9 +88,9 @@ def save_data(version):
 
 
 def search(lib, version='22.03-LTS-SP3'):
-    global es
-    if not es:
-        es = Elasticsearch(es_url)
+    # global es
+    # if not es:
+    #     es = Elasticsearch(es_url)
     index_name = "openeuler-" + version.lower()
     query_body = {
         "bool": {

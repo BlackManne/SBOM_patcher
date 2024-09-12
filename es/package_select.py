@@ -1,6 +1,4 @@
-from elasticsearch import Elasticsearch
-from Constants.dbConstants import es_url
-es = Elasticsearch(es_url)
+from Constants.dbConstants import es
 
 index_name = 'openeuler-22.03-lts-sp3'
 

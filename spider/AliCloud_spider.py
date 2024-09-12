@@ -9,13 +9,13 @@ from RefPageParsers.parse_driver import parse_url
 from Utils.TimeUtils import get_current_time
 from Utils.util import get_page_content
 from Utils.TimeUtils import compare_dates
-from Constants.dbConstants import mongo_url
+from Constants.dbConstants import client
 
 list_base_url = "https://avd.aliyun.com/nvd/list?page="
 search_base_url = "https://avd.aliyun.com/search?q="
 detail_base_url = "https://avd.aliyun.com/detail?id=AVD"
 
-mongodb_client = pymongo.MongoClient(mongo_url)
+mongodb_client = client
 db = mongodb_client['local']
 cve_collection = db['aliCloud']
 
