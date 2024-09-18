@@ -88,12 +88,14 @@ def crawl_nvd(base_url):
     mongodb_client.close()
 
 
-def nvd_crawl_by_time(start_time):
-    # 获取当前日期
-    today = date.today()
+def nvd_crawl_by_time(start_time, end_time=None):
+
     # 将日期转换为所需格式
-    end_time = today.strftime("%Y-%m-%d")
-    print(end_time)
+    if end_time is None:
+        # 获取当前日期
+        today = date.today()
+        end_time = today.strftime("%Y-%m-%d")
+        print(end_time)
     start_datetime = datetime.strptime(start_time, "%Y-%m-%d")
     end_datetime = datetime.strptime(end_time, "%Y-%m-%d")
     # 计算两个日期之间的时间差

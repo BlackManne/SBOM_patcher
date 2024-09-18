@@ -2,7 +2,7 @@ import queue
 from threading import Thread
 from es.es_util import establish_es_index
 from Constants.dbConstants import es, client
-from mongoDB.mongoUtils import query_by_updated_time
+from mongoDB.mongoUtils import query_by_updated_time,query_by_time_range
 
 collection_to_index = {'mergedCVE': 'merged_cve'}
 collection = 'mergedCVE'
@@ -16,8 +16,11 @@ NUM_THREADS = 5
 data_queue = queue.Queue()
 
 
-def get_from_mongo(time=None):
-    db_data = query_by_updated_time(time, collection)
+def get_from_mongo(start_time=None, end_time=None):
+    if end_time is None:
+        db_data = query_by_updated_time(start_time, collection)
+    else:
+        db_data = query_by_time_range(start_time=start_time, end_time=end_time, db_name=collection)
     print(f'共有{len(db_data)}条数据')
     print(f'所有的数据为:{db_data}')
 
@@ -70,7 +73,7 @@ def write_to_es():
         data_queue.task_done()
 
 
-def transfer_to_es(time=None):
+def transfer_to_es(start_time=None, end_time=None):
     # 如果没有索引创建已有索引
     if not es.indices.exists(index=index):
         print("没有对应的索引，正在创建")
@@ -78,7 +81,7 @@ def transfer_to_es(time=None):
         print("创建索引完成")
 
     # 创建并启动获取数据线程
-    producer_thread = Thread(target=get_from_mongo, args=(time,))
+    producer_thread = Thread(target=get_from_mongo, args=(start_time, end_time))
     producer_thread.start()
 
     # 创建并启动消费数据线程

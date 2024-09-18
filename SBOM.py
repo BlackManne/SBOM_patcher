@@ -21,15 +21,28 @@ def crawl_all():
     return jsonify({"message": "获取成功"}), 200
 
 
-@app.route('/nvd/crawl/by_time', methods=['POST'])
-def crawl_by_time():
-    start_time = request.args.get('time')
+@app.route('/nvd/crawl/by_start_time', methods=['POST'])
+def crawl_by_start_time():
+    start_time = request.args.get('start_time')
     # 格式为 2024-07-11
     nvd_crawl_by_time(start_time=start_time)
     alicloud_crawl_by_time(start_time=start_time)
-    merge_mongo_database(time=start_time)
+    merge_mongo_database(start_time=start_time)
     establish_es_index()
-    transfer_to_es(time=start_time)
+    transfer_to_es(start_time=start_time)
+    return jsonify({"message": "获取成功"}), 200
+
+
+@app.route('/nvd/crawl/by_time', methods=['POST'])
+def crawl_by_time():
+    start_time = request.args.get('start_time')
+    end_time = request.args.get('end_time')
+    # 格式为 2024-07-11
+    nvd_crawl_by_time(start_time=start_time, end_time=end_time)
+    alicloud_crawl_by_time(start_time=start_time, end_time=end_time)
+    merge_mongo_database(start_time=start_time, end_time=end_time)
+    establish_es_index()
+    transfer_to_es(start_time=start_time, end_time=end_time)
     return jsonify({"message": "获取成功"}), 200
 
 

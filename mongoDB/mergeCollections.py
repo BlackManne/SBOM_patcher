@@ -1,7 +1,7 @@
 import datetime
 
 from Constants.dbConstants import client
-from mongoDB.mongoUtils import query_by_updated_time
+from mongoDB.mongoUtils import query_by_updated_time, query_by_time_range
 from ExternalSearchers.debian_searcher import get_from_debian_by_cve_list
 from ExternalSearchers.github_searcher import get_from_advisories_by_cve_list
 from mongoDB.mongoUtils import insert_or_update_by_cve_id
@@ -18,18 +18,23 @@ alicloud_collection = db['aliCloud']
 merged_cve_collection = db['mergedCVE']
 
 
-def merge_mongo_database(time=None):
+def merge_mongo_database(start_time=None, end_time=None):
     # 此时是全量查询
-    if time is None:
+    if start_time is None:
         # 全量查询需要将合并后的mongo表先清空
         merged_cve_collection.delete_many({})
         nvd_docs = nvd_new_collection.find({})
+    elif end_time is None:
+        nvd_docs = query_by_updated_time(start_time, nvd_db_name)
     else:
-        nvd_docs = query_by_updated_time(time, nvd_db_name)
+        nvd_docs = query_by_time_range(start_time=start_time, end_time=end_time, db_name=nvd_db_name)
     merge_mongo_by_nvd_docs(nvd_docs)
 
 
 def merge_mongo_by_nvd_docs(nvd_docs):
+    if nvd_docs is None:
+        print('发生错误！传入参数为None')
+        return
     # 获取nvd列表里面全部的cve_id
     cve_id_list = [doc['No'] for doc in nvd_docs]
     # 根据nvd增量或者全量爬取debian和advisories

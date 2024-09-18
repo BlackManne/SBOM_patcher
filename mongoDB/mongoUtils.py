@@ -47,6 +47,26 @@ def query_by_updated_time(time, db_name):
     return db_data
 
 
+def query_by_time_range(start_time, end_time, db_name):
+    if db_name not in db_name_collections:
+        print('数据库名称错误')
+        return None
+    db_collection = db[db_name]
+    if start_time is None or end_time is None:
+        print(f"参数不对！起始时间为{start_time}，结束时间为{end_time}，均不能为空")
+        return
+    # 非全量读取数据
+    else:
+        query = {
+            "$or": [
+                {"cve_published_time": {"$gte": start_time, "$lte": end_time}},
+                {"cve_modified_time": {"$gte": start_time, "$lte": end_time}}
+            ]
+        }
+        db_data = list(db_collection.find(query))
+    return db_data
+
+
 def query_by_cve_id_and_db_name(cve_id, db_name):
     if db_name not in db_name_collections:
         print(f'不存在名为{db_name}的数据库！')

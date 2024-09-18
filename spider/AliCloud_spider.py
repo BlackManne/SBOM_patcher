@@ -233,7 +233,7 @@ def get_cve_affect_sw(cve_etree):
     return merge_versions(data)
 
 
-def crawl_url(url, start_time=None):
+def crawl_url(url, start_time=None, end_time=None):
     # 某一页的全部数据，html格式
     html = get_page_content(url)
     # 用正则表达式找到html里面需要用的格式
@@ -246,6 +246,8 @@ def crawl_url(url, start_time=None):
         detail_html = get_page_content(detail_url)
         detail_html_etree = etree.HTML(detail_html)
         cve_time = content[3]
+        if end_time is not None and compare_dates(end_time, cve_time) == -1:
+            continue
         if start_time is not None and compare_dates(cve_time, start_time) == -1:
             return -1
         cve_description = str(get_cve_description(detail_html_etree))
@@ -308,13 +310,16 @@ def alicloud_crawl_all():
         time.sleep(3)
 
 
-def alicloud_crawl_by_time(start_time):
+def alicloud_crawl_by_time(start_time=None, end_time=None):
     for page_num in range(1, get_all_page_cnt()):
         print("正在爬取第" + str(page_num) + "页数据")
         # 某一页的url
         url = list_base_url + str(page_num)
-        if crawl_url(url, start_time) == -1:
-            print(f'截止到{start_time}的阿里云数据已经爬取完成!')
+        if crawl_url(url, start_time, end_time) == -1:
+            if end_time is None:
+                print(f'截止到{start_time}的阿里云数据已经爬取完成!')
+            else:
+                print(f'{start_time}到{end_time}之间的阿里云数据已经爬取完成!')
             return
         time.sleep(3)
 

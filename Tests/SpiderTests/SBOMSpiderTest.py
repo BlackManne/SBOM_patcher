@@ -27,9 +27,9 @@ class TestSBOMSpider(unittest.TestCase):
 
         SBOM.nvd_crawl_by_time(start_time=yesterday_str)
         SBOM.alicloud_crawl_by_time(start_time=yesterday_str)
-        SBOM.merge_mongo_database(time=yesterday_str)
+        SBOM.merge_mongo_database(start_time=yesterday_str)
         SBOM.establish_es_index()
-        SBOM.transfer_to_es(time=yesterday_str)
+        SBOM.transfer_to_es(start_time=yesterday_str)
 
         exec_end_time = time.time()
 
