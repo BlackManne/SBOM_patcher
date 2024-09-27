@@ -241,7 +241,7 @@ def crawl_url(url, start_time=None, end_time=None):
     contents = get_cve_content(html)
     # 根据本页最后一个条目的时间来判断这一页是否可以跳过
     earliest_time_in_page = contents[len(contents) - 1][3].strip()
-    if earliest_time_in_page is not None and compare_dates(earliest_time_in_page, end_time) == 1:
+    if end_time is not None and earliest_time_in_page is not None and compare_dates(earliest_time_in_page, end_time) == 1:
         # 本页最后一个时间（最早时间）在end_time之后，这一页都可以跳过
         return
     for content in contents:
