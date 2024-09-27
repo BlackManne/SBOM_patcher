@@ -13,10 +13,12 @@ def compare_dates(date_str1, date_str2):
         date1 = datetime.strptime(date_str1, '%Y-%m-%d')
         date2 = datetime.strptime(date_str2, '%Y-%m-%d')
 
-        if date1 >= date2:  # date1和date2同一天或者它之后
+        if date1 > date2:  # date1在date2之后
             return 1
+        elif date1 == date2:    # date1在date2同一天
+            return 0
         else:
-            return -1
+            return -1   # date1在date2之前
     except ValueError:
         print("日期格式错误，请使用 YYYY-MM-DD 格式")
         return 500
