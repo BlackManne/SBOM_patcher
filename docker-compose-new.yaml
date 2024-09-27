@@ -12,6 +12,8 @@ services:
     volumes:
       - es_data:/usr/share/elasticsearch/data
       - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    networks:
+      - sbom_network
     
 
   mongodb:
@@ -21,15 +23,25 @@ services:
       - "27017:27017"
     volumes:
       - mongodb_data:/data/db
+    networks:
+      - sbom_network
 
   sbom:
-    build: ./sbom
+    build:
+      context: .
+      dockerfile: dockerfile
     container_name: sbom
     depends_on:
       - elasticsearch
       - mongodb
     ports:
       - "5000:5000"
+    networks:
+      - sbom_network
+
+networks:
+  sbom_network:
+    driver: bridge
 
 volumes:
   es_data:

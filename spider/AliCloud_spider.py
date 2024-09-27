@@ -9,7 +9,8 @@ from RefPageParsers.parse_driver import parse_url
 from Utils.TimeUtils import get_current_time
 from Utils.util import get_page_content
 from Utils.TimeUtils import compare_dates
-from Constants.dbConstants import client
+from Constants.dbConstants import create_mongo_connection
+client = create_mongo_connection()
 
 list_base_url = "https://avd.aliyun.com/nvd/list?page="
 search_base_url = "https://avd.aliyun.com/search?q="
@@ -216,18 +217,18 @@ def get_cve_affect_sw(cve_etree):
 
                 if product_name not in result:
                     result[product_name] = {"software_name": product_name,
-                                            "interval_version": [],
-                                            "detail_version": [],
-                                            "raw_version": []}
+                                            "interval_versions": [],
+                                            "detail_versions": [],
+                                            "raw_versions": []}
                 if impact:
-                    result[product_name]["raw_version"].append(impact)
+                    result[product_name]["raw_versions"].append(impact)
                 else:
-                    result[product_name]["raw_version"].append(version_info)
+                    result[product_name]["raw_versions"].append(version_info)
         # 调用函数并打印结果
         for product_item in result.values():
             print(f"product 的类型: {type(product_item)}")
-            product_item["detail_version"] = extract_detail_versions(product_item["raw_version"])
-            product_item["interval_version"] = convert_versions_to_interval(product_item["raw_version"])
+            product_item["detail_versions"] = extract_detail_versions(product_item["raw_versions"])
+            product_item["interval_versions"] = convert_versions_to_interval(product_item["raw_versions"])
         return list(result.values())
 
     return merge_versions(data)

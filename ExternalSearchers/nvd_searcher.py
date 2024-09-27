@@ -96,7 +96,10 @@ def search_nvd_using_url(url):
     response = requests.request("GET", url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
     detail_versions = selenium_parse(url)
-    title = soup.find('title').text.strip()
+    if soup.find('title') is None:
+        title = None
+    else:
+        title = soup.find('title').text.strip()
     # cve-id合法，但是并不能找到对应的cve
     if title == 'NVD - Invalid Parameters':
         print('no such cve!')
@@ -104,7 +107,10 @@ def search_nvd_using_url(url):
 
     warn = soup.find(id="vulnShowWarningDiv")
     # 假设每一个页面的description标签只有一个，并且在title标签后一个
-    description = soup.find(id="vulnDescriptionTitle").find_next_sibling('p', attrs={'data-testid': True}).text.strip()
+    if soup.find(id="vulnDescriptionTitle") is None:
+        description = ""
+    else:
+        description = soup.find(id="vulnDescriptionTitle").find_next_sibling('p', attrs={'data-testid': True}).text.strip()
     # 判断一下是否rejected，如果是的话返回reject信息
     if warn:
         slogan = warn.find(class_='h4Size').text.strip()

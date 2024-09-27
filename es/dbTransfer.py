@@ -1,8 +1,10 @@
 import queue
 from threading import Thread
 from es.es_util import establish_es_index
-from Constants.dbConstants import es, client
+from Constants.dbConstants import create_es_connection, create_mongo_connection
 from mongoDB.mongoUtils import query_by_updated_time,query_by_time_range
+es = create_es_connection()
+client = create_mongo_connection()
 
 collection_to_index = {'mergedCVE': 'merged_cve'}
 collection = 'mergedCVE'

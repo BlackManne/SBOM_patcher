@@ -5,11 +5,11 @@ from bs4 import BeautifulSoup
 import requests
 from lxml import etree
 from elasticsearch.helpers import bulk
-from Constants.dbConstants import es
+from Constants.dbConstants import create_es_connection
 import os
 
 
-# es = []
+es = create_es_connection()
 
 
 def save_data(version):

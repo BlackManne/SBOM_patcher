@@ -5,7 +5,8 @@ import pandas
 import requests
 from lxml import etree
 from random import randint
-from Constants.dbConstants import client
+from Constants.dbConstants import create_mongo_connection
+client = create_mongo_connection()
 
 START_PAGE_NUM = 1
 END_PAGE_NUM = 2

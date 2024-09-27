@@ -6,12 +6,15 @@ import requests
 from random import randint
 
 from urlextract import URLExtract
-from Constants.dbConstants import es, client
+from Constants.dbConstants import create_es_connection, create_mongo_connection
 from pymongo.errors import ConnectionFailure
 
 from RefPageParsers.github_parser import github_parse
 
 cve_pattern = r'^CVE-\d{4}-\d{4,}$'
+
+es = create_es_connection()
+client = create_mongo_connection()
 
 
 def get_page_content(url, session=None):

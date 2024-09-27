@@ -1,13 +1,13 @@
 import datetime
 
-from Constants.dbConstants import client
+from Constants.dbConstants import create_mongo_connection
 from mongoDB.mongoUtils import query_by_updated_time, query_by_time_range
 from ExternalSearchers.debian_searcher import get_from_debian_by_cve_list
 from ExternalSearchers.github_searcher import get_from_advisories_by_cve_list
 from mongoDB.mongoUtils import insert_or_update_by_cve_id
 
 # 连接MongoDB
-mongodb_client = client
+mongodb_client = create_mongo_connection()
 db = mongodb_client['local']
 
 # 获取集合

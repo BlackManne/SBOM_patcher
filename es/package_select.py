@@ -1,5 +1,5 @@
-from Constants.dbConstants import es
-
+from Constants.dbConstants import create_es_connection
+es = create_es_connection()
 index_name = 'openeuler-22.03-lts-sp3'
 
 

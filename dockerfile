@@ -2,7 +2,7 @@
 FROM python:3.9.13
 
 # 安装需要的系统工具
-RUN apt-get update && apt-get install -y netcat
+#RUN apt-get update && apt-get install -y netcat
 
 WORKDIR /SBOM
 

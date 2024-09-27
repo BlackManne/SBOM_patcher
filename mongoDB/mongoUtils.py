@@ -1,7 +1,7 @@
-from Constants.dbConstants import client
+from Constants.dbConstants import create_mongo_connection
 
 # 连接MongoDB
-mongodb_client = client
+mongodb_client = create_mongo_connection()
 db = mongodb_client['local']
 
 db_name_collections = {'nvd', 'aliCloud', 'debian', 'githubAdvisories', 'mergedCVE'}

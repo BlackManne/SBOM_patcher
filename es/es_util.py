@@ -1,8 +1,8 @@
 # 用来创建es的两个index
 from es import es_mappings
 from Utils.util import validate_cve_id
-from Constants.dbConstants import es
-
+from Constants.dbConstants import create_es_connection
+es = create_es_connection()
 collection_index = {'merged_cve'}
 
 

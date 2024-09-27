@@ -8,10 +8,11 @@ import requests
 from bs4 import BeautifulSoup
 
 from ExternalSearchers.nvd_searcher import search_nvd_using_cve_id, headers
-from Constants.dbConstants import client
+from Constants.dbConstants import create_mongo_connection
 
 thread_num = 5
 data_queue = queue.Queue()
+client = create_mongo_connection()
 
 
 def crawl_nvd_page(base_url, nowpage, maxpages):
@@ -22,7 +23,12 @@ def crawl_nvd_page(base_url, nowpage, maxpages):
         cve_ids = soup.select('[data-testid^="vuln-detail-link-"]')
         for e in cve_ids:
             cve_id = e.text
-            result = search_nvd_using_cve_id(cve_id)
+            try:
+                result = search_nvd_using_cve_id(cve_id)
+            except Exception as e:
+                #如果出现异常，跳过这个数据，下一个继续执行
+                print(e.__traceback__)
+                continue
             data_queue.put(result)
             print(result)
         nowpage += thread_num
@@ -89,7 +95,6 @@ def crawl_nvd(base_url):
 
 
 def nvd_crawl_by_time(start_time, end_time=None):
-
     # 将日期转换为所需格式
     if end_time is None:
         # 获取当前日期

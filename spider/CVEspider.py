@@ -4,7 +4,7 @@ import re
 import time
 from lxml import etree
 import pymongo
-from Constants.dbConstants import client
+from Constants.dbConstants import create_mongo_connection
 from RefPageParsers import github_parser
 from RefPageParsers import apache_parser
 from Utils.util import get_page_content
@@ -14,7 +14,7 @@ START_PAGE_NUM = 1
 END_PAGE_NUM = 10
 list_base_url = 'https://avd.aliyun.com/nvd/list?type=WEB应用&page='
 detail_base_url = 'https://avd.aliyun.com/detail?id=AVD'
-
+client = create_mongo_connection()
 
 
 def get_cve_content(res):
