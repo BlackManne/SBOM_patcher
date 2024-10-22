@@ -2,6 +2,8 @@
 import datetime
 import re
 import time
+import traceback
+
 from lxml import etree
 import pymongo
 
@@ -288,7 +290,8 @@ def crawl_url(url, start_time=None, end_time=None):
             # 没找到说明没有，这个时候再存
             insert_id = cve_collection.insert_one(cve_info_dict).inserted_id
             print("已将CVE编号为" + str(content[0]) + "的漏洞存入数据库")
-        except:
+        except Exception as e:
+            traceback.print_exc()
             print("\033[31m" + "读取与存入CVE编号为" + str(content[0]) + " 的信息时出现异常" + "\033[0m")
 
 

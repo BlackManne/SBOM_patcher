@@ -6,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 from Utils.TimeUtils import get_current_time
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from Utils.util import parse_patch_url
 
@@ -19,7 +20,11 @@ cve_pattern = re.compile("(cve|CVE)-[0-9]{4}-[0-9]{4,}$")
 
 
 def selenium_parse(url):
-    driver = webdriver.Chrome()
+    # driver = webdriver.Chrome()
+    options = Options()
+    options.add_argument('--headless')
+    driver = webdriver.Remote(command_executor='http://selenium:4444/wd/hub', options=options)
+
     # 打开网页
     driver.get(url)
     buttons = [driver.find_elements(By.CSS_SELECTOR, "[data-cpe-list-toggle]"),

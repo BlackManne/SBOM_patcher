@@ -144,7 +144,7 @@ def advisories_search_by_url(advisory_url):
         print("invalid url pattern!!")
         return None
     cve_id = advisory_url[query_idx + 6:]
-    response = requests.request("GET", advisory_url, headers={'User-Agent': 'baidu'})
+    response = requests.request("GET", advisory_url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
     cve_id_list = soup.find_all('div', class_='mt-1 text-small color-fg-muted')
     cve_find_or_not = False
