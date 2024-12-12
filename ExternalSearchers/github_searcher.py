@@ -1,3 +1,6 @@
+import logging
+import time
+
 import requests
 import re
 import base64
@@ -16,7 +19,7 @@ headers = {
     # 如果还需要使用graphQL，请在这里附上github token
     'Connection': 'keep-alive'
 }
-
+max_retries = 5
 collection_name = 'githubAdvisories'
 
 
@@ -121,20 +124,37 @@ def get_from_advisories_by_cve_list(cve_list):
     if cve_list is None or len(cve_list) == 0:
         return None
     for cve_id in cve_list:
-        data = advisories_search_by_id(cve_id=cve_id)
+        try:
+            data = advisories_search_by_id(cve_id=cve_id)
+        except Exception as e:
+            print(e)
+            continue
         if data is not None:
             # cve编号是利用query条件来进行插入和更新的，此处应该删除掉
             if 'No' in data:
                 del data['No']
             insert_or_update_by_cve_id(cve_id=cve_id, collection_name=collection_name, doc=data)
             data_dict[cve_id] = data
+        time.sleep(5)
     return data_dict
 
 
 def advisories_search_by_id(cve_id):
     advisories_base = 'https://github.com/advisories?query='
     advisory_url = advisories_base + cve_id
-    return advisories_search_by_url(advisory_url)
+    retries = 0
+    while retries < max_retries:
+        try:
+            response = advisories_search_by_url(advisory_url)
+            # 处理响应
+            return response
+        except requests.exceptions.ConnectionError:
+            logging.info("ConnectionError occurred. Retrying...")
+            retries += 1
+            time.sleep(1)  # 可以调整重试间隔时间，这里设置为1秒
+
+    logging.info("Failed after {} retries.".format(max_retries))
+    return None
 
 
 # 在github advisories里面搜索
@@ -144,7 +164,7 @@ def advisories_search_by_url(advisory_url):
         print("invalid url pattern!!")
         return None
     cve_id = advisory_url[query_idx + 6:]
-    response = requests.request("GET", advisory_url, headers=headers)
+    response = requests.request("GET", advisory_url, headers={'User-Agent': 'Apifox/1.0.0 (https://apifox.com)'})
     soup = BeautifulSoup(response.text, "html.parser")
     cve_id_list = soup.find_all('div', class_='mt-1 text-small color-fg-muted')
     cve_find_or_not = False

@@ -10,6 +10,12 @@ db_name_collections = {'nvd', 'aliCloud', 'debian', 'githubAdvisories', 'mergedC
 def query_by_cve_id(collection, cve_id):
     try:
         result = collection.find_one({'No': cve_id})
+        if result is None:
+            return {
+                'code': 200,
+                'message': "不存在该编号的cve！",
+                "data": result
+            }
         if result['_id'] is not None:
             del result['_id']
         return {

@@ -1,8 +1,9 @@
+import logging
 import queue
 from threading import Thread
 from es.es_util import establish_es_index
 from Constants.dbConstants import create_es_connection, create_mongo_connection
-from mongoDB.mongoUtils import query_by_updated_time,query_by_time_range
+from mongoDB.mongoUtils import query_by_updated_time,query_by_time_range, query_by_cve_id
 es = create_es_connection()
 client = create_mongo_connection()
 
@@ -53,6 +54,7 @@ def write_to_es():
             'exploit_list': doc_with_id['exploit'] if 'exploit' in doc_with_id else None,
             'patch_list': doc_with_id['patch_list'] if 'patch_list' in doc_with_id else None,
             'debian_list': doc_with_id['debian_list'] if 'debian_list' in doc_with_id else None,
+            'debian_patch_reference': doc_with_id['debian_patch_reference'] if 'debian_patch_reference' in doc_with_id else None,
             'advisories_list': doc_with_id['advisories_list'] if 'advisories_list' in doc_with_id else None,
             'github_advisories_patches': doc_with_id['github_advisories_patches'] if 'github_advisories_patches' in doc_with_id else None,
         }
@@ -63,16 +65,33 @@ def write_to_es():
             }
         }
         # 查找是否存在该文档，如果存在则是更新，否则是插入
-        result = es.search(index=_index, body=body)
-        hits = result["hits"]["hits"]
-        # 更新
-        if hits:
-            doc_id = result['hits']['hits'][0]['_id']
-            response = es.update(index=_index, id=doc_id, body={"doc": doc})
-        else:
-            response = es.index(index=_index, document=doc)
-        print(response['result'])
+        try:
+            result = es.search(index=_index, body=body)
+            hits = result["hits"]["hits"]
+            # 更新
+            if hits:
+                doc_id = result['hits']['hits'][0]['_id']
+                response = es.update(index=_index, id=doc_id, body={"doc": doc})
+            else:
+                response = es.index(index=_index, document=doc)
+            print(response['result'])
+        except Exception as e:
+            logging.info(e)
         data_queue.task_done()
+
+
+def transfer_by_cve_list(cve_list):
+    # 如果没有索引创建已有索引
+    if not es.indices.exists(index=index):
+        print("没有对应的索引，正在创建")
+        establish_es_index()
+        print("创建索引完成")
+    for cve_id in cve_list:
+        result = query_by_cve_id(db[collection], cve_id)['data']
+        if result is not None:
+            data_queue.put(result)
+    data_queue.put(None)
+    write_to_es()
 
 
 def transfer_to_es(start_time=None, end_time=None):

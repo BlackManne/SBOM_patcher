@@ -20,11 +20,10 @@ cve_pattern = re.compile("(cve|CVE)-[0-9]{4}-[0-9]{4,}$")
 
 
 def selenium_parse(url):
-    # driver = webdriver.Chrome()
-    options = Options()
-    options.add_argument('--headless')
-    driver = webdriver.Remote(command_executor='http://selenium:4444/wd/hub', options=options)
-
+    driver = webdriver.Chrome()
+    # options = Options()
+    # options.add_argument('--headless')
+    # driver = webdriver.Remote(command_executor='http://selenium:4444/wd/hub', options=options)
     # 打开网页
     driver.get(url)
     buttons = [driver.find_elements(By.CSS_SELECTOR, "[data-cpe-list-toggle]"),
@@ -126,8 +125,10 @@ def search_nvd_using_url(url):
             return None
 
     # 到这里说明这是一个有内容且正常的界面，代表cve是有效的
-    # 这里假设score在class_='severityDetail'这个标签的正后面并且只有一个
-    score = soup.find(id="Vuln3CvssPanel").find(class_='severityDetail').find_next('a').text
+    score = "N/A"
+    score_ele = soup.find(id="Cvss3NistCalculatorAnchor")
+    if score_ele is not None:
+        score = score_ele.text
     badge_list = soup.find_all(class_='badge')
     # 查找具有 data-testid="vuln-published-on" 的字段
     published_date = soup.find(attrs={"data-testid": "vuln-published-on"})
@@ -144,6 +145,7 @@ def search_nvd_using_url(url):
 
     software_text_list = soup.find_all('pre')
     software_list_dict = {}
+    software_idx = 0
     for i in range(0, len(software_text_list)):
         software = software_text_list[i]
         software_text = software.text
@@ -153,8 +155,10 @@ def search_nvd_using_url(url):
                 temp = temp.lstrip()
                 if temp.startswith("*cpe:2.3:a:"):  # cpe2.3
                     start_idx = 11
+                    software_idx += 1
                 elif temp.startswith("*cpe:/a:"):  # cpe2.2
                     start_idx = 8
+                    software_idx += 1
                 else:
                     print("unsupported cpe version!")
                     continue
@@ -170,7 +174,7 @@ def search_nvd_using_url(url):
                     software_list_dict[software_name] = {
                         "software_name": software_name,
                         "interval_versions": [],
-                        "detail_versions": detail_versions[i],
+                        "detail_versions": detail_versions[software_idx - 1],
                         "raw_versions": []
                     }
                 # 整合软件版本信息

@@ -23,19 +23,19 @@ nvd_mappings = \
                         "type": "text",
                     },
                     "interval_versions": {
-                        "type": "nested"
+                        "type": "text",
                     },
                     "detail_versions": {
-                        "type": "nested"
+                        "type": "text",
                     },
                     "raw_versions": {
-                        "type": "nested"
+                        "type": "text",
                     }
                 }
             },
-            "third_party_list": {"type": "nested"},
-            "vendor_list": {"type": "nested"},
-            "exploit_list": {"type": "nested"},
+            "third_party_list": {"type": "text"},
+            "vendor_list": {"type": "text"},
+            "exploit_list": {"type": "text"},
             "patch_list": {
                 "type": "nested",
                 "properties": {

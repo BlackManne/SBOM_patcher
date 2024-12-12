@@ -4,7 +4,6 @@ import threading
 import traceback
 from threading import Thread
 from datetime import datetime, timedelta, date
-
 import requests
 from bs4 import BeautifulSoup
 
@@ -14,6 +13,20 @@ from Constants.dbConstants import create_mongo_connection
 thread_num = 5
 data_queue = queue.Queue()
 client = create_mongo_connection()
+
+
+def crawl_nvd_by_cve_list(cve_list):
+    for cve_id in cve_list:
+        try:
+            result = search_nvd_using_cve_id(cve_id)
+        except Exception as e:
+            # 如果出现异常，跳过这个数据，下一个继续执行
+            traceback.print_exc()
+            continue
+        data_queue.put(result)
+        print(result)
+    data_queue.put(None)
+    write_to_mongo()
 
 
 def crawl_nvd_page(base_url, nowpage, maxpages):

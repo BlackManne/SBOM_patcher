@@ -5,10 +5,7 @@ import time
 import traceback
 
 from lxml import etree
-import pymongo
 
-from RefPageParsers.parse_driver import parse_url
-from Utils.TimeUtils import get_current_time
 from Utils.util import get_page_content
 from Utils.TimeUtils import compare_dates
 from Constants.dbConstants import create_mongo_connection
@@ -236,6 +233,11 @@ def get_cve_affect_sw(cve_etree):
     return merge_versions(data)
 
 
+def crawl_aliyun_by_cve_list(cve_list):
+    for cve_id in cve_list:
+        crawl_one_by_cve_id(cve_id)
+
+
 def crawl_url(url, start_time=None, end_time=None):
     # 某一页的全部数据，html格式
     html = get_page_content(url)
@@ -335,6 +337,6 @@ def alicloud_crawl_by_time(start_time=None, end_time=None):
 
 
 if __name__ == "__main__":
-    crawl_by_pages(1, 10)
-    # crawl_one_by_cve_id("CVE-2020-13992")
+    # crawl_by_pages(1, 10)
+    crawl_one_by_cve_id("CVE-2020-13992")
     # crawl_one_by_cve_id("CVE-2020-15073")

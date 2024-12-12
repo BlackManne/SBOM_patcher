@@ -1,3 +1,5 @@
+import re
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -5,8 +7,10 @@ from Utils.TimeUtils import get_current_time
 from Utils.util import parse_patch_url
 from mongoDB.mongoUtils import insert_or_update_by_cve_id
 
-
 collection_name = 'debian'
+patch_dot_pattern = r'\(v?\d+(\.\d+)+(-\w+)?\)'
+patch_underline_pattern = r'\(v?\d+(_\d+)+(-\w+)?\)'
+commit_format = re.compile('https://github.com/[^/]+/[^/]+/commit/.*')
 
 
 # 根据cve_id的列表爬取debian对应的数据，然后保存进入debian的数据库
@@ -16,7 +20,11 @@ def get_from_debian_by_cve_list(cve_list):
     if cve_list is None or len(cve_list) == 0:
         return None
     for cve_id in cve_list:
-        data = debian_search_by_cve_id(cve_id=cve_id)
+        try:
+            data = debian_search_by_cve_id(cve_id=cve_id)
+        except Exception as e:
+            print(e)
+            continue
         if data is not None:
             insert_or_update_by_cve_id(cve_id=cve_id, collection_name=collection_name, doc=data)
             print(data)
@@ -46,6 +54,7 @@ def debian_search_by_cve_id(cve_id):
         return None
     ref_link_list = []
     patch_list = []
+    patch_reference = []
     for element in a_elements:
         patch_url = element.text
         ref_link = patch_url
@@ -53,7 +62,9 @@ def debian_search_by_cve_id(cve_id):
             ref_link = ref_link + element.next_sibling.string.strip()
         if element.previous_sibling and element.previous_sibling.string:
             ref_link = element.previous_sibling.string.strip() + ref_link
-        if ref_link.lower().startswith('fixed by:') or ref_link.lower().startswith('upstream patch'):
+        if ref_link.lower().startswith('fixed by:') or ref_link.lower().startswith('upstream patch')\
+                or (ref_link.lower().endswith(')') and
+                    (re.search(patch_dot_pattern, ref_link.lower()) or re.search(patch_underline_pattern, ref_link.lower()))):
             patch_detail = parse_patch_url(patch_url)
             patch_list.append({
                 'patch_url': patch_url,
@@ -61,11 +72,14 @@ def debian_search_by_cve_id(cve_id):
                 'patch_detail': patch_detail['detail'],
                 'time': get_current_time()
             })
+        elif re.match(commit_format, ref_link.lower()) is not None:
+            patch_reference.append(ref_link)
         ref_link_list.append(ref_link)
     return {
         'No': cve_id,
         'source_url': url,
         'ref_links': ref_link_list,
+        'patch_reference': patch_reference,
         'patch_list': patch_list
     }
 

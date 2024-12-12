@@ -26,6 +26,25 @@ services:
     networks:
       - sbom_network
 
+  selenium:
+    image: selenium/standalone-chromium:nightly
+    #image: euler-selenium:latest
+    shm_size: 2gb
+    container_name: selenium
+    ports:
+     - "4444:4444"
+     - "7900:7900"
+     - "5900:5900"
+    ulimits:
+      nofile:
+        soft: 32768
+        hard: 32768
+    environment:
+     - SE_START_NO_VNC=false
+     - SE_START_VNC=false
+    networks:
+     - sbom_network
+
   sbom:
     build:
       context: .
@@ -34,6 +53,7 @@ services:
     depends_on:
       - elasticsearch
       - mongodb
+      - selenium
     ports:
       - "5000:5000"
     networks:
@@ -42,6 +62,9 @@ services:
 networks:
   sbom_network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
 
 volumes:
   es_data:
