@@ -54,7 +54,7 @@ def write_to_es():
             'exploit_list': doc_with_id['exploit'] if 'exploit' in doc_with_id else None,
             'patch_list': doc_with_id['patch_list'] if 'patch_list' in doc_with_id else None,
             'debian_list': doc_with_id['debian_list'] if 'debian_list' in doc_with_id else None,
-            'debian_patch_reference': doc_with_id['debian_patch_reference'] if 'debian_patch_reference' in doc_with_id else None,
+            'patch_reference': doc_with_id['patch_reference'] if 'patch_reference' in doc_with_id else None,
             'advisories_list': doc_with_id['advisories_list'] if 'advisories_list' in doc_with_id else None,
             'github_advisories_patches': doc_with_id['github_advisories_patches'] if 'github_advisories_patches' in doc_with_id else None,
         }

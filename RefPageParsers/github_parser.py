@@ -136,6 +136,8 @@ def advisory_parse(url):
     workarounds = ''
     reference = []
     more = ''
+    patch_reference = []
+    commit_format = re.compile('https://github.com/[^/]+/[^/]+/commit/.*')
     # 处理description
     description_parent = soup.find(class_='markdown-body comment-body p-0')
     other_descriptions = description_parent.find_all(['h2', 'h3', 'h4'], recursive=False)
@@ -163,9 +165,12 @@ def advisory_parse(url):
                 while p and p.find_next('li') and p.find_next('li').find_parent() == father:
                     p = p.find_next('li').find('a')
                     href = p.get('href') if p is not None else None
-                    # print(p.text + ' : ' + href)
+                    print(p.text + ' : ' + href)
                     if p:
-                        p_detail_list.append(p.text)
+                        if href:  #有链接添加超链接，否则添加文本
+                            p_detail_list.append(href)
+                        else:
+                            p_detail_list.append(p.text)
 
                 if p in other_descriptions:
                     break
@@ -184,6 +189,8 @@ def advisory_parse(url):
                         workarounds += p_detail
                     elif e.text == 'References':
                         reference.append(p_detail)
+                        if re.match(commit_format, p_detail):
+                            patch_reference.append(p_detail)
                     elif e.text == 'For more information':
                         more += p_detail
                     else:
@@ -202,6 +209,7 @@ def advisory_parse(url):
         'patches': patches,
         'workarounds': workarounds,
         'reference': reference,
+        'patch_reference': patch_reference,
         'more': more
     }
     print(advisory_detail)
@@ -359,3 +367,5 @@ def github_parse(url):
 #         "https://github.com/cloudflare/cfrpki/security/advisories/GHSA-3pqh-p72c-fj85"]
 #     for url in url_list:
 #         github_parse(url)
+if __name__ == "__main__":
+        github_parse('https://github.com/advisories/GHSA-m9hc-vxjj-4x6q')

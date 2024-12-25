@@ -41,12 +41,12 @@ def merge_mongo_by_cve_list(cve_list):
     merge_mongo_by_nvd_docs(nvd_docs)
 
 
-def merge_mongo_database_manual(start_time=None, end_time=None):
-    if end_time is None:
-        nvd_docs = query_by_updated_time(start_time, nvd_db_name)
-    else:
-        nvd_docs = query_by_time_range(start_time=start_time, end_time=end_time, db_name=nvd_db_name)
-    merge_mongo_by_nvd_docs_manual(nvd_docs)
+# def merge_mongo_database_manual(start_time=None, end_time=None):
+#     if end_time is None:
+#         nvd_docs = query_by_updated_time(start_time, nvd_db_name)
+#     else:
+#         nvd_docs = query_by_time_range(start_time=start_time, end_time=end_time, db_name=nvd_db_name)
+#     merge_mongo_by_nvd_docs_manual(nvd_docs)
 
 
 def merge_mongo_by_nvd_docs(nvd_docs):
@@ -102,7 +102,8 @@ def merge_mongo_by_nvd_docs(nvd_docs):
         if debian_list is not None and cve_id in debian_list:
             debian_data = debian_list[cve_id]
             merged_doc['debian_list'] = debian_data['ref_links']
-            merged_doc['debian_patch_reference'] = debian_data['patch_reference']
+            if debian_data['patch_reference'] is not None:
+                merged_doc['patch_reference'] = debian_data['patch_reference']
             merged_doc['source_urls']['debian'] = debian_data['source_url']
             if debian_data['patch_list'] is not None:
                 merged_doc['patch_list']['debian'] = debian_data['patch_list']
@@ -112,6 +113,8 @@ def merge_mongo_by_nvd_docs(nvd_docs):
             merged_doc['advisories_list'] = advisories_data['reference']
             merged_doc['source_urls']['advisories'] = advisories_data['source_url']
             merged_doc['github_advisories_patches'] = advisories_data['patches']
+            if advisories_data['patch_reference'] is not None:
+                merged_doc['patch_reference'] += advisories_data['patch_reference']
 
         # 插入或更新MergedCVE表
         cve_id = nvd_doc.get('No')
@@ -120,73 +123,73 @@ def merge_mongo_by_nvd_docs(nvd_docs):
         print(f"编号为{cve_id}的数据合并完成。")
 
 
-def merge_mongo_by_nvd_docs_manual(nvd_docs):
-    if nvd_docs is None:
-        print('发生错误！传入参数为None')
-        return
-    # 根据nvd的增量将aliyun、advisory和debian都合并
-    for nvd_doc in nvd_docs:
-        cve_id = nvd_doc['No']
-        cve_no = cve_id[3:]
-
-        # 在AliCloud表中查找对应的漏洞信息
-        alicloud_doc = alicloud_collection.find_one({'No': 'AVD' + cve_no})
-        if not alicloud_doc:
-            alicloud_doc = alicloud_collection.find_one({'No': 'CVE' + cve_no})
-
-        merged_doc = {
-            'No': nvd_doc.get('No'),
-            'title': nvd_doc.get('title'),
-            'cve_published_time': nvd_doc.get('cve_published_time'),
-            'cve_modified_time': nvd_doc.get('cve_modified_time'),
-            'merge_time': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            'description': {
-                'nvd_description': nvd_doc.get('description')
-            },
-            'score': nvd_doc.get('score'),
-            'source_urls': {
-                'nvd_source_url': nvd_doc.get('source_url')
-            },
-            'affected_software': nvd_doc.get('affected_software'),
-            'third_party_list': nvd_doc.get('third_party_list'),
-            'vendor_list': nvd_doc.get('vendor_list'),
-            'exploit': nvd_doc.get('exploit'),
-            'patch_list': {
-                'nvd': nvd_doc.get('patch_list')
-            }
-        }
-        # 如果在AliCloud中找到了对应的记录，则合并数据
-        if alicloud_doc:
-            merged_doc['name'] = alicloud_doc.get('name')
-            merged_doc['type'] = alicloud_doc.get('type')
-            merged_doc['description']['alicloud_description'] = alicloud_doc.get('description')
-            merged_doc['rate'] = alicloud_doc.get('rate')
-            merged_doc['source_urls']['alicloud_source_url'] = alicloud_doc.get('source_url')
-            merged_doc['affected_software'] += alicloud_doc.get('affected_software')
-            merged_doc['alicloud_list'] = alicloud_doc.get('reference')
-        # 如果有debian数据，合并
-        debian_data = query_by_cve_id(db['debian'], cve_id)['data']
-        if debian_data is None:
-            debian_datas = get_from_debian_by_cve_list([cve_id])
-            if cve_id in debian_datas:
-                debian_data = debian_datas[cve_id]
-                merged_doc['debian_list'] = debian_data['ref_links']
-                merged_doc['debian_patch_reference'] = debian_data['patch_reference']
-                merged_doc['source_urls']['debian'] = debian_data['source_url']
-                if debian_data['patch_list'] is not None:
-                    merged_doc['patch_list']['debian'] = debian_data['patch_list']
-        # 如果有advisory数据，合并
-        advisories_data = query_by_cve_id(db['githubAdvisories'], cve_id)['data']
-        if advisories_data is None:
-            advisories_datas = get_from_advisories_by_cve_list([cve_id])
-            if cve_id in advisories_datas:
-                advisories_data = advisories_datas[cve_id]
-                merged_doc['advisories_list'] = advisories_data['reference']
-                merged_doc['source_urls']['advisories'] = advisories_data['source_url']
-                merged_doc['github_advisories_patches'] = advisories_data['patches']
-
-        # 插入或更新MergedCVE表
-        cve_id = nvd_doc.get('No')
-        insert_or_update_by_cve_id(cve_id=cve_id, doc=merged_doc, collection_name=merged_cve_db_name)
-
-        print(f"编号为{cve_id}的数据合并完成。")
+# def merge_mongo_by_nvd_docs_manual(nvd_docs):
+#     if nvd_docs is None:
+#         print('发生错误！传入参数为None')
+#         return
+#     # 根据nvd的增量将aliyun、advisory和debian都合并
+#     for nvd_doc in nvd_docs:
+#         cve_id = nvd_doc['No']
+#         cve_no = cve_id[3:]
+#
+#         # 在AliCloud表中查找对应的漏洞信息
+#         alicloud_doc = alicloud_collection.find_one({'No': 'AVD' + cve_no})
+#         if not alicloud_doc:
+#             alicloud_doc = alicloud_collection.find_one({'No': 'CVE' + cve_no})
+#
+#         merged_doc = {
+#             'No': nvd_doc.get('No'),
+#             'title': nvd_doc.get('title'),
+#             'cve_published_time': nvd_doc.get('cve_published_time'),
+#             'cve_modified_time': nvd_doc.get('cve_modified_time'),
+#             'merge_time': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+#             'description': {
+#                 'nvd_description': nvd_doc.get('description')
+#             },
+#             'score': nvd_doc.get('score'),
+#             'source_urls': {
+#                 'nvd_source_url': nvd_doc.get('source_url')
+#             },
+#             'affected_software': nvd_doc.get('affected_software'),
+#             'third_party_list': nvd_doc.get('third_party_list'),
+#             'vendor_list': nvd_doc.get('vendor_list'),
+#             'exploit': nvd_doc.get('exploit'),
+#             'patch_list': {
+#                 'nvd': nvd_doc.get('patch_list')
+#             }
+#         }
+#         # 如果在AliCloud中找到了对应的记录，则合并数据
+#         if alicloud_doc:
+#             merged_doc['name'] = alicloud_doc.get('name')
+#             merged_doc['type'] = alicloud_doc.get('type')
+#             merged_doc['description']['alicloud_description'] = alicloud_doc.get('description')
+#             merged_doc['rate'] = alicloud_doc.get('rate')
+#             merged_doc['source_urls']['alicloud_source_url'] = alicloud_doc.get('source_url')
+#             merged_doc['affected_software'] += alicloud_doc.get('affected_software')
+#             merged_doc['alicloud_list'] = alicloud_doc.get('reference')
+#         # 如果有debian数据，合并
+#         debian_data = query_by_cve_id(db['debian'], cve_id)['data']
+#         if debian_data is None:
+#             debian_datas = get_from_debian_by_cve_list([cve_id])
+#             if cve_id in debian_datas:
+#                 debian_data = debian_datas[cve_id]
+#                 merged_doc['debian_list'] = debian_data['ref_links']
+#                 merged_doc['debian_patch_reference'] = debian_data['patch_reference']
+#                 merged_doc['source_urls']['debian'] = debian_data['source_url']
+#                 if debian_data['patch_list'] is not None:
+#                     merged_doc['patch_list']['debian'] = debian_data['patch_list']
+#         # 如果有advisory数据，合并
+#         advisories_data = query_by_cve_id(db['githubAdvisories'], cve_id)['data']
+#         if advisories_data is None:
+#             advisories_datas = get_from_advisories_by_cve_list([cve_id])
+#             if cve_id in advisories_datas:
+#                 advisories_data = advisories_datas[cve_id]
+#                 merged_doc['advisories_list'] = advisories_data['reference']
+#                 merged_doc['source_urls']['advisories'] = advisories_data['source_url']
+#                 merged_doc['github_advisories_patches'] = advisories_data['patches']
+#
+#         # 插入或更新MergedCVE表
+#         cve_id = nvd_doc.get('No')
+#         insert_or_update_by_cve_id(cve_id=cve_id, doc=merged_doc, collection_name=merged_cve_db_name)
+#
+#         print(f"编号为{cve_id}的数据合并完成。")
