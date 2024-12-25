@@ -367,5 +367,5 @@ def github_parse(url):
 #         "https://github.com/cloudflare/cfrpki/security/advisories/GHSA-3pqh-p72c-fj85"]
 #     for url in url_list:
 #         github_parse(url)
-if __name__ == "__main__":
-        github_parse('https://github.com/advisories/GHSA-m9hc-vxjj-4x6q')
+# if __name__ == "__main__":
+#         github_parse('https://github.com/advisories/GHSA-m9hc-vxjj-4x6q')
