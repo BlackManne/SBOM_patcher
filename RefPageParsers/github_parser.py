@@ -330,7 +330,6 @@ def github_parse(url):
     pull_format = re.compile('https://github.com/[^/]+/[^/]+/pull/[0-9]+.*')
     # 文件格式，目前只支持md和pdf格式
     file_format = re.compile('https://github.com/[^/]+/[^/]+/.*\.[(md) | (pdf)]')
-    commits_format = re.compile('https://github.com/[^/]+/[^/]+/commits.*')
     if re.match(commit_format, url) is not None:
         github_detail["detail"] = commit_parse(url)
         github_detail["service_name"] += "_commit"
@@ -346,9 +345,6 @@ def github_parse(url):
     elif re.match(file_format, url) is not None:
         github_detail["detail"] = file_parse(url)
         github_detail["service_name"] += "_file"
-    elif re.match(commits_format, url) is not None:
-        github_detail["detail"] = commits_parse(url)
-        github_detail["service_name"] += "_commits"
     else:
         print("NOT SUPPORTED FORMAT!")
     # print(github_detail)

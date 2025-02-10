@@ -7,8 +7,8 @@ import base64
 
 from bs4 import BeautifulSoup
 
-from RefPageParsers.github_parser import commits_parse
-from RefPageParsers.github_parser import commit_parse
+# from RefPageParsers.github_parser import commits_parse
+# from RefPageParsers.github_parser import commit_parse
 from RefPageParsers.github_parser import advisory_parse
 from RefPageParsers.github_parser import github_url_transfer
 from mongoDB.mongoUtils import insert_or_update_by_cve_id
@@ -95,26 +95,26 @@ def gitlog_search(url):
 
 
 # 获取一个commit里面所有fix相关的commit信息
-def fix_commits_search(url):
-    commits_page = commits_parse(url)
-    fix_message_format = re.compile('^[F|f][I|i][X|x].*')
-    fix_commits_list = []
-    for commits in commits_page:
-        if commits['commit'] is not None and commits['commit']['message'] is not None and re.match(fix_message_format,
-                                                                                                   commits['commit'][
-                                                                                                       'message']) is not None:
-            url = commits['commit']['url']
-            message = commits['commit']['message']
-            if url is not None:
-                url = url.replace('api.', '').replace('repos/', '').replace('commits', 'commit').replace('git/', '')
-                commit_detail = commit_parse(url)
-                fix_commits_list.append({
-                    'message': message,
-                    'content': commit_detail
-                })
-    print(len(fix_commits_list))
-    print(fix_commits_list)
-    return fix_commits_list
+# def fix_commits_search(url):
+#     commits_page = commits_parse(url)
+#     fix_message_format = re.compile('^[F|f][I|i][X|x].*')
+#     fix_commits_list = []
+#     for commits in commits_page:
+#         if commits['commit'] is not None and commits['commit']['message'] is not None and re.match(fix_message_format,
+#                                                                                                    commits['commit'][
+#                                                                                                        'message']) is not None:
+#             url = commits['commit']['url']
+#             message = commits['commit']['message']
+#             if url is not None:
+#                 url = url.replace('api.', '').replace('repos/', '').replace('commits', 'commit').replace('git/', '')
+#                 commit_detail = commit_parse(url)
+#                 fix_commits_list.append({
+#                     'message': message,
+#                     'content': commit_detail
+#                 })
+#     print(len(fix_commits_list))
+#     print(fix_commits_list)
+#     return fix_commits_list
 
 
 # 根据cve_id的列表爬取advisories对应的数据，然后保存进入advisories的数据库
