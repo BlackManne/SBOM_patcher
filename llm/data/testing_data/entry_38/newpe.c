@@ -1,0 +1,18 @@
+
+
+static inline void dnrmg_receive_user_skb(struct sk_buff *skb)
+{
+	struct nlmsghdr *nlh = nlmsg_hdr(skb);
+
+	if (skb->len < sizeof(*nlh) ||
+	    nlh->nlmsg_len < sizeof(*nlh) ||
+	    skb->len < nlh->nlmsg_len)
+		return;
+
+	if (!netlink_capable(skb, CAP_NET_ADMIN))
+		RCV_SKB_FAIL(-EPERM);
+
+	/* Eventually we might send routing messages too */
+
+	RCV_SKB_FAIL(-EINVAL);
+}

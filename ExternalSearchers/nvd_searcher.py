@@ -247,4 +247,4 @@ def search_nvd_using_url(url):
 #         nvd_detail = search_nvd_using_url(cve_id)
 #         print(nvd_detail)
 
-# search_nvd_using_url('https://nvd.nist.gov/vuln/detail/CVE-2023-50868')
+# search_nvd_using_url('https://nvd.nist.gov/vuln/detail/CVE-2023-4759')

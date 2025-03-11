@@ -5,13 +5,13 @@ client = OpenAI(
     api_key='sk-DCop5RvCupZY7tJ88m8WWPEgkl51x7bGRjUQ0Mihve4UFUey',
 )
 
-with open("trial_code/base.py", "r") as base_file:
+with open("base.py", "r") as base_file:
     base_code = base_file.read()
 
-with open("trial_code/base.py", "r") as patch_file:
+with open("base.py", "r") as patch_file:
     patched_code = patch_file.read()
 
-with open("trial_code/base.py", "r") as new_file:
+with open("base.py", "r") as new_file:
     new_code = new_file.read()
 
 chat_completion = client.chat.completions.create(

@@ -1,33 +1,26 @@
-import requests
-from pymongo import MongoClient
+import difflib
 
-from Constants.dbConstants import mongo_url
-from ExternalSearchers.debian_searcher import debian_search_by_cve_id
-from ExternalSearchers.github_searcher import advisories_search_by_id
-from ExternalSearchers.nvd_searcher import search_nvd_using_cve_id
-from Utils.util import get_page_content
-from mongoDB.mergeCollections import merge_mongo_by_nvd_docs
-from spider.AliCloud_spider import crawl_one_by_cve_id
+# 定义两个示例代码字符串
+code1 = """
+def add(a, b):
+    return a + b
 
-headers = {
-    'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
-    'Connection': 'keep-alive'
-}
+print(add(1, 2))
+"""
 
-if __name__ == "__main__":
-    print(get_page_content("https://avd.aliyun.com/nvd/list?type=WEB应用&page="))
-    # cve_id = "CVE-2023-50868"
-    # nvd_detail = search_nvd_using_cve_id(cve_id)
-    # print(nvd_detail)
-    # crawl_one_by_cve_id(cve_id)
-    # debian_detail = debian_search_by_cve_id(cve_id)
-    # print(debian_detail)
-    # advisories_detail = advisories_search_by_id(cve_id)
-    # print(advisories_detail)
-    # 连接MongoDB
-    # mongodb_client = MongoClient(mongo_url)
-    # db = mongodb_client['local']
-    # nvd_new_collection = db['nvd']
-    # nvd_new_collection.insert_one(nvd_detail)
-    # nvd_docs = nvd_new_collection.find_one({'No': cve_id})
-    # merge_mongo_by_nvd_docs([nvd_docs])
+code2 = """
+def add_numbers(a, b):
+    return a + b
+
+print(add(1, 2))
+"""
+
+# 将字符串按行分割成列表
+lines1 = code1.splitlines(keepends=True)
+lines2 = code2.splitlines(keepends=True)
+
+# 使用 unified_diff 函数比较两个代码块
+diff = difflib.unified_diff(lines1, lines2, fromfile='code1.py', tofile='code2.py', n=2)
+
+# 输出比较结果
+print(''.join(diff))
