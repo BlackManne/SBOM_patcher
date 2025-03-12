@@ -2,6 +2,8 @@ import re
 from difflib import SequenceMatcher
 from collections import defaultdict
 
+import gensim
+
 
 def preprocess_code(code):
     """预处理代码：标准化格式并提取关键结构"""
@@ -31,26 +33,30 @@ def parse_code_blocks(code):
         if not token:
             continue
 
-        # 函数解析状态管理
-        if current_func:
-            buffer.append(token)
-            if token == '{':
-                brace_count += 1
-            elif token == '}':
-                brace_count -= 1
-                if brace_count == 0:
-                    functions[current_func] = ' '.join(buffer)
-                    current_func = None
-                    buffer = []
-            continue
-
-        # 检测函数定义
-        if re.match(r'\w+\s+\w+\s*\(', token):
-            match = re.search(r'(\w+)\s*\(', token)
-            if match:
-                current_func = match.group(1)
-                brace_count = 0
-                buffer = [token]
+        # # 函数解析状态管理
+        # if current_func:
+        #     buffer.append(token)
+        #     if token == '{':
+        #         brace_count += 1
+        #     elif token == '}':
+        #         brace_count -= 1
+        #         if brace_count == 0:
+        #             functions[current_func] = ' '.join(buffer)
+        #             current_func = None
+        #             buffer = []
+        #     continue
+        #
+        # func_pattern = re.compile(r'^\s((?:static\s+|inline\s+|attribute\s\(\(.?\)\)\s)*)'
+        #                           r'((?:\w+|\+|\s&?)\s+)+?'
+        #                           r'(\w+)\s\(([^)])\)\s*{'
+        #                           )
+        # # 检测函数定义
+        # if re.match(func_pattern, token):
+        #     match = re.search(func_pattern, token)
+        #     if match:
+        #         current_func = match.group(3)
+        #         brace_count = 0
+        #         buffer = [token]
         # 收集全局声明
         elif token not in ['{', '}']:
             global_blocks.append(token)
@@ -122,6 +128,8 @@ def code_similarity(patch1, patch2):
     final_code1 = ';'.join(filtered_globals1) + ''.join(filtered_funcs1)
     final_code2 = ';'.join(filtered_globals2) + ''.join(filtered_funcs2)
 
+    print(f"最终的代码1为:{final_code1}")
+    print(f"最终的代码2为:{final_code2}")
     # 计算相似度
     sm = SequenceMatcher(None, final_code1, final_code2)
     return sm.ratio()
