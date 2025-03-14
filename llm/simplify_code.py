@@ -118,7 +118,23 @@ def find_function_body(ast, function_name):
 def get_function_code(cursor, code):
     start_offset = cursor.extent.start.offset
     end_offset = cursor.extent.end.offset
-    return code[start_offset:end_offset]
+    raw_code = code[start_offset:end_offset]
+
+    # 有效性检查（过滤空函数体）
+    code_content = raw_code.strip()
+    if code_content in {"{}", "{ }", "{;}"}: # 常见空函数体模式
+        return None
+
+    return raw_code
+
+def func_definition_or_not(cursor):
+    has_body = False
+    for child in cursor.get_children():
+        if child.kind == clang.cindex.CursorKind.COMPOUND_STMT:
+            has_body = True
+            break
+    if has_body:
+        return True
 
 
 def find_all_functions(cursor, source_code):
@@ -129,12 +145,18 @@ def find_all_functions(cursor, source_code):
     :return: 包含函数名和函数体代码的字典
     """
     functions = {}
-    if (cursor.kind == clang.cindex.CursorKind.FUNCTION_DECL
-            or cursor.kind == clang.cindex.CursorKind.CONSTRUCTOR
-            or cursor.kind == clang.cindex.CursorKind.DESTRUCTOR):
-        function_name = cursor.spelling
-        function_code = get_function_code(cursor, source_code)
-        functions[function_name] = function_code
+    if cursor.kind in {clang.cindex.CursorKind.FUNCTION_DECL,
+                       clang.cindex.CursorKind.CONSTRUCTOR,
+                       clang.cindex.CursorKind.DESTRUCTOR}:
+        # 如果是一个函数定义，才添加函数代码
+        if cursor.is_definition():
+            children = list(cursor.get_children())  # 获取子节点列表
+            if children:  # 确保函数体不为空
+                function_name = cursor.spelling
+                # if function_name == 'call_console_drivers':
+                #     print('111')
+                if (function_code := get_function_code(cursor, source_code)) is not None:
+                    functions[function_name] = function_code
     for child in cursor.get_children():
         functions.update(find_all_functions(child, source_code))
     return functions
@@ -206,7 +228,6 @@ def extract_simplified_code_from_file(ast_with_func, global_code, functions):
 
 def simplify_code_from_diff(origin_path, patched_path, diff_path):
     diff_file = read_files_by_lines(diff_path)
-
 
     # 解析 diff 文件
     diff_result = parse_diff_file(diff_file)

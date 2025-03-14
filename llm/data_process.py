@@ -185,11 +185,9 @@ def get_patch(commit_id, file_name):
     return commit_object
 
 
-def data_process(base_directory, train):
+def data_process(base_directory, train, start_idx=0, end_idx=50):
     file_path = 'Main-data-set.xlsx'
     rows = get_rows_from_excel(file_path, train=train)
+    rows = rows.iloc[start_idx:end_idx]
     get_and_parse_data(rows, base_directory)
 
-
-if __name__ == "__main__":
-    data_process()

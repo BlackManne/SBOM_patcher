@@ -6,7 +6,7 @@ from Utils.file_utils import read_files
 from data_process import data_process
 
 # 设置你的 OpenAI API 密钥
-API_SECRET_KEY = "sk-zk267352d807f7d1a01483983343a67214267ce9292da282";
+API_SECRET_KEY = "sk-zk267352d807f7d1a01483983343a67214267ce9292da282"
 BASE_URL = "https://api.zhizengzeng.com/v1/"
 openai.api_key = API_SECRET_KEY
 openai.api_base = BASE_URL
